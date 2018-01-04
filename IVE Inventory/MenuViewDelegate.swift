@@ -26,7 +26,7 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
             return CGSize.init(width: ScreenSize.SCREEN_WIDTH , height: 149.0*DrConstants.kSCALE_FACTOR)
         }
         
-        let width:CGFloat = 165.0
+        let width:CGFloat = 172.0
         let height:CGFloat = 149.0
         let scaleFacetor = CGFloat().scaleFactor()
         let size = CGSize.init(width: floor(width*scaleFacetor), height: floor(height*scaleFacetor))
@@ -49,11 +49,11 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     {
         if section == 1
         {
-            let width:CGFloat = 165.0
+            let width:CGFloat = 172.0
             let scaleFacetor = CGFloat().scaleFactor()
             
-            let edge = (ScreenSize.SCREEN_WIDTH -  (2*width*scaleFacetor))/3
-            return UIEdgeInsets.init(top: 10, left: edge, bottom: 10, right: edge)
+            let edge = (ScreenSize.SCREEN_WIDTH -  floor((2*width*scaleFacetor)))/3
+            return UIEdgeInsets.init(top: floor(edge), left: floor(edge), bottom: 10, right: floor(edge))
             
         }
         

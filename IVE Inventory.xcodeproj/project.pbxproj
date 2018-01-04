@@ -371,7 +371,7 @@
 				TargetAttributes = {
 					9234116F1FEA166900BC82E0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 48VSLARB6R;
+						DevelopmentTeam = LUD6M4KSYM;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -639,7 +639,7 @@
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = 48VSLARB6R;
+				DEVELOPMENT_TEAM = LUD6M4KSYM;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -673,7 +673,7 @@
 				INFOPLIST_FILE = "IVE Inventory/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsomatic.inveinventory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appsomatic.IVE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b75b3dd6-c41f-4011-aa08-0520c92b50a0";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -690,11 +690,11 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Appsomatic Inc";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Appsomatic Inc";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48VSLARB6R;
+				DEVELOPMENT_TEAM = LUD6M4KSYM;
 				INFOPLIST_FILE = "IVE Inventory/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.appsomatic.inveinventory;
+				PRODUCT_BUNDLE_IDENTIFIER = com.appsomatic.IVE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48622e6c-0d8b-4670-b803-486c4afc5725";
 				PROVISIONING_PROFILE_SPECIFIER = "";
