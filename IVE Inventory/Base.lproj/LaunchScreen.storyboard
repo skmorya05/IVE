@@ -1,7 +1,11 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11134" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" launchScreen="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="01J-lp-oVM">
+    <device id="ipad12_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11106"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,14 +18,86 @@
                         <viewControllerLayoutGuide type="bottom" id="xb3-aO-Qok"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Ze5-6b-2t3">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SplashBG_1242x2208" translatesAutoresizingMaskIntoConstraints="NO" id="KyA-HG-LhT">
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+                            </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="x9q-aQ-vpO">
+                                <rect key="frame" x="312" y="1268" width="400" height="73"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Developed by" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sVd-6n-u5V">
+                                        <rect key="frame" x="2" y="11" width="161" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Zsl-3E-OWv"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Appsomatic_logo" translatesAutoresizingMaskIntoConstraints="NO" id="g9e-we-nFg">
+                                        <rect key="frame" x="164.5" y="11" width="50" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="EsY-oo-qee"/>
+                                            <constraint firstAttribute="width" constant="50" id="aso-u3-ELm"/>
+                                        </constraints>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Appsomatic.net" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Yay-ya-aMK">
+                                        <rect key="frame" x="217.5" y="11" width="176" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="sm2-Gn-QeA"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="g9e-we-nFg" firstAttribute="centerX" secondItem="x9q-aQ-vpO" secondAttribute="centerX" constant="-10.5" id="035-iR-HmV"/>
+                                    <constraint firstItem="Yay-ya-aMK" firstAttribute="leading" secondItem="g9e-we-nFg" secondAttribute="trailing" constant="3" id="48l-EV-jvW"/>
+                                    <constraint firstAttribute="height" constant="73" id="EUC-NU-lht"/>
+                                    <constraint firstAttribute="trailing" secondItem="Yay-ya-aMK" secondAttribute="trailing" constant="6.5" id="F9b-6f-d1z"/>
+                                    <constraint firstItem="g9e-we-nFg" firstAttribute="leading" secondItem="sVd-6n-u5V" secondAttribute="trailing" constant="1.6666666666666714" id="LaC-BI-Z98"/>
+                                    <constraint firstItem="Yay-ya-aMK" firstAttribute="centerY" secondItem="g9e-we-nFg" secondAttribute="centerY" id="NvQ-Kn-xId"/>
+                                    <constraint firstAttribute="width" constant="300" id="mSQ-jl-kKT">
+                                        <variation key="heightClass=regular-widthClass=regular" constant="400"/>
+                                    </constraint>
+                                    <constraint firstItem="g9e-we-nFg" firstAttribute="centerY" secondItem="x9q-aQ-vpO" secondAttribute="centerY" id="qWs-BV-8A9"/>
+                                    <constraint firstItem="sVd-6n-u5V" firstAttribute="leading" secondItem="x9q-aQ-vpO" secondAttribute="leading" constant="2" id="t2U-cT-7h5"/>
+                                    <constraint firstItem="sVd-6n-u5V" firstAttribute="centerY" secondItem="g9e-we-nFg" secondAttribute="centerY" id="xJP-OJ-Sou"/>
+                                </constraints>
+                            </view>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Center_logoimage" translatesAutoresizingMaskIntoConstraints="NO" id="fMc-6O-uSs">
+                                <rect key="frame" x="362" y="70" width="300" height="300"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="6Lh-gT-oEe"/>
+                                    <constraint firstAttribute="height" constant="300" id="KXQ-72-YX7"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="fMc-6O-uSs" firstAttribute="top" secondItem="Llm-lL-Icb" secondAttribute="bottom" constant="50" id="3XL-Xg-JyT"/>
+                            <constraint firstAttribute="trailing" secondItem="KyA-HG-LhT" secondAttribute="trailing" id="4Iz-3Z-bnL"/>
+                            <constraint firstItem="fMc-6O-uSs" firstAttribute="centerX" secondItem="KyA-HG-LhT" secondAttribute="centerX" id="GmL-Iw-Tef"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="x9q-aQ-vpO" secondAttribute="bottom" constant="25" id="NDw-pd-EmV"/>
+                            <constraint firstItem="KyA-HG-LhT" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" id="bBO-Xj-pFA"/>
+                            <constraint firstItem="x9q-aQ-vpO" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="dG2-bV-PwG"/>
+                            <constraint firstItem="KyA-HG-LhT" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="qUv-Es-MsE"/>
+                            <constraint firstItem="xb3-aO-Qok" firstAttribute="top" secondItem="KyA-HG-LhT" secondAttribute="bottom" id="zwU-0o-ao3"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="50.724637681159422" y="374.18478260869568"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Appsomatic_logo" width="50" height="50"/>
+        <image name="Center_logoimage" width="200" height="200"/>
+        <image name="SplashBG_1242x2208" width="1242" height="2208"/>
+    </resources>
 </document>

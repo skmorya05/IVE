@@ -13,6 +13,7 @@ class HeaderView: UICollectionReusableView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
+        self.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
     }
     
 }

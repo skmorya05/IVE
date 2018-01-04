@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DrCardsEditPhotoCell: UICollectionViewCell {
+class MenuCell: UICollectionViewCell {
 
     @IBOutlet weak var dpImageView : UIImageView!
     @IBOutlet weak var lbl_cardIcon : UILabel!

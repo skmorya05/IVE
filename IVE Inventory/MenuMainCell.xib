@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="ipad10_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,12 +20,9 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Since1979logo" translatesAutoresizingMaskIntoConstraints="NO" id="dPj-KR-uoD">
-                        <rect key="frame" x="47.5" y="37" width="280" height="110"/>
+                        <rect key="frame" x="52.5" y="37" width="270" height="110"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="240" id="49d-f0-hl5">
-                                <variation key="heightClass=regular-widthClass=regular" constant="280"/>
-                            </constraint>
-                            <constraint firstAttribute="height" constant="110" id="Q9K-6h-TKa"/>
+                            <constraint firstAttribute="width" secondItem="dPj-KR-uoD" secondAttribute="height" multiplier="27:11" id="FfM-KQ-z9r"/>
                         </constraints>
                     </imageView>
                 </subviews>
@@ -33,6 +31,7 @@
             <constraints>
                 <constraint firstItem="dPj-KR-uoD" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="XM5-Ad-N8Q"/>
                 <constraint firstItem="dPj-KR-uoD" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="vHq-WA-KUT"/>
+                <constraint firstItem="dPj-KR-uoD" firstAttribute="width" secondItem="gTV-IL-0wX" secondAttribute="height" multiplier="135:92" id="xCH-Fp-st2"/>
             </constraints>
             <size key="customSize" width="402" height="184"/>
             <point key="canvasLocation" x="30" y="54"/>

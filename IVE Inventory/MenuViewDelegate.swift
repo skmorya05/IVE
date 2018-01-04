@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-
 protocol MenuSelectionProtocol:class {
     func didSelectMenuButton(indexPath:IndexPath)
 }
@@ -24,10 +23,10 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     {
         if indexPath.section == 0
         {
-            return CGSize.init(width: ScreenSize.SCREEN_WIDTH , height: 149.0)
+            return CGSize.init(width: ScreenSize.SCREEN_WIDTH , height: 149.0*DrConstants.kSCALE_FACTOR)
         }
         
-        let width:CGFloat = 172.0
+        let width:CGFloat = 165.0
         let height:CGFloat = 149.0
         let scaleFacetor = CGFloat().scaleFactor()
         let size = CGSize.init(width: floor(width*scaleFacetor), height: floor(height*scaleFacetor))
@@ -50,7 +49,7 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     {
         if section == 1
         {
-            let width:CGFloat = 172.0
+            let width:CGFloat = 165.0
             let scaleFacetor = CGFloat().scaleFactor()
             
             let edge = (ScreenSize.SCREEN_WIDTH -  (2*width*scaleFacetor))/3
@@ -63,9 +62,12 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if let _ = self.menuBtnDelegate
+        if indexPath.row == 1
         {
-            self.menuBtnDelegate.didSelectMenuButton(indexPath: indexPath)
+            if let _ = self.menuBtnDelegate
+            {
+                self.menuBtnDelegate.didSelectMenuButton(indexPath: indexPath)
+            }
         }
     }
     

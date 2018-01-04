@@ -8,6 +8,40 @@
 
 import UIKit
 
-class ReturnDelegate: NSObject {
+protocol ReturnDelegateProtocol {
+    func didSelectCell(indexPath:IndexPath)
+}
 
+class ReturnDelegate: NSObject {
+    var searchBar : UISearchBar!
+    var returnDelegate: ReturnDelegateProtocol!
+}
+
+extension ReturnDelegate: UITableViewDelegate, UIScrollViewDelegate
+{
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        if let _ = returnDelegate
+        {
+            self.returnDelegate.didSelectCell(indexPath: indexPath)
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
+    {
+        return UITableViewAutomaticDimension
+    }
+    
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath)
+    {
+        
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView)
+    {
+        self.searchBar.resignFirstResponder()
+    }
+    
 }

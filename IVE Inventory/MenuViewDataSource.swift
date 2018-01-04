@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-class DrCardsEditPhotoDataSource: NSObject {
+class MenuViewDataSource: NSObject {
     var menuArray : [String]!
 }
 
-extension DrCardsEditPhotoDataSource: UICollectionViewDataSource
+extension MenuViewDataSource: UICollectionViewDataSource
 {
     func numberOfSections(in collectionView: UICollectionView) -> Int
     {
@@ -50,11 +50,11 @@ extension DrCardsEditPhotoDataSource: UICollectionViewDataSource
        
         if indexPath.section == 0
         {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DrCardsMainEditPhotoCell", for: indexPath) as! DrCardsMainEditPhotoCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuMainCell", for: indexPath) as! MenuMainCell
             return cell
         }
         
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DrCardsEditPhotoCell", for: indexPath) as! DrCardsEditPhotoCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "MenuCell", for: indexPath) as! MenuCell
         cell.dpImageView.image = UIImage.init(named: menuArray[indexPath.row])
         cell.lbl_cardName.text = menuArray[indexPath.row]
         
