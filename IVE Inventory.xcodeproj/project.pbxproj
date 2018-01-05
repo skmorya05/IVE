@@ -66,6 +66,10 @@
 		923C2A091FEFEC5500D805B0 /* return.json in Resources */ = {isa = PBXBuildFile; fileRef = 923C2A081FEFEC5500D805B0 /* return.json */; };
 		923C2A0B1FEFEDB400D805B0 /* ReturnViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */; };
 		923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */; };
+		D0C3EDB51FFF46B9005DA4A0 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */; };
+		D0C3EDB61FFF46B9005DA4A0 /* SetUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C3EDB41FFF46B9005DA4A0 /* SetUpViewController.xib */; };
+		D0C3EDB91FFF46CB005DA4A0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EDB71FFF46CB005DA4A0 /* UserDetailViewController.swift */; };
+		D0C3EDBA1FFF46CB005DA4A0 /* UserDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C3EDB81FFF46CB005DA4A0 /* UserDetailViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +134,10 @@
 		923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnViewManager.swift; sourceTree = "<group>"; };
 		923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnSearchDelegate.swift; sourceTree = "<group>"; };
 		CE0906F99B8C102E1A47C8C0 /* Pods-IVE Inventory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVE Inventory.release.xcconfig"; path = "Pods/Target Support Files/Pods-IVE Inventory/Pods-IVE Inventory.release.xcconfig"; sourceTree = "<group>"; };
+		D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
+		D0C3EDB41FFF46B9005DA4A0 /* SetUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SetUpViewController.xib; sourceTree = "<group>"; };
+		D0C3EDB71FFF46CB005DA4A0 /* UserDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailViewController.swift; sourceTree = "<group>"; };
+		D0C3EDB81FFF46CB005DA4A0 /* UserDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserDetailViewController.xib; sourceTree = "<group>"; };
 		D923680D55883DFA925F5DE5 /* Pods_IVE_Inventory.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_IVE_Inventory.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F86DA76BB7FF79E08121DFB8 /* Pods-IVE Inventory.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVE Inventory.debug.xcconfig"; path = "Pods/Target Support Files/Pods-IVE Inventory/Pods-IVE Inventory.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -319,12 +327,32 @@
 				922712AA1FF14C42002E6190 /* DetailsViewController */,
 				9231D2FF1FF6AA260055F6B1 /* LoginViewController */,
 				9231D2FE1FF6AA1C0055F6B1 /* RegisterViewController */,
+				D0C3EDB11FFF469F005DA4A0 /* SetUpViewController */,
+				D0C3EDB21FFF469F005DA4A0 /* UserDetailViewController */,
 				923411771FEA166900BC82E0 /* Main.storyboard */,
 				9234117C1FEA166900BC82E0 /* LaunchScreen.storyboard */,
 				92181FE61FF7527700950F56 /* Assets.xcassets */,
 				9234117F1FEA166900BC82E0 /* Info.plist */,
 			);
 			path = "IVE Inventory";
+			sourceTree = "<group>";
+		};
+		D0C3EDB11FFF469F005DA4A0 /* SetUpViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */,
+				D0C3EDB41FFF46B9005DA4A0 /* SetUpViewController.xib */,
+			);
+			path = SetUpViewController;
+			sourceTree = "<group>";
+		};
+		D0C3EDB21FFF469F005DA4A0 /* UserDetailViewController */ = {
+			isa = PBXGroup;
+			children = (
+				D0C3EDB71FFF46CB005DA4A0 /* UserDetailViewController.swift */,
+				D0C3EDB81FFF46CB005DA4A0 /* UserDetailViewController.xib */,
+			);
+			path = UserDetailViewController;
 			sourceTree = "<group>";
 		};
 		D1677139AF4570E56863EE67 /* Frameworks */ = {
@@ -371,7 +399,7 @@
 				TargetAttributes = {
 					9234116F1FEA166900BC82E0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = LUD6M4KSYM;
+						DevelopmentTeam = 48VSLARB6R;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -427,7 +455,9 @@
 				922AEA1A1FFBF497004246F9 /* SF-UI-Text-BoldItalic.otf in Resources */,
 				922AEA201FFBF498004246F9 /* SF-UI-Display-Medium.otf in Resources */,
 				922B951B1FEF46B600C176B4 /* HeaderView.xib in Resources */,
+				D0C3EDBA1FFF46CB005DA4A0 /* UserDetailViewController.xib in Resources */,
 				922AEA261FFBF498004246F9 /* SF-UI-Display-Semibold.otf in Resources */,
+				D0C3EDB61FFF46B9005DA4A0 /* SetUpViewController.xib in Resources */,
 				922AEA1C1FFBF498004246F9 /* SF-UI-Text-Heavy.otf in Resources */,
 				922AEA1E1FFBF498004246F9 /* SF-UI-Display-Heavy.otf in Resources */,
 				922AEA251FFBF498004246F9 /* SF-UI-Text-Light.otf in Resources */,
@@ -505,6 +535,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D0C3EDB51FFF46B9005DA4A0 /* SetUpViewController.swift in Sources */,
 				9231D3011FF6AA720055F6B1 /* LoginViewController.swift in Sources */,
 				9231D3031FF6AA870055F6B1 /* RegisterViewController.swift in Sources */,
 				922AEA371FFBF4D6004246F9 /* CGFloat+Extension.swift in Sources */,
@@ -518,6 +549,7 @@
 				922AEA361FFBF4D6004246F9 /* UIBarButtonItem+Extension.swift in Sources */,
 				923C29FF1FEFD1C100D805B0 /* ReturnDataSource.swift in Sources */,
 				923411741FEA166900BC82E0 /* AppDelegate.swift in Sources */,
+				D0C3EDB91FFF46CB005DA4A0 /* UserDetailViewController.swift in Sources */,
 				922AEA331FFBF4D6004246F9 /* UIImageView+Extension.swift in Sources */,
 				922B951A1FEF46B600C176B4 /* HeaderView.swift in Sources */,
 				922B95161FEF46B600C176B4 /* MenuMainCell.swift in Sources */,

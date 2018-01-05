@@ -4,7 +4,7 @@
 //
 //  Created by Er Sanjay Morya on 02/01/18.
 //  Copyright © 2018 Sanjay. All rights reserved.
-//
+// Avaneesh Singh
 
 import Foundation
 import Alamofire
@@ -59,11 +59,11 @@ class NetworkManager: NSObject
                 .responseJSON { (response) -> Void in
                     guard response.result.isSuccess else
                     {
-                        print("Error: \(response.result.error)")
+                        print("Error: \(String(describing: response.result.error))")
                         return
                     }
                     
-                    guard let value = response.result.value as? [String: Any] else
+                    guard (response.result.value as? [String: Any]) != nil else
                     {
                         print("Malformed data received from fetchAllRooms service")
                         return

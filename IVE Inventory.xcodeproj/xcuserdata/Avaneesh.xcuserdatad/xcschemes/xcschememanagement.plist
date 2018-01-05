@@ -7,7 +7,19 @@
 		<key>IVE Inventory.xcscheme</key>
 		<dict>
 			<key>orderHint</key>
+<<<<<<< HEAD
 			<integer>7</integer>
+=======
+			<integer>0</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>9234116F1FEA166900BC82E0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+>>>>>>> avaneesh
 		</dict>
 	</dict>
 </dict>
