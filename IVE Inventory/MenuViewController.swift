@@ -19,9 +19,16 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
     let dataSource = MenuViewDataSource()
     let delegate = MenuViewDelegate()
     
-    override func viewDidLoad()
-    {
+    func goTosetUpVC() { // SetUpViewController UserDetailViewController
+        let setUpVC = UserDetailViewController.init(nibName: "UserDetailViewController", bundle: nil)
+        self.navigationController?.pushViewController(setUpVC, animated: true)
+    }
+    
+    override func viewDidLoad() {
         super.viewDidLoad()
+        
+        goTosetUpVC()
+        //return
         
         //Remove BackButton
         self.navigationItem.hidesBackButton = true
