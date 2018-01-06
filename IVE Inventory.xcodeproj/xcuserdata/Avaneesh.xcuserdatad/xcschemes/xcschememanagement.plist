@@ -8,9 +8,13 @@
 		<dict>
 			<key>orderHint</key>
 <<<<<<< HEAD
+			<integer>1</integer>
+=======
+<<<<<<< HEAD
 			<integer>7</integer>
 =======
 			<integer>0</integer>
+>>>>>>> master
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
