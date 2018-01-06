@@ -24,6 +24,9 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     var printDataArray =  [Return]()
     var doneButton : UIBarButtonItem!
     
+    let scanner = ScanManager.init()
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -130,6 +133,12 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         self.searchBar.barTintColor =  ColorConstant.blueFillColor
         let attributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
+    }
+    
+    @IBAction func buttonClicked_Scan(_ sender:UIButton) {
+        scanner.showScanner(self) { (code, errorMsg) in
+            
+        }
     }
     
     
