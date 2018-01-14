@@ -10,6 +10,7 @@ import UIKit
 
 public struct DrConstants
 {
+    static let kUser_Default        = UserDefaults.standard
     static let kSCALE_FACTOR        = CGFloat().scaleFactor()
     static let kStoryBoard          = UIStoryboard(name: "Main", bundle: nil)
     static let kBaseUrl             = "http://stackup.mobi/220electronics/api/"
@@ -19,10 +20,21 @@ public struct IVE_URLConstant
 {
     static let kRmaList = DrConstants.kBaseUrl+"ticket?"
     static let kRmaDetail = DrConstants.kBaseUrl+"ticket/detail?"
-    static let kLogin = DrConstants.kBaseUrl+"employee/login?"
     static let kRmaUpdate = DrConstants.kBaseUrl+"ticket/update/"
+    static let kLogin = DrConstants.kBaseUrl+"employee/login?"
+    static let kRegisterUser = DrConstants.kBaseUrl+"employee/register"
 }
 
+public struct IVE_KeyConstant
+{
+    static let kName = "name"
+    static let kPassword = "password"
+    static let kId = "id"
+    static let kUser_id = "user_id"
+    static let kEmail = "email"
+    static let kInitial = "initial"
+    static let kPhoto = "photo"
+}
 
 //==========================
 //MARK:Device Types & Size

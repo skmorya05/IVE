@@ -9,6 +9,12 @@
 import UIKit
 import Material
 
+enum PhotoSource {
+    case Camera
+    case Gallery
+    case None
+}
+
 class RegisterViewController: UIViewController, UITextFieldDelegate
 {
 
@@ -24,7 +30,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var btn_AlreadyhasAccount: UIButton!
     @IBOutlet weak var btn_SignIn: UIButton!
     
-    
+    var selectedImage: UIImage!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,6 +61,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         
         btn_SignUp.roundCorners(radius: 5.0, width: 2.0, color:UIColor.getColorWithRGB(color: [213,213,212]))
         
+        self.btn_userImageView.layer.cornerRadius = self.btn_userImageView.frame.size.width/2
+        self.btn_userImageView.clipsToBounds = true
+        
         //Setup Buttons
         btn_AlreadyhasAccount.setTitleColor(grayTextColor, for: .normal)
         btn_SignIn.setTitleColor(blueTextColor, for: .normal)
@@ -79,16 +88,126 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         }
     }
     
-    @IBAction func rememberMeButtonTapped(sender: UIButton)
+    @IBAction func btnTapped_selectUserImage(sender: UIButton)
     {
+        let alertController = UIAlertController.init(title: "Choose Image", message: "", preferredStyle: .actionSheet)
+        
+        let cameraAction = UIAlertAction.init(title: "Camera", style: .default) { (action:UIAlertAction) in
+            
+            self.openSourceToChoosePhotos(source: .Camera)
+        }
+        alertController.addAction(cameraAction)
+        
+        let galleryAction = UIAlertAction.init(title: "Gallery", style: .default) { (action:UIAlertAction) in
+            
+            self.openSourceToChoosePhotos(source: .Gallery)
+        }
+        alertController.addAction(galleryAction)
+
+        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+        }
+        alertController.addAction(cancelAction)
+        
+        present(alertController, animated: true, completion: nil)
         
     }
     
-    @IBAction func loginButtonTapped(sender: UIButton)
+    func openSourceToChoosePhotos(source: PhotoSource)
     {
-        // authenticationWithTouchID()
-        let regVC = storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
-        self.navigationController?.pushViewController(regVC, animated: true)
+        if source == .Camera
+        {
+            if UIImagePickerController.isSourceTypeAvailable(.camera)
+            {
+                let imagePicker = UIImagePickerController()
+                imagePicker.sourceType = .camera
+                imagePicker.allowsEditing = true
+                imagePicker.delegate = self
+                present(imagePicker, animated: true, completion: nil)
+            }
+            else
+            {
+                self.showAlert(message: "Camera not available")
+            }
+        }
+        else if source == .Gallery
+        {
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
+            {
+                let imagePicker = UIImagePickerController()
+                imagePicker.sourceType = .camera
+                imagePicker.allowsEditing = true
+                imagePicker.delegate = self
+                present(imagePicker, animated: true, completion: nil)
+            }
+            else
+            {
+                self.showAlert(message: "Gallery not available")
+            }
+        }
+    }
+    
+    @IBAction func btnTapped_signIn(sender: UIButton)
+    {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func btnTapped_signUp(sender: UIButton)
+    {
+        guard let username = tf_UserName.text else { return }
+        guard let password = tf_Password.text else { return }
+        guard let email = tf_Email.text else { return }
+        guard let initial = tf_initial.text else { return }
+        
+        if username.count == 0
+        {
+            showAlert(message: "Please enter username")
+        }
+        else if password.count == 0
+        {
+            showAlert(message: "Please enter password")
+        }
+        else if password.count < 4 && password.count > 6
+        {
+            showAlert(message: "Password must be  four to six digits")
+        }
+        else if email.count == 0
+        {
+            showAlert(message: "Please enter email")
+        }
+        else if initial.count == 0
+        {
+            showAlert(message: "Please enter initial")
+        }
+        else
+        {
+            
+            let properties:[String: Any] = [IVE_KeyConstant.kName: username,
+                              IVE_KeyConstant.kEmail: email,
+                              IVE_KeyConstant.kPassword: password,
+                              IVE_KeyConstant.kInitial: initial,
+                              ]
+            print("properties = \(properties)")
+           
+            NetworkManager.sharedManager.registerUser(properties: properties, completion: { (dict:[String: Any]?) in
+                
+                print("user = \(String(describing: dict))")
+                
+                guard let _ = dict else { return }
+                
+                if let userId = dict![IVE_KeyConstant.kUser_id] as? Int
+                {
+                    DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
+                    DrConstants.kUser_Default.synchronize()
+                    
+                    let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                    self.navigationController?.pushViewController(menuVC, animated: true)
+                    
+                }
+                
+            })
+            
+        }
+        
     }
 
     

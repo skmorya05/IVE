@@ -19,7 +19,8 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
     let dataSource = MenuViewDataSource()
     let delegate = MenuViewDelegate()
     
-    func goTosetUpVC() { // SetUpViewController UserDetailViewController
+    func goTosetUpVC()
+    { // SetUpViewController UserDetailViewController
         let setUpVC = UserDetailViewController.init(nibName: "UserDetailViewController", bundle: nil)
         self.navigationController?.pushViewController(setUpVC, animated: true)
     }
@@ -27,7 +28,7 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        goTosetUpVC()
+       // goTosetUpVC()
         //return
         
         //Remove BackButton
@@ -35,11 +36,11 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
         
         //FIXME:- Change Title Name Later
         //Later Edit
-        self.title = "Home"
-        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
-        self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
-        
-        
+        //self.title = "Home"
+        //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
+        //self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+
         //Cancel Button Add Left Side
         /* let cancelBtn = UIBarButtonItem.init(title: "CANCEL", style: .plain, target: self, action: #selector(cancelBtnPressed))
         cancelBtn.setTitleTextAttributes( [NSFontAttributeName: UIFont.init(name:  FontConstant.SFUI_TEXT_MEDIUM, size: 12.0)!], for: .normal)
@@ -71,6 +72,12 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
         
     }
     
+    override func viewWillAppear(_ animated: Bool)
+    {
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+    }
+    
+    
     func cancelBtnPressed()
     {
         print("\(#function)")
@@ -84,8 +91,29 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
     //MARK: - MenuSelectionProtocol
     func didSelectMenuButton(indexPath:IndexPath)
     {
-        let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
-        self.navigationController?.pushViewController(controller, animated: true)
+        if indexPath.section == 1
+        {
+            if indexPath.row == 0
+            {
+                
+            }
+            else if indexPath.row == 1
+            {
+                let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
+                self.navigationController?.pushViewController(controller, animated: true)
+            }
+            else if indexPath.row == 2
+            {
+                let userdetailsVC = UserDetailViewController.init(nibName: "UserDetailViewController", bundle: nil)
+                self.navigationController?.pushViewController(userdetailsVC, animated: true)
+            }
+            else if indexPath.row == 3
+            {
+                let setUpVC = SetUpViewController.init(nibName: "SetUpViewController", bundle: nil)
+                self.navigationController?.pushViewController(setUpVC, animated: true)
+            }
+        }
+        
     }
     
     override func didReceiveMemoryWarning()

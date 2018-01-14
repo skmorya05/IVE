@@ -49,8 +49,63 @@
       "scale" : "3x"
     },
     {
-      "idiom" : "ios-marketing",
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "app_icon20x20.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "20x20",
+      "idiom" : "ipad",
+      "filename" : "app_icon40x40-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "app_icon29x29.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "29x29",
+      "idiom" : "ipad",
+      "filename" : "app_icon58x58-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "app_icon40x40-2.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "40x40",
+      "idiom" : "ipad",
+      "filename" : "app_icon80x80-1.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "app_icon76x76.png",
+      "scale" : "1x"
+    },
+    {
+      "size" : "76x76",
+      "idiom" : "ipad",
+      "filename" : "app_icon152x152.png",
+      "scale" : "2x"
+    },
+    {
+      "size" : "83.5x83.5",
+      "idiom" : "ipad",
+      "filename" : "app_icon167x167.png",
+      "scale" : "2x"
+    },
+    {
       "size" : "1024x1024",
+      "idiom" : "ios-marketing",
+      "filename" : "app_icon1024x1024.png",
       "scale" : "1x"
     }
   ],

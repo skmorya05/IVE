@@ -16,7 +16,6 @@ let blueTextColor = UIColor.getColorWithRGB(color: [0,0,39])
 
 class LoginViewController: UIViewController, UITextFieldDelegate
 {
-
     //Outlets
     @IBOutlet weak var view_gradientBorder:UIView!
 
@@ -27,10 +26,9 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBOutlet weak var btn_forgotPassword: UIButton!
     @IBOutlet weak var btn_SignUp: UIButton!
-
-
     
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
         setUpViews()
         
@@ -67,10 +65,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     }
     
     
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
-        return true
-    }
+   
     
     @IBAction func tagGuestureButtonTapped(tapGuesture: UITapGestureRecognizer)
     {
@@ -98,9 +93,61 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func loginButtonTapped(sender: UIButton)
     {
-        // authenticationWithTouchID()
-        let regVC = storyboard?.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        guard let username = tf_UserName.text else
+        {
+            return
+        }
+        
+        guard let password = tf_Password.text else
+        {
+            return
+        }
+        
+        
+        if username.count == 0
+        {
+            self.showAlert(message: "Please enter user name")
+        }
+        else if password.count == 0
+        {
+            self.showAlert(message: "Please enter password")
+        }
+        else
+        {
+            let dict = [IVE_KeyConstant.kName: username, IVE_KeyConstant.kPassword: password]
+            NetworkManager.sharedManager.getLoginDetails(dict: dict, completion: { (user:IVE_User?) in
+                
+                print("loginDetails = \(String(describing: user))")
+                
+                if let userId = user?.id
+                {
+                    DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
+                    DrConstants.kUser_Default.synchronize()
+                    
+                    let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                    self.navigationController?.pushViewController(menuVC, animated: true)
+                    
+                }
+            })
+        }
+    }
+    
+    @IBAction func forgotYourPasswordButtonTapped(sender: UIButton)
+    {
+        
+    }
+
+    @IBAction func signUpButtonTapped(sender: UIButton)
+    {
+        let regVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
         self.navigationController?.pushViewController(regVC, animated: true)
+    }
+
+    
+    //MARK: - UITextFieldDelegate Methods
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
     
     override func didReceiveMemoryWarning()

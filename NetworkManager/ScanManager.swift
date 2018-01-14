@@ -22,7 +22,8 @@ class ScanManager:NSObject {
     fileprivate var scannedCode:((_ :String?,_ :String?)->Void)?
     fileprivate var viewSender:UIViewController?
     
-    override init() {
+    override init()
+    {
         super.init()
     }
     
@@ -61,7 +62,11 @@ class ScanManager:NSObject {
             let input = try AVCaptureDeviceInput(device: captureDevice)
             
             // Set the input device on the capture session.
-            captureSession.addInput(input)
+            //captureSession.addInput(input)
+            if captureSession.inputs.isEmpty
+            {
+                self.captureSession.addInput(input)
+            }
             
             // Initialize a AVCaptureMetadataOutput object and set it as the output device to the capture session.
             let captureMetadataOutput = AVCaptureMetadataOutput()
@@ -91,9 +96,9 @@ class ScanManager:NSObject {
     
     // MARK: - Helper methods
     private func launchApp(decodedURL: String) {
-        if self.captureSession.isRunning {
+        if self.captureSession.isRunning
+        {
             self.captureSession.stopRunning()
-            
         }
         if viewSender?.presentedViewController != nil {
             return
@@ -125,9 +130,9 @@ extension ScanManager:AVCaptureMetadataOutputObjectsDelegate {
                     qrCodeFrameView?.frame = barCodeObject.bounds
                 }
                 
-                if let msg = metadataObj.stringValue {
+                if let msg = metadataObj.stringValue
+                {
                     launchApp(decodedURL: msg)
-                    scannedCode?(nil,msg)
                 }
             }
         }

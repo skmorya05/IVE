@@ -8,8 +8,8 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController {
-
+class DetailsViewController: UIViewController
+{
     @IBOutlet weak var lbl_rma:UILabel!
     @IBOutlet weak var lbl_serial:UILabel!
     @IBOutlet weak var lbl_brand:UILabel!
@@ -59,6 +59,10 @@ class DetailsViewController: UIViewController {
         configureNavigationBar()
         loadData()
        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
     }
     
     func configureNavigationBar()
@@ -118,18 +122,33 @@ class DetailsViewController: UIViewController {
     }
     
     
+    override func viewWillDisappear(_ animated: Bool) {
+        
+         super.viewWillDisappear(true)
+    }
+    
     //MARK:- NavigationBar Button Action
     @objc func goBack()
     {
+        let viewcontrollers = self.navigationController?.viewControllers
+        for viewcontroller in viewcontrollers!
+        {
+            if viewcontroller .isKind(of: ScannerViewController.self)
+            {
+                self.navigationController?.popToViewController(viewcontrollers![1], animated: true)
+            }
+        }
+        
         self.navigationController?.popViewController(animated: true)
     }
     
     @objc func printerButtonTapped()
     {
         print("#function = \(#function)")
+        WirelessPrinterManager.shared.openPrinterPreview(printDocArray: [self.dataStruct], viewController: self)
     }
     
-
+    
     func loadData()
     {
         self.lbl_rma.text = self.dataStruct.rma

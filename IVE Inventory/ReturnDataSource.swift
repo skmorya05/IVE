@@ -64,10 +64,12 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         
         let isContains = self.printList.contains { (obj:Return) -> Bool in
             
-            if obj.rma == cell.dataStruct.rma
+            if (obj.rma == cell.dataStruct.rma)
             {
                 return true
             }
+            
+            
             
             return false
         }

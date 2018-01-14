@@ -80,7 +80,7 @@
                         </subviews>
                     </stackView>
                     <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="fillEqually" alignment="top" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="8zI-GC-XmT">
-                        <rect key="frame" x="149.5" y="8" width="123.5" height="45.5"/>
+                        <rect key="frame" x="157" y="8" width="123.5" height="45.5"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uyh-D7-bny">
                                 <rect key="frame" x="0.0" y="0.0" width="123.5" height="14.5"/>

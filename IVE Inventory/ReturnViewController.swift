@@ -23,8 +23,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     var savedDataArray =  [Return]()
     var printDataArray =  [Return]()
     var doneButton : UIBarButtonItem!
-    
-    let scanner = ScanManager.init()
 
     
     override func viewDidLoad() {
@@ -34,6 +32,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
 
         self.navigationItem.hidesBackButton = true
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
 
         configureNavigationBar()
         configureSearchBar()
@@ -41,7 +40,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
         
         self.edgesForExtendedLayout = []
-        self.tableView.backgroundColor = ColorConstant.blueFillColor
+        //self.tableView.backgroundColor = ColorConstant.blueFillColor
         self.tableView.register(UINib.init(nibName: "ReturnCell", bundle: nil), forCellReuseIdentifier: "ReturnCell")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -51,6 +50,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     
     override func viewWillAppear(_ animated: Bool)
     {
+        
         self.showLoading(isLoading: true)
         self.returnViewManager.getReturnList(completion: { (list:[Return]?) in
             
@@ -85,7 +85,10 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
-        self.navigationItem.rightBarButtonItem = printerButton
+        
+        let scannerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "scanner"), target: self, action: #selector(scannerButtonTapped))
+        
+        self.navigationItem.rightBarButtonItems = [printerButton, scannerButton]
     }
     
     //MARK:- NavigationBar Button Action
@@ -93,6 +96,15 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     {
         self.navigationController?.popViewController(animated: true)
     }
+    
+    
+    @objc func scannerButtonTapped()
+    {
+        print("#function = \(#function)")
+        let scannerVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
+        self.navigationController?.pushViewController(scannerVC, animated: true)        
+    }
+    
     
     @objc func printerButtonTapped()
     {
@@ -126,6 +138,13 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     {
         print("#function = \(#function)")
         print("Start Process To Print Items On Printer")
+        
+        if self.printDataArray.count > 0
+        {
+            WirelessPrinterManager.shared.openPrinterPreview(printDocArray: self.printDataArray, viewController: self)
+        }
+        
+        
     }
     
     func configureSearchBar()
@@ -134,14 +153,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         let attributes = [NSAttributedStringKey.foregroundColor : UIColor.white]
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).setTitleTextAttributes(attributes, for: .normal)
     }
-    
-    @IBAction func buttonClicked_Scan(_ sender:UIButton) {
-        scanner.showScanner(self) { (code, errorMsg) in
-            
-        }
-    }
-    
-    
     
     //MARK:- ReturnSearchProtocol
     func didFilterWithSearchText(searchText: String)
@@ -152,7 +163,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         {
             let filteredArray = self.savedDataArray.filter { (retObj:Return) -> Bool in
                 
-                if retObj.brand.contains(searchText)
+                if (retObj.brand.lowercased().contains(searchText.lowercased()) || retObj.rma.lowercased().contains(searchText.lowercased()))
                 {
                     return true
                 }

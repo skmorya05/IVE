@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0A2BB94BA46B8DE768AC82D9 /* Pods_IVE_Inventory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D923680D55883DFA925F5DE5 /* Pods_IVE_Inventory.framework */; };
-		92181FE71FF7527800950F56 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 92181FE61FF7527700950F56 /* Assets.xcassets */; };
+		920FF0F22003D24D00AECC03 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FF0F12003D24D00AECC03 /* ScannerViewController.swift */; };
 		92181FE91FF785C300950F56 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92181FE81FF785B900950F56 /* LocalAuthentication.framework */; };
 		92181FEC1FF7861400950F56 /* LocalAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92181FEB1FF7861400950F56 /* LocalAuthenticationManager.swift */; };
 		922712AC1FF14C76002E6190 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922712AB1FF14C76002E6190 /* DetailsViewController.swift */; };
@@ -58,6 +58,9 @@
 		923411761FEA166900BC82E0 /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923411751FEA166900BC82E0 /* MenuViewController.swift */; };
 		923411791FEA166900BC82E0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 923411771FEA166900BC82E0 /* Main.storyboard */; };
 		9234117E1FEA166900BC82E0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9234117C1FEA166900BC82E0 /* LaunchScreen.storyboard */; };
+		923A9086200267470024BFE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 923A9085200267450024BFE6 /* Assets.xcassets */; };
+		923A908D200299D20024BFE6 /* WirelessPrinterManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923A908C200299D20024BFE6 /* WirelessPrinterManager.swift */; };
+		923A90922002B5630024BFE6 /* NDHTMLtoPDF.m in Sources */ = {isa = PBXBuildFile; fileRef = 923A90902002B5620024BFE6 /* NDHTMLtoPDF.m */; };
 		923BC6ED1FFE682900134E0D /* UILabel+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923BC6EC1FFE682900134E0D /* UILabel+Extension.swift */; };
 		923C29FF1FEFD1C100D805B0 /* ReturnDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C29FE1FEFD1C100D805B0 /* ReturnDataSource.swift */; };
 		923C2A011FEFD1D300D805B0 /* ReturnDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A001FEFD1D300D805B0 /* ReturnDelegate.swift */; };
@@ -66,6 +69,8 @@
 		923C2A091FEFEC5500D805B0 /* return.json in Resources */ = {isa = PBXBuildFile; fileRef = 923C2A081FEFEC5500D805B0 /* return.json */; };
 		923C2A0B1FEFEDB400D805B0 /* ReturnViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */; };
 		923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */; };
+		92BAF512200AC19E008FCFC3 /* UIViewController+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAF511200AC19E008FCFC3 /* UIViewController+Extension.swift */; };
+		92BAF514200AC627008FCFC3 /* IVE_UserManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92BAF513200AC627008FCFC3 /* IVE_UserManager.swift */; };
 		D00225CE200131B4001EAD9C /* ScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00225CD200131B4001EAD9C /* ScanManager.swift */; };
 		D0C3EDB51FFF46B9005DA4A0 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */; };
 		D0C3EDB61FFF46B9005DA4A0 /* SetUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D0C3EDB41FFF46B9005DA4A0 /* SetUpViewController.xib */; };
@@ -74,7 +79,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		92181FE61FF7527700950F56 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		920FF0F12003D24D00AECC03 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		92181FE81FF785B900950F56 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		92181FEB1FF7861400950F56 /* LocalAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationManager.swift; sourceTree = "<group>"; };
 		922712AB1FF14C76002E6190 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -126,6 +131,11 @@
 		923411781FEA166900BC82E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9234117D1FEA166900BC82E0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9234117F1FEA166900BC82E0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		923A9085200267450024BFE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		923A9087200297460024BFE6 /* IVE Inventory-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "IVE Inventory-Bridging-Header.h"; sourceTree = "<group>"; };
+		923A908C200299D20024BFE6 /* WirelessPrinterManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WirelessPrinterManager.swift; sourceTree = "<group>"; };
+		923A90902002B5620024BFE6 /* NDHTMLtoPDF.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NDHTMLtoPDF.m; sourceTree = "<group>"; };
+		923A90912002B5620024BFE6 /* NDHTMLtoPDF.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NDHTMLtoPDF.h; sourceTree = "<group>"; };
 		923BC6EC1FFE682900134E0D /* UILabel+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Extension.swift"; sourceTree = "<group>"; };
 		923C29FE1FEFD1C100D805B0 /* ReturnDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnDataSource.swift; sourceTree = "<group>"; };
 		923C2A001FEFD1D300D805B0 /* ReturnDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnDelegate.swift; sourceTree = "<group>"; };
@@ -134,6 +144,8 @@
 		923C2A081FEFEC5500D805B0 /* return.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = return.json; sourceTree = "<group>"; };
 		923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnViewManager.swift; sourceTree = "<group>"; };
 		923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnSearchDelegate.swift; sourceTree = "<group>"; };
+		92BAF511200AC19E008FCFC3 /* UIViewController+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extension.swift"; sourceTree = "<group>"; };
+		92BAF513200AC627008FCFC3 /* IVE_UserManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVE_UserManager.swift; sourceTree = "<group>"; };
 		CE0906F99B8C102E1A47C8C0 /* Pods-IVE Inventory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVE Inventory.release.xcconfig"; path = "Pods/Target Support Files/Pods-IVE Inventory/Pods-IVE Inventory.release.xcconfig"; sourceTree = "<group>"; };
 		D00225CD200131B4001EAD9C /* ScanManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanManager.swift; sourceTree = "<group>"; };
 		D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
@@ -164,6 +176,14 @@
 				CE0906F99B8C102E1A47C8C0 /* Pods-IVE Inventory.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		920FF0F02003D22100AECC03 /* ScannerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				920FF0F12003D24D00AECC03 /* ScannerViewController.swift */,
+			);
+			name = ScannerViewController;
 			sourceTree = "<group>";
 		};
 		92181FEA1FF785E700950F56 /* LocalAuthentication */ = {
@@ -200,6 +220,7 @@
 				922AEA2E1FFBF4D6004246F9 /* UIImageView+Extension.swift */,
 				922AEA2F1FFBF4D6004246F9 /* UIView+Extension.swift */,
 				923BC6EC1FFE682900134E0D /* UILabel+Extension.swift */,
+				92BAF511200AC19E008FCFC3 /* UIViewController+Extension.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -284,6 +305,7 @@
 			isa = PBXGroup;
 			children = (
 				9231D3001FF6AA720055F6B1 /* LoginViewController.swift */,
+				92BAF513200AC627008FCFC3 /* IVE_UserManager.swift */,
 			);
 			name = LoginViewController;
 			sourceTree = "<group>";
@@ -299,6 +321,8 @@
 		923411671FEA166900BC82E0 = {
 			isa = PBXGroup;
 			children = (
+				923A9088200297ED0024BFE6 /* Printer */,
+				923A9087200297460024BFE6 /* IVE Inventory-Bridging-Header.h */,
 				922AEA381FFBF4ED004246F9 /* NetworkManager */,
 				9231D3041FF6B3130055F6B1 /* IBInspectable */,
 				923C2A081FEFEC5500D805B0 /* return.json */,
@@ -323,6 +347,7 @@
 		923411721FEA166900BC82E0 /* IVE Inventory */ = {
 			isa = PBXGroup;
 			children = (
+				920FF0F02003D22100AECC03 /* ScannerViewController */,
 				92181FEA1FF785E700950F56 /* LocalAuthentication */,
 				923411731FEA166900BC82E0 /* AppDelegate.swift */,
 				922B950B1FEF469800C176B4 /* MenuViewController */,
@@ -333,11 +358,21 @@
 				D0C3EDB11FFF469F005DA4A0 /* SetUpViewController */,
 				D0C3EDB21FFF469F005DA4A0 /* UserDetailViewController */,
 				923411771FEA166900BC82E0 /* Main.storyboard */,
+				923A9085200267450024BFE6 /* Assets.xcassets */,
 				9234117C1FEA166900BC82E0 /* LaunchScreen.storyboard */,
-				92181FE61FF7527700950F56 /* Assets.xcassets */,
 				9234117F1FEA166900BC82E0 /* Info.plist */,
 			);
 			path = "IVE Inventory";
+			sourceTree = "<group>";
+		};
+		923A9088200297ED0024BFE6 /* Printer */ = {
+			isa = PBXGroup;
+			children = (
+				923A90912002B5620024BFE6 /* NDHTMLtoPDF.h */,
+				923A90902002B5620024BFE6 /* NDHTMLtoPDF.m */,
+				923A908C200299D20024BFE6 /* WirelessPrinterManager.swift */,
+			);
+			path = Printer;
 			sourceTree = "<group>";
 		};
 		D0C3EDB11FFF469F005DA4A0 /* SetUpViewController */ = {
@@ -402,7 +437,7 @@
 				TargetAttributes = {
 					9234116F1FEA166900BC82E0 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = 48VSLARB6R;
+						DevelopmentTeam = LUD6M4KSYM;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -448,6 +483,7 @@
 				9234117E1FEA166900BC82E0 /* LaunchScreen.storyboard in Resources */,
 				922AEA171FFBF497004246F9 /* SF-UI-Text-Semibold.otf in Resources */,
 				922AEA281FFBF498004246F9 /* SF-UI-Display-Ultralight.otf in Resources */,
+				923A9086200267470024BFE6 /* Assets.xcassets in Resources */,
 				922AEA241FFBF498004246F9 /* SF-UI-Text-LightItalic.otf in Resources */,
 				922AEA221FFBF498004246F9 /* SF-UI-Text-Ultrathin.otf in Resources */,
 				922AEA2A1FFBF498004246F9 /* SF-UI-Display-Black.otf in Resources */,
@@ -466,7 +502,6 @@
 				922AEA251FFBF498004246F9 /* SF-UI-Text-Light.otf in Resources */,
 				923411791FEA166900BC82E0 /* Main.storyboard in Resources */,
 				922AEA151FFBF497004246F9 /* SF-UI-Text-RegularItalic.otf in Resources */,
-				92181FE71FF7527800950F56 /* Assets.xcassets in Resources */,
 				922B95191FEF46B600C176B4 /* MenuCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,9 +580,13 @@
 				92181FEC1FF7861400950F56 /* LocalAuthenticationManager.swift in Sources */,
 				922AEA351FFBF4D6004246F9 /* UIColor+Extension.swift in Sources */,
 				923411761FEA166900BC82E0 /* MenuViewController.swift in Sources */,
+				923A908D200299D20024BFE6 /* WirelessPrinterManager.swift in Sources */,
 				922B95141FEF46B600C176B4 /* MenuViewDataSource.swift in Sources */,
+				923A90922002B5630024BFE6 /* NDHTMLtoPDF.m in Sources */,
 				923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */,
 				922B95181FEF46B600C176B4 /* MenuCell.swift in Sources */,
+				92BAF512200AC19E008FCFC3 /* UIViewController+Extension.swift in Sources */,
+				92BAF514200AC627008FCFC3 /* IVE_UserManager.swift in Sources */,
 				922AEA2D1FFBF4C5004246F9 /* DrConstants.swift in Sources */,
 				922AEA361FFBF4D6004246F9 /* UIBarButtonItem+Extension.swift in Sources */,
 				923C29FF1FEFD1C100D805B0 /* ReturnDataSource.swift in Sources */,
@@ -567,6 +606,7 @@
 				923C2A011FEFD1D300D805B0 /* ReturnDelegate.swift in Sources */,
 				923BC6ED1FFE682900134E0D /* UILabel+Extension.swift in Sources */,
 				922712AC1FF14C76002E6190 /* DetailsViewController.swift in Sources */,
+				920FF0F22003D24D00AECC03 /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,8 +654,8 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SANJAY MORYA (C42KF277P3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SANJAY MORYA (C42KF277P3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SANJAY MORYA (7BEUL4M4EJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SANJAY MORYA (7BEUL4M4EJ)";
 				CODE_SIGN_STYLE = Manual;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
@@ -643,6 +683,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 			};
@@ -691,6 +732,7 @@
 				PROVISIONING_PROFILE = "48622e6c-0d8b-4670-b803-486c4afc5725";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
@@ -702,17 +744,18 @@
 			baseConfigurationReference = F86DA76BB7FF79E08121DFB8 /* Pods-IVE Inventory.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer: SANJAY MORYA (C42KF277P3)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SANJAY MORYA (C42KF277P3)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: SANJAY MORYA (7BEUL4M4EJ)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: SANJAY MORYA (7BEUL4M4EJ)";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = 48VSLARB6R;
+				DEVELOPMENT_TEAM = LUD6M4KSYM;
 				INFOPLIST_FILE = "IVE Inventory/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.appsomatic.IVE;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b75b3dd6-c41f-4011-aa08-0520c92b50a0";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "IVE Dev Pro 04/01/18";
+				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -734,6 +777,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48622e6c-0d8b-4670-b803-486c4afc5725";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -749,7 +793,7 @@
 				923411811FEA166900BC82E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 		923411821FEA166900BC82E0 /* Build configuration list for PBXNativeTarget "IVE Inventory" */ = {
 			isa = XCConfigurationList;
@@ -758,7 +802,7 @@
 				923411841FEA166900BC82E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
+			defaultConfigurationName = Debug;
 		};
 /* End XCConfigurationList section */
 	};

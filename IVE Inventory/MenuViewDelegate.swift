@@ -23,7 +23,7 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     {
         if indexPath.section == 0
         {
-            return CGSize.init(width: ScreenSize.SCREEN_WIDTH , height: 149.0*DrConstants.kSCALE_FACTOR)
+            return CGSize.init(width: ScreenSize.SCREEN_WIDTH , height: 64.0 + (149.0*DrConstants.kSCALE_FACTOR))
         }
         
         let width:CGFloat = 172.0

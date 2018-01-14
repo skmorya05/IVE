@@ -88,47 +88,101 @@ struct Return {
         {
             self.id = id
         }
+        else
+        {
+            self.id = ""
+        }
+        
         if let rma = dict["rma"] as? String
         {
             self.rma = rma
         }
+        else
+        {
+            self.rma = ""
+        }
+        
         if let serial = dict["serial"] as? String
         {
             self.serial = serial
         }
+        else
+        {
+            self.serial = ""
+        }
+        
         if let brand = dict["brand"] as? String
         {
             self.brand = brand
         }
+        else
+        {
+            self.brand = ""
+        }
+        
         if let model = dict["model"] as? String
         {
             self.model = model
         }
+        else
+        {
+            self.model = ""
+        }
+        
         if let status = dict["status"] as? String
         {
             self.status = status
         }
+        else
+        {
+            self.status = ""
+        }
+        
         if let name = dict["user_name"] as? String
         {
             self.name = name
         }
+        else
+        {
+            self.name = ""
+        }
+        
         if var createdate = dict["date_created"] as? String
         {
             createdate = createdate.replacingOccurrences(of: "00:00:00", with: "")
             self.createdate = createdate
         }
+        else
+        {
+            self.createdate = ""
+        }
+        
         if let reason = dict["reason_return"] as? String
         {
             self.reason = reason
         }
+        else
+        {
+            self.reason = ""
+        }
+        
         if var closedate = dict["close_date"] as? String
         {
             closedate = closedate.replacingOccurrences(of: "00:00:00", with: "")
             self.closedate = closedate
         }
+        else
+        {
+            self.closedate = ""
+        }
+        
         if let closeby = dict["by"] as? String
         {
             self.closeby = closeby
+        }
+        else
+        {
+            self.closeby = ""
         }
         
     }

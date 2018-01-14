@@ -42,12 +42,12 @@
                   moduleName = "IVE Inventory"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
-                  timestampString = "536858824.087999"
+                  timestampString = "537602383.268182"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
                   endingLineNumber = "26"
-                  offsetFromSymbolStart = "394">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,7 +57,7 @@
                   moduleName = "IVE Inventory"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
-                  timestampString = "536858824.091473"
+                  timestampString = "537602383.2720979"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -144,6 +144,70 @@
             startingLineNumber = "34"
             endingLineNumber = "34"
             landmarkName = "authenticationWithTouchID()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Printer/NDHTMLtoPDF.m"
+            timestampString = "537130104.507774"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "51"
+            endingLineNumber = "51"
+            landmarkName = "+createPDFWithHTML:pathForPDF:delegate:pageSize:margins:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Printer/NDHTMLtoPDF.m"
+            timestampString = "537130104.507845"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "+createPDFWithHTML:baseURL:pathForPDF:delegate:pageSize:margins:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Printer/NDHTMLtoPDF.m"
+            timestampString = "537130104.507901"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
+            landmarkName = "+createPDFWithURL:pathForPDF:pageSize:margins:successBlock:errorBlock:"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Printer/NDHTMLtoPDF.m"
+            timestampString = "537130104.507956"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "200"
+            endingLineNumber = "200"
+            landmarkName = "-webView:didFailLoadWithError:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
