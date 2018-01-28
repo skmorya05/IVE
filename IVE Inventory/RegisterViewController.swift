@@ -41,6 +41,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
         self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
+
+    }
+    
+   
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
+    {
+        self.view.endEditing(true)
     }
     
     func setUpViews()
@@ -134,7 +142,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
             {
                 let imagePicker = UIImagePickerController()
-                imagePicker.sourceType = .camera
+                imagePicker.sourceType = .photoLibrary
                 imagePicker.allowsEditing = true
                 imagePicker.delegate = self
                 present(imagePicker, animated: true, completion: nil)
@@ -153,7 +161,10 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func btnTapped_signUp(sender: UIButton)
     {
-        guard let username = tf_UserName.text else { return }
+        
+        self.updateUserImage(id:"28")
+        
+       /* guard let username = tf_UserName.text else { return }
         guard let password = tf_Password.text else { return }
         guard let email = tf_Email.text else { return }
         guard let initial = tf_initial.text else { return }
@@ -181,35 +192,48 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         else
         {
             
-            let properties:[String: Any] = [IVE_KeyConstant.kName: username,
+            let properties:[String: String] = [IVE_KeyConstant.kName: username,
                               IVE_KeyConstant.kEmail: email,
                               IVE_KeyConstant.kPassword: password,
                               IVE_KeyConstant.kInitial: initial,
                               ]
-            print("properties = \(properties)")
            
-            NetworkManager.sharedManager.registerUser(properties: properties, completion: { (dict:[String: Any]?) in
+            NetworkManager.sharedManager.registerUser(properties: properties, completion: { (_ user:IVE_User?) in
                 
-                print("user = \(String(describing: dict))")
+                guard let _ = user else { return }
                 
-                guard let _ = dict else { return }
-                
-                if let userId = dict![IVE_KeyConstant.kUser_id] as? Int
+                if let userId = user?.id
                 {
                     DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
                     DrConstants.kUser_Default.synchronize()
+                    DrConstants.kAppDelegate.loginUser = user!
                     
-                    let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                    self.navigationController?.pushViewController(menuVC, animated: true)
+                    //let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                    //self.navigationController?.pushViewController(menuVC, animated: true)
                     
+                    if self.selectedImage != nil
+                    {
+                        self.updateUserImage(id:userId)
+                    }
                 }
-                
             })
-            
-        }
-        
+        } */
     }
 
+    
+    func updateUserImage(id:String)
+    {
+        if let imageData:Data = UIImageJPEGRepresentation(self.selectedImage, 1.0)
+        {
+            NetworkManager.sharedManager.uploadImage(imageData, id, nil, withCompletion: { _,_ in })
+        }
+    }
+    
+    
+    override func viewWillDisappear(_ animated: Bool)
+    {
+        NotificationCenter.default.removeObserver(self)
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()

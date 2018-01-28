@@ -88,6 +88,15 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         
         let scannerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "scanner"), target: self, action: #selector(scannerButtonTapped))
         
+        if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
+        {
+            printerButton.isEnabled = true
+        }
+        else
+        {
+            printerButton.isEnabled = false
+        }
+        
         self.navigationItem.rightBarButtonItems = [printerButton, scannerButton]
     }
     
@@ -245,11 +254,19 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     //MARK:- ReturnDelegateProtocol
     func didSelectCell(indexPath: IndexPath)
     {
-        let dataStruct = self.dataSource.returnList[indexPath.row]
+        if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Detail))
+        {
+            let dataStruct = self.dataSource.returnList[indexPath.row]
+            
+            let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+            detailsVC.dataStruct = dataStruct
+            self.navigationController?.pushViewController(detailsVC, animated: true)
+        }
+        else
+        {
+            self.showAlert(message: "You have no access of RMA Detail")
+        }
         
-        let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-        detailsVC.dataStruct = dataStruct
-        self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
     func showLoading(isLoading:Bool)

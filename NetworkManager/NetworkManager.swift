@@ -9,6 +9,8 @@
 import Foundation
 import Alamofire
 
+typealias serviceCompletion = (_ : Any?, _ : String?) -> Void
+
 class NetworkManager: NSObject
 {
     static let sharedManager = NetworkManager()
@@ -120,17 +122,19 @@ class NetworkManager: NSObject
             parameters: dict)
             .validate()
             .responseJSON { (response) -> Void in
+                
                 guard response.result.isSuccess else
                 {
                     print("Error: \(String(describing: response.result.error))")
                     return
                 }
                 
-                guard let loginDict = response.result.value as? [String: Any] else
+                guard let value = response.result.value as? [String: Any], let loginDict = value[IVE_KeyConstant.kData] as? [String: Any] else
                 {
                     print("Value is not in specified format")
                     return
                 }
+                
                 
                 let userStruct = IVE_User.init(dict: loginDict)
                 
@@ -139,31 +143,72 @@ class NetworkManager: NSObject
         
     }
     
-    func registerUser(properties:[String: Any]?, completion:@escaping (_ dict:[String: Any]?)->Void)
+    func registerUser(properties:[String: String]?, completion:@escaping (_ dict:IVE_User?)->Void)
     {
         if let prop = properties
         {
+            print("\n prop = \(prop)")
+            
             Alamofire.request(
-                URL(string: IVE_URLConstant.kRegisterUser)!,
+                URL(string: "\(IVE_URLConstant.kRegisterUser)")!,
                 method: .post,
                 parameters: prop)
                 .validate()
                 .responseJSON { (response) -> Void in
+                    
+                    print("response.result.value = \(response.result.value)")
+                    
                     guard response.result.isSuccess else
                     {
                         print("Error: \(String(describing: response.result.error))")
                         return
                     }
                     
-                    guard let dict = response.result.value as? [String: Any] else
+                    guard let value = response.result.value as? [String: Any] ,
+                    let dict = value[IVE_KeyConstant.kData] as? [String: Any] else
+                    {
+                        return
+                    }
+                    
+                    let userStruct = IVE_User.init(dict: dict)
+                    completion(userStruct)
+            }
+            
+            
+            
+            
+            
+            
+            
+            
+            
+           /* let headers: HTTPHeaders = [
+                "Content-Type":"multipart/form-data",
+                "Accept": "application/json"
+            ]
+            
+            Alamofire.request(URL(string: IVE_URLConstant.kRegisterUser)!, method: .post, parameters:prop , encoding: JSONEncoding(), headers: headers).responseJSON{ (response) -> Void in
+                    
+                    print("result = \(response.result)")
+                    
+                    guard response.result.isSuccess else
+                    {
+                        print("Error: \(String(describing: response.result.error))")
+                        return
+                    }
+                    
+                    guard let value = response.result.value as? [String: Any],
+                    let dict = value[IVE_KeyConstant.kData] as? [String: Any] else
                     {
                         print("Malformed data received from fetchAllRooms service")
                         return
                     }
                     
-                    completion(dict)
+                    let user = IVE_User.init(dict: dict)
+                    completion(user)
             }
-            
+ 
+             */
 
             
            /*Alamofire.upload(multipartFormData: { multipartFormData in
@@ -189,4 +234,166 @@ class NetworkManager: NSObject
         }
     }
     
+    func getUsersList(completion:@escaping (_ users:[IVE_User]?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: IVE_URLConstant.kUsersList)!,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let usersList = value[IVE_KeyConstant.kData] as? [[String: Any]] else
+                {
+                    print("Value is not in specified format")
+                    return
+                }
+                
+                let users = usersList.flatMap({ (dict) -> IVE_User? in
+                    return IVE_User.init(dict: dict)
+                })
+                
+                completion(users)
+                
+        }
+    }
+    
+    func updateUserDict(user:IVE_User, status:Bool, completion:@escaping (_ result: Bool)->Void)
+    {
+        let isDeleted = status ? "0" : "1"
+        let prop = [IVE_KeyConstant.kIs_deleted: isDeleted]
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kUsersUpdate)\(user.id!)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                //print("response.result.value = \(response.result.value)")
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                completion(true)
+        }
+    }
+    
+    func updateUserAccessDict(user:IVE_User, access:[String], completion:@escaping (_ success:Bool)-> Void)
+    {
+        var prop = [String: [String]]()
+        prop[IVE_KeyConstant.kAccess] = access
+        
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kUsersUpdate)\(user.id!)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                if let status = dict[IVE_KeyConstant.kStatus] as? String, status == IVE_KeyConstant.kSuccess
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+          }
+    }
+    
+   /* func updateUser(imageData:Data, userid:String)
+    {
+        let fileManager = FileManager.default
+        let paths = (NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0] as NSString).appendingPathComponent("photo.jpg")
+        let url = URL.init(string: paths as String)
+        
+        if fileManager.fileExists(atPath: paths)
+        {
+            try! fileManager.removeItem(atPath: paths)
+        }
+        else
+        {
+            print("Something wronge.")
+        }
+        
+        fileManager.createFile(atPath: paths as String, contents: imageData, attributes: nil)
+        
+        // Use Alamofire to upload the image
+        Alamofire.upload( multipartFormData: { (multipartFormData:MultipartFormData) in
+                // On the PHP side you can retrive the image using $_FILES["image"]["tmp_name"]
+                    multipartFormData.append(imageData, withName: "photo")
+                },
+                to: URL(string: "\(IVE_URLConstant.kPhotoUpdate)\(userid)")!,
+                encodingCompletion: { encodingResult in
+                         switch encodingResult {
+                         case .success(let upload, _, _):
+                             upload.responseJSON { response in
+                                 if let jsonResponse = response.result.value as? [String: Any]
+                                 {
+                                     print(jsonResponse)
+                                 }
+                             }
+                         case .failure(let encodingError):
+                             print(encodingError)
+                         }
+                 }
+          )
+    }*/
+ 
+    
+    func uploadImage(_ imageData:Data, _ userid:String , _ parameters: [String: Any]?,  withCompletion getResponse: @escaping serviceCompletion)
+    {        
+        
+        Alamofire.upload(multipartFormData: { multipartFormData in
+            
+            multipartFormData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
+            
+            if let allParams = parameters as? [String:String] {
+                for (key, value) in allParams {
+                    multipartFormData.append(value.data(using: .utf8)!, withName: key)
+                }
+            }}, to: URL(string: "\(IVE_URLConstant.kPhotoUpdate)\(userid)")!, method: .post, headers: nil,
+                encodingCompletion: { encodingResult in
+                    switch encodingResult {
+                    case .success(let upload, _,_):
+                        upload.response { [weak self] response in
+                            guard self != nil else {
+                                getResponse("Something went wrong",nil)
+                                return
+                            }
+                            debugPrint(response)
+                            getResponse(response,nil)
+                        }
+                    case .failure(let encodingError):
+                        print("error:\(encodingError)")
+                        getResponse(nil, encodingError.localizedDescription)
+                    }
+        })
+    }
+ 
 }

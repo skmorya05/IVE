@@ -8,28 +8,61 @@
 
 import UIKit
 
-class SetUpViewController: UIViewController {
+
+
+class SetUpViewController: UIViewController, SetUpTapProtocol, SwitchStatusChange
+{
     
     //MARK: -------------OUTLETS/VARIABLES----------------
-    
     @IBOutlet weak var table_View:UITableView!
+    @IBOutlet weak var view_gradientBorder:UIView!
     
-    //MARK: -------------VIEW LIFE CYCLE----------------
+    
+    var dataSource = SetUpDataSource()
+    var delegate = SetUpDelegate()
+    
 
-    override func viewDidLoad() {
+    //MARK: -------------VIEW LIFE CYCLE----------------
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
+        self.edgesForExtendedLayout = []
         table_View.tableFooterView = UIView.init(frame: .zero)
         self.configureNavigationBar()
+        self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
+        
+        table_View.register(UINib.init(nibName: "SetUpCell", bundle: nil), forCellReuseIdentifier: "SetUpCell")
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        
+    override func viewWillAppear(_ animated: Bool)
+    {
+        super.viewWillAppear(true)
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        loadData()
     }
     
-    //MARK: -------------PRIVATE METHODS----------------
+    func loadData()
+    {
+        NetworkManager.sharedManager.getUsersList { (_ users:[IVE_User]?) in
+            
+            if let usersList = users
+            {
+                self.dataSource.usersList = usersList
+                self.dataSource.viewControllerObj = self
+                self.delegate.users = usersList
+                self.delegate.delegate = self
+                
+                self.table_View.dataSource = self.dataSource
+                self.table_View.delegate = self.delegate
+                self.table_View.reloadData()
+            }
+        }
+    }
     
-    func configureNavigationBar() {
+    
+    //MARK: -------------PRIVATE METHODS----------------
+    func configureNavigationBar()
+    {
         self.navigationItem.hidesBackButton = true
         let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(goBack))
         self.navigationItem.leftBarButtonItem = backButton
@@ -38,69 +71,43 @@ class SetUpViewController: UIViewController {
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
-        let printerButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "User_Default"), target: self, action: #selector(printerButtonTapped))
+        let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "User_Default_nav") , target: self, action: #selector(printerButtonTapped))
         self.navigationItem.rightBarButtonItem = printerButton
     }
     
     //MARK:- NavigationBar Button Action
-    @objc func goBack() {
+    @objc func goBack()
+    {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func printerButtonTapped() {
+    @objc func printerButtonTapped()
+    {
         print("#function = \(#function)")
     }
-}
-
-//MARK: -------------UITableViewDataSource METHODS----------------
-
-extension SetUpViewController : UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+    
+    //MARK:- SetUpTapProtocol -
+    func didSelectSetUpCell(indexPath: IndexPath, user:IVE_User)
+    {
+        print("\n indexPath = \(indexPath)")
+        
+        let userDetailVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "UserDetailViewController") as! UserDetailViewController
+        userDetailVC.ive_user = user
+        self.navigationController?.pushViewController(userDetailVC, animated: true)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cellId = "CellId"
-        var cell = tableView.dequeueReusableCell(withIdentifier: cellId)
-        if cell == nil {
-            cell = UITableViewCell.init(style: .default, reuseIdentifier: cellId)
-        }
-        cell?.textLabel?.font = UIFont.systemFont(ofSize: 20 * DrConstants.kSCALE_FACTOR)
-        cell?.textLabel?.textColor = #colorLiteral(red: 0.01176470588, green: 0.03921568627, blue: 0.3568627451, alpha: 1)
-        cell?.textLabel?.text = "Username"
-        cell?.imageView?.image = #imageLiteral(resourceName: "User_Default")
-        cell?.selectionStyle = .none
-        
-        let _switch = UISwitch()
-        _switch.tintColor = #colorLiteral(red: 0.01176470588, green: 0.03921568627, blue: 0.3568627451, alpha: 1)
-        _switch.onTintColor = #colorLiteral(red: 0.01176470588, green: 0.03921568627, blue: 0.3568627451, alpha: 1)
-        _switch.thumbTintColor = #colorLiteral(red: 0.7072623372, green: 0.7366045117, blue: 0.7719837427, alpha: 1)
-        
-        if UIDevice.current.userInterfaceIdiom == .pad {
-            let accView = UIView.init(frame: CGRect.init(x: 0, y: 0, width: 150, height: cell?.frame.size.height ?? 100))
-            accView.addSubview(_switch)
-            cell?.accessoryView = accView
-        } else {
-            cell?.accessoryView = _switch
-        }
-        
-        return cell ?? UITableViewCell()
-    }
-}
-
-//MARK: -------------UITableViewDelegate METHODS----------------
-
-extension SetUpViewController : UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 100 * DrConstants.kSCALE_FACTOR
+    //MARK:- SwitchStatusChange -
+    func didChangeStatus(cell:SetUpCell, user:IVE_User)
+    {
+        NetworkManager.sharedManager.updateUserDict(user: user, status: cell.switch_role.isOn, completion: { (_ result: Bool) in
+            
+            self.loadData()
+        })
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let separatorThickness = CGFloat(5 * DrConstants.kSCALE_FACTOR)
-        let additionalSeparator = UIView.init(frame: CGRect.init(x: 0, y: (cell.frame.size.height - separatorThickness), width: cell.frame.size.width, height: separatorThickness))
-        additionalSeparator.backgroundColor = #colorLiteral(red: 0.9411764706, green: 0.9411764706, blue: 0.9411764706, alpha: 1)
-        cell.addSubview(additionalSeparator)
+    override func didReceiveMemoryWarning()
+    {
+        super.didReceiveMemoryWarning()
     }
 }
 

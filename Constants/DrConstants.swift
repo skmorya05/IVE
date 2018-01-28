@@ -11,6 +11,7 @@ import UIKit
 public struct DrConstants
 {
     static let kUser_Default        = UserDefaults.standard
+    static let kAppDelegate         = UIApplication.shared.delegate as! AppDelegate
     static let kSCALE_FACTOR        = CGFloat().scaleFactor()
     static let kStoryBoard          = UIStoryboard(name: "Main", bundle: nil)
     static let kBaseUrl             = "http://stackup.mobi/220electronics/api/"
@@ -22,7 +23,11 @@ public struct IVE_URLConstant
     static let kRmaDetail = DrConstants.kBaseUrl+"ticket/detail?"
     static let kRmaUpdate = DrConstants.kBaseUrl+"ticket/update/"
     static let kLogin = DrConstants.kBaseUrl+"employee/login?"
-    static let kRegisterUser = DrConstants.kBaseUrl+"employee/register"
+    static let kRegisterUser =  DrConstants.kBaseUrl+"employee/register"
+    static let kUsersList = DrConstants.kBaseUrl+"employee"
+    static let kUsersUpdate = DrConstants.kBaseUrl+"employee/update/"
+    static let kPhotoUpdate = DrConstants.kBaseUrl+"employee/photoupdate/"
+    
 }
 
 public struct IVE_KeyConstant
@@ -34,7 +39,36 @@ public struct IVE_KeyConstant
     static let kEmail = "email"
     static let kInitial = "initial"
     static let kPhoto = "photo"
+    static let kData = "data"
+    static let kIs_deleted = "is_deleted"
+    static let kAccess = "access"
+
+    static let kStatus = "status"
+    static let kSuccess = "success"
+    static let kError = "error"
 }
+
+
+public struct IVEUserRole
+{
+    static let kAdmin = "admin"
+    static let kUser = "admin"
+}
+
+
+public struct IVEAccess
+{
+    static let kAdmin_Access = "admin_acess"
+    static let kReturn = "return"
+    static let kRma_Detail = "rma_retail"
+    static let kRma_Print = "rma_print"
+    static let kVendors = "vendors"
+}
+
+
+
+
+
 
 //==========================
 //MARK:Device Types & Size
@@ -65,7 +99,7 @@ public struct DeviceType{
 
 
 
-public struct FontConstant {
+public struct IVEFontConstant {
     static let SFUI_TEXT_REGULAR                = "SFUIText-Regular"
     static let SFUI_TEXT_MEDIUM                 = "SFUIText-Medium"
     static let SFUI_TEXT_BOLD                   = "SFUIText-Bold"

@@ -62,13 +62,14 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath)
     {
-        if indexPath.row == 1
+        if let _ = self.menuBtnDelegate
         {
-            if let _ = self.menuBtnDelegate
+            if indexPath.section == 1
             {
                 self.menuBtnDelegate.didSelectMenuButton(indexPath: indexPath)
             }
         }
+        
     }
-    
+  
 }

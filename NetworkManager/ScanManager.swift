@@ -15,20 +15,21 @@ class ScanManager:NSObject {
     // Supported Types of code
     private let supportedCodeType = AVMetadataObject.ObjectType.qr
     
-    private let captureSession = AVCaptureSession()
+    let captureSession = AVCaptureSession()
+    
     fileprivate var videoPreviewLayer:AVCaptureVideoPreviewLayer?
     fileprivate var qrCodeFrameView:UIView?
     
     fileprivate var scannedCode:((_ :String?,_ :String?)->Void)?
-    fileprivate var viewSender:UIViewController?
+    fileprivate var view:UIView?
     
     override init()
     {
         super.init()
     }
     
-    func showScanner(_ sender:UIViewController,_ codeText:@escaping (_ :String?,_ :String?)->Void) {
-        viewSender = sender
+    func showScanner(_ sender:UIView,_ codeText:@escaping (_ :String?,_ :String?)->Void) {
+        view = sender
         scannedCode = codeText
         self.setUpSession()
     }
@@ -41,8 +42,8 @@ class ScanManager:NSObject {
         if let qrCodeFrameView = qrCodeFrameView {
             qrCodeFrameView.layer.borderColor = UIColor.green.cgColor
             qrCodeFrameView.layer.borderWidth = 2
-            viewSender?.view.addSubview(qrCodeFrameView)
-            viewSender?.view.bringSubview(toFront: qrCodeFrameView)
+            view?.addSubview(qrCodeFrameView)
+            view?.bringSubview(toFront: qrCodeFrameView)
         }
     }
     
@@ -79,16 +80,18 @@ class ScanManager:NSObject {
             videoPreviewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill
             
-            videoPreviewLayer?.frame = UIScreen.main.bounds
-            viewSender?.view.layer.addSublayer(videoPreviewLayer!)
+            let rect = self.view?.frame
+            videoPreviewLayer?.frame = CGRect.init(x: 10, y: 10, width: ScreenSize.SCREEN_WIDTH - 20, height: (rect?.size.height)!-20)
+            view?.layer.addSublayer(videoPreviewLayer!)
             
             // Start video capture.
             captureSession.startRunning()
             
             self.intializeDetectedCodeGreenView()
             
-        } catch {
-            // If any error occurs, simply print it out and don't continue any more.
+        }
+        catch
+        {
             print(error)
             return
         }
@@ -99,9 +102,6 @@ class ScanManager:NSObject {
         if self.captureSession.isRunning
         {
             self.captureSession.stopRunning()
-        }
-        if viewSender?.presentedViewController != nil {
-            return
         }
         self.captureSession.stopRunning()
         scannedCode?(decodedURL,nil)

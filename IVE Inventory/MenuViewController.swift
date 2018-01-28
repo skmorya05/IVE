@@ -13,24 +13,18 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
 
     //Outlets
     @IBOutlet weak var collectionView : UICollectionView!
+    @IBOutlet weak var swipeGSR : UISwipeGestureRecognizer!
+    
     let menuArray = ["Vendors", "Returns", "Inventory Receipt", "Setup"]
     
     //properties
     let dataSource = MenuViewDataSource()
     let delegate = MenuViewDelegate()
-    
-    func goTosetUpVC()
-    { // SetUpViewController UserDetailViewController
-        let setUpVC = UserDetailViewController.init(nibName: "UserDetailViewController", bundle: nil)
-        self.navigationController?.pushViewController(setUpVC, animated: true)
-    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       // goTosetUpVC()
-        //return
-        
+       
         //Remove BackButton
         self.navigationItem.hidesBackButton = true
         
@@ -70,6 +64,7 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
         self.collectionView.dataSource = dataSource
         self.collectionView.delegate = delegate
         
+        self.view.addGestureRecognizer(self.swipeGSR)
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -95,24 +90,56 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
         {
             if indexPath.row == 0
             {
-                
+                if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kVendors))
+                {
+                    //Do Processing
+                }
+                else
+                {
+                    self.showAlert(message: "You have no access of Vendors")
+                }
             }
             else if indexPath.row == 1
             {
-                let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
-                self.navigationController?.pushViewController(controller, animated: true)
+                if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kReturn))
+                {
+                    let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
+                    self.navigationController?.pushViewController(controller, animated: true)
+                }
+                else
+                {
+                    self.showAlert(message: "You have no access of Returns")
+                }
+                
             }
             else if indexPath.row == 2
             {
-                let userdetailsVC = UserDetailViewController.init(nibName: "UserDetailViewController", bundle: nil)
-                self.navigationController?.pushViewController(userdetailsVC, animated: true)
+               /* let userdetailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "UserDetailViewController")
+                self.navigationController?.pushViewController(userdetailsVC, animated: true) */
             }
             else if indexPath.row == 3
             {
-                let setUpVC = SetUpViewController.init(nibName: "SetUpViewController", bundle: nil)
-                self.navigationController?.pushViewController(setUpVC, animated: true)
+                if DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin
+                {
+                    let setUpVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "SetUpViewController")
+                    self.navigationController?.pushViewController(setUpVC, animated: true)
+                }
+                else
+                {
+                    self.showAlert(message: "You have no access to Setup")
+                }
+                
             }
         }
+        
+    }
+    
+    //MARK:- Open Bottom Tray
+    @IBAction func swipeUp(sender:UISwipeGestureRecognizer)
+    {
+        let bottomTrayVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "BottomTrayViewController") as! BottomTrayViewController
+        let navVC = UINavigationController.init(rootViewController: bottomTrayVC)
+        self.present(navVC, animated: true, completion: nil)
         
     }
     

@@ -123,6 +123,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 {
                     DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
                     DrConstants.kUser_Default.synchronize()
+                    DrConstants.kAppDelegate.loginUser = user!
                     
                     let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                     self.navigationController?.pushViewController(menuVC, animated: true)

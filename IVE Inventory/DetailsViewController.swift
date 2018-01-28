@@ -58,7 +58,7 @@ class DetailsViewController: UIViewController
         configureView()
         configureNavigationBar()
         loadData()
-       
+        damageProductFileClaim.sendActions(for: .touchUpInside)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,6 +76,16 @@ class DetailsViewController: UIViewController
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
+        
+        if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
+        {
+            printerButton.isEnabled = true
+        }
+        else
+        {
+            printerButton.isEnabled = false
+        }
+        
         self.navigationItem.rightBarButtonItem = printerButton
     }
     
@@ -98,27 +108,42 @@ class DetailsViewController: UIViewController
         
         btn_return_back_ToVendor.contentHorizontalAlignment = .center
         btn_return_back_ToVendor.titleLabel?.textAlignment = .center
+        btn_return_back_ToVendor.contentVerticalAlignment = .center
+        btn_return_back_ToVendor.titleLabel?.textAlignment = .center
         
         btn_PutBack_Stock.contentHorizontalAlignment = .center
+        btn_PutBack_Stock.titleLabel?.textAlignment = .center
+        btn_PutBack_Stock.contentVerticalAlignment = .center
         btn_PutBack_Stock.titleLabel?.textAlignment = .center
 
         damageProductFileClaim.contentHorizontalAlignment = .center
         damageProductFileClaim.titleLabel?.textAlignment = .center
+        damageProductFileClaim.contentVerticalAlignment = .center
+        damageProductFileClaim.titleLabel?.textAlignment = .center
 
         
-        updateButtonsUI(sender: btn_PutBack_Stock)
-        updateButtonsUI(sender: btn_return_back_ToVendor)
-        updateButtonsUI(sender: damageProductFileClaim)
+        updateButtonsUI(sender: btn_PutBack_Stock, text:"Put Back in Stock")
+        updateButtonsUI(sender: btn_return_back_ToVendor, text:"Return Back to Vendor")
+        updateButtonsUI(sender: damageProductFileClaim, text:"Damage Product file a claim")
         
         self.btn_Save.setTitleColor(ColorConstant.navBarColor, for: .normal)
     }
     
-    func updateButtonsUI(sender:UIButton)
+    func updateButtonsUI(sender:UIButton,  text:String)
     {
         sender.layer.cornerRadius = 2.0
         sender.clipsToBounds = true
         sender.layer.borderColor = ColorConstant.navBarColor.cgColor
         sender.layer.borderWidth = 2.0
+        
+        // .Selected
+        let attr1 = NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor : UIColor.white])
+        sender.setAttributedTitle(attr1, for: .selected)
+        
+        // .Normal
+        let attr2 = NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor : UIColor.darkGray])
+        sender.setAttributedTitle(attr2, for: .normal)
+
     }
     
     
@@ -189,21 +214,24 @@ class DetailsViewController: UIViewController
             makeUpdateRadioButtons(isActive: true)
             operation = "damageproductfileclaim"
         }
+        
         btn_Save.isEnabled = true
     }
     
     func updateOperationButtonUI(sender:UIButton, isSelected:Bool)
     {
+        
         if isSelected
         {
-            sender.setTitleColor(UIColor.white, for: .normal)
+            sender.isSelected = true
             sender.backgroundColor = ColorConstant.saffroFillColor
         }
         else
         {
-            sender.setTitleColor(ColorConstant.btnTextColor, for: .normal)
+            sender.isSelected = false
             sender.backgroundColor = ColorConstant.btnBgColor
         }
+       
     }
     
     @IBAction func manageButtonsState(btn_Radio:UIButton)

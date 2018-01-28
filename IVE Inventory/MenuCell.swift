@@ -27,7 +27,7 @@ class MenuCell: UICollectionViewCell {
        
         addUpperRightHalfOfTickButton()
         dpImageView.layer.cornerRadius = floor(dpImageView.layer.frame.size.width*DrConstants.kSCALE_FACTOR)/2
-        lbl_cardName.font = UIFont.init(name: FontConstant.SFUI_TEXT_MEDIUM, size: floor(13*DrConstants.kSCALE_FACTOR))
+        lbl_cardName.font = UIFont.init(name: IVEFontConstant.SFUI_TEXT_MEDIUM, size: floor(13*DrConstants.kSCALE_FACTOR))
     }
     
    
@@ -39,9 +39,7 @@ class MenuCell: UICollectionViewCell {
         dpImageView.layer.cornerRadius = floor(dpImageView.layer.frame.size.width*DrConstants.kSCALE_FACTOR)/2
         dpImageView.layer.borderWidth = 1.5
         dpImageView.layer.borderColor = color.cgColor
-       // dpImageView.layer.backgroundColor = color.cgColor
         dpImageView.clipsToBounds = true
-       // self.dpImageView.cropAsCircleWithBorder(borderColor: UIColor.white, strokeWidth: 2.0)
     }
     
 }

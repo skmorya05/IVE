@@ -19,7 +19,7 @@ class ScannerViewController: UIViewController {
         self.navigationController?.navigationBar.tintColor = ColorConstant.blueFillColor
         
         self.edgesForExtendedLayout = []
-        scanner.showScanner(self) { (code, errorMsg) in
+        /*scanner.showScanner(self) { (code, errorMsg) in
             
             if let _ = code
             {
@@ -34,6 +34,7 @@ class ScannerViewController: UIViewController {
                 })
             }
         }
+         */
         
     }
 
