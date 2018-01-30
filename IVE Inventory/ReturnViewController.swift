@@ -44,7 +44,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         self.tableView.register(UINib.init(nibName: "ReturnCell", bundle: nil), forCellReuseIdentifier: "ReturnCell")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-        self.tableView.estimatedRowHeight = 116.0;
+        self.tableView.estimatedRowHeight = 168.0;
         
     }
     
@@ -86,8 +86,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
         
-        let scannerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "scanner"), target: self, action: #selector(scannerButtonTapped))
-        
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
         {
             printerButton.isEnabled = true
@@ -97,7 +95,7 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
             printerButton.isEnabled = false
         }
         
-        self.navigationItem.rightBarButtonItems = [printerButton, scannerButton]
+        self.navigationItem.rightBarButtonItem = printerButton
     }
     
     //MARK:- NavigationBar Button Action
@@ -110,8 +108,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     @objc func scannerButtonTapped()
     {
         print("#function = \(#function)")
-        let scannerVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
-        self.navigationController?.pushViewController(scannerVC, animated: true)        
     }
     
     

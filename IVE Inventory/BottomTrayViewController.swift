@@ -15,6 +15,10 @@ enum CameraMode {
     case Receipt
 }
 
+protocol QRCodeReadProtocol:class {
+    func didUpdate(qrcodeStr:String)
+}
+
 let cellIdef = "BottomTrayCell"
 
 class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NextButtonProtocol
@@ -27,6 +31,8 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
     var picker = UIImagePickerController()
     var cell : BottomTrayCell!
     var actionToEnable : UIAlertAction!
+    
+    weak var delegate_QRCRProtocol:QRCodeReadProtocol!
     
     override func viewDidLoad()
     {
@@ -78,9 +84,13 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
                 
                 if let _ = code
                 {
-                    print("\(code!)")
+                    self.dismiss(animated: true, completion: {
+                        if let _ = self.delegate_QRCRProtocol
+                        {
+                            self.delegate_QRCRProtocol.didUpdate(qrcodeStr: code!)
+                        }
+                    })
                 }
-                
             })
         }
         else
@@ -89,7 +99,7 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
             cell.delegateNextBtn = self
             if cell.images_captured.count == 0
             {
-                //cell.height_collectionView.constant = 0.0
+                cell.height_collectionView.constant = 0.0
                 cell.collecton_ContainerView.isHidden = true
             }
             else
@@ -105,6 +115,7 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
                     cell.height_collectionView.constant = 120.0
                 }
             }
+            cell.collecton_ContainerView.layoutIfNeeded()
         }
         
         return cell
@@ -253,6 +264,13 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         {
             self.actionToEnable?.isEnabled = false
         }
+    }
+    
+    func showMaxImagesAlert()
+    {
+        let alert = UIAlertController(title: "Alert!", message: "You can take Max six Images of Receipts", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
     
     override func didReceiveMemoryWarning()

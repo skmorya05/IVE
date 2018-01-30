@@ -10,7 +10,6 @@
 		0A2BB94BA46B8DE768AC82D9 /* Pods_IVE_Inventory.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D923680D55883DFA925F5DE5 /* Pods_IVE_Inventory.framework */; };
 		9203D0B0201DD3A600FB2F7E /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9203D0AE201DD3A600FB2F7E /* ImageCell.swift */; };
 		9203D0B1201DD3A600FB2F7E /* ImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9203D0AF201DD3A600FB2F7E /* ImageCell.xib */; };
-		920FF0F22003D24D00AECC03 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 920FF0F12003D24D00AECC03 /* ScannerViewController.swift */; };
 		92181FE91FF785C300950F56 /* LocalAuthentication.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92181FE81FF785B900950F56 /* LocalAuthentication.framework */; };
 		92181FEC1FF7861400950F56 /* LocalAuthenticationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92181FEB1FF7861400950F56 /* LocalAuthenticationManager.swift */; };
 		922712AC1FF14C76002E6190 /* DetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 922712AB1FF14C76002E6190 /* DetailsViewController.swift */; };
@@ -68,7 +67,6 @@
 		923C2A011FEFD1D300D805B0 /* ReturnDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A001FEFD1D300D805B0 /* ReturnDelegate.swift */; };
 		923C2A041FEFD29C00D805B0 /* ReturnCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A021FEFD29C00D805B0 /* ReturnCell.swift */; };
 		923C2A051FEFD29C00D805B0 /* ReturnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923C2A031FEFD29C00D805B0 /* ReturnCell.xib */; };
-		923C2A091FEFEC5500D805B0 /* return.json in Resources */ = {isa = PBXBuildFile; fileRef = 923C2A081FEFEC5500D805B0 /* return.json */; };
 		923C2A0B1FEFEDB400D805B0 /* ReturnViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */; };
 		923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */; };
 		92472529200E5F3400C34B42 /* IVEStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92472528200E5F3400C34B42 /* IVEStruct.swift */; };
@@ -88,7 +86,6 @@
 /* Begin PBXFileReference section */
 		9203D0AE201DD3A600FB2F7E /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
 		9203D0AF201DD3A600FB2F7E /* ImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageCell.xib; sourceTree = "<group>"; };
-		920FF0F12003D24D00AECC03 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		92181FE81FF785B900950F56 /* LocalAuthentication.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = LocalAuthentication.framework; path = System/Library/Frameworks/LocalAuthentication.framework; sourceTree = SDKROOT; };
 		92181FEB1FF7861400950F56 /* LocalAuthenticationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthenticationManager.swift; sourceTree = "<group>"; };
 		922712AB1FF14C76002E6190 /* DetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailsViewController.swift; sourceTree = "<group>"; };
@@ -150,7 +147,6 @@
 		923C2A001FEFD1D300D805B0 /* ReturnDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnDelegate.swift; sourceTree = "<group>"; };
 		923C2A021FEFD29C00D805B0 /* ReturnCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnCell.swift; sourceTree = "<group>"; };
 		923C2A031FEFD29C00D805B0 /* ReturnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReturnCell.xib; sourceTree = "<group>"; };
-		923C2A081FEFEC5500D805B0 /* return.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = return.json; sourceTree = "<group>"; };
 		923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnViewManager.swift; sourceTree = "<group>"; };
 		923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnSearchDelegate.swift; sourceTree = "<group>"; };
 		92472528200E5F3400C34B42 /* IVEStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVEStruct.swift; sourceTree = "<group>"; };
@@ -192,12 +188,12 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		920FF0F02003D22100AECC03 /* ScannerViewController */ = {
+		92146D972020E422007CDBA7 /* UtilityFiles */ = {
 			isa = PBXGroup;
 			children = (
-				920FF0F12003D24D00AECC03 /* ScannerViewController.swift */,
+				923A9087200297460024BFE6 /* IVE Inventory-Bridging-Header.h */,
 			);
-			name = ScannerViewController;
+			path = UtilityFiles;
 			sourceTree = "<group>";
 		};
 		92181FEA1FF785E700950F56 /* LocalAuthentication */ = {
@@ -335,11 +331,10 @@
 		923411671FEA166900BC82E0 = {
 			isa = PBXGroup;
 			children = (
+				92146D972020E422007CDBA7 /* UtilityFiles */,
 				923A9088200297ED0024BFE6 /* Printer */,
-				923A9087200297460024BFE6 /* IVE Inventory-Bridging-Header.h */,
 				922AEA381FFBF4ED004246F9 /* NetworkManager */,
 				9231D3041FF6B3130055F6B1 /* IBInspectable */,
-				923C2A081FEFEC5500D805B0 /* return.json */,
 				922B951C1FEF488C00C176B4 /* Fonts */,
 				922B950A1FEABECB00C176B4 /* Constants */,
 				922B94FF1FEABE5E00C176B4 /* Extension */,
@@ -361,9 +356,8 @@
 		923411721FEA166900BC82E0 /* IVE Inventory */ = {
 			isa = PBXGroup;
 			children = (
-				920FF0F02003D22100AECC03 /* ScannerViewController */,
-				92181FEA1FF785E700950F56 /* LocalAuthentication */,
 				923411731FEA166900BC82E0 /* AppDelegate.swift */,
+				92181FEA1FF785E700950F56 /* LocalAuthentication */,
 				922B950B1FEF469800C176B4 /* MenuViewController */,
 				922B954B1FEF6ACD00C176B4 /* ReturnViewController */,
 				922712AA1FF14C42002E6190 /* DetailsViewController */,
@@ -518,7 +512,6 @@
 				922AEA221FFBF498004246F9 /* SF-UI-Text-Ultrathin.otf in Resources */,
 				9203D0B1201DD3A600FB2F7E /* ImageCell.xib in Resources */,
 				922AEA2A1FFBF498004246F9 /* SF-UI-Display-Black.otf in Resources */,
-				923C2A091FEFEC5500D805B0 /* return.json in Resources */,
 				922B95171FEF46B600C176B4 /* MenuMainCell.xib in Resources */,
 				922AEA1D1FFBF498004246F9 /* SF-UI-Text-Bold.otf in Resources */,
 				922AEA2B1FFBF498004246F9 /* SF-UI-Text-MediumItalic.otf in Resources */,
@@ -644,7 +637,6 @@
 				923C2A011FEFD1D300D805B0 /* ReturnDelegate.swift in Sources */,
 				923BC6ED1FFE682900134E0D /* UILabel+Extension.swift in Sources */,
 				922712AC1FF14C76002E6190 /* DetailsViewController.swift in Sources */,
-				920FF0F22003D24D00AECC03 /* ScannerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -793,7 +785,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "b75b3dd6-c41f-4011-aa08-0520c92b50a0";
 				PROVISIONING_PROFILE_SPECIFIER = "IVE Dev Pro 04/01/18";
-				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "UtilityFiles/IVE Inventory-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -815,7 +807,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "48622e6c-0d8b-4670-b803-486c4afc5725";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "IVE Inventory-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "UtilityFiles/IVE Inventory-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -831,7 +823,7 @@
 				923411811FEA166900BC82E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 		923411821FEA166900BC82E0 /* Build configuration list for PBXNativeTarget "IVE Inventory" */ = {
 			isa = XCConfigurationList;
@@ -840,7 +832,7 @@
 				923411841FEA166900BC82E0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Debug;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

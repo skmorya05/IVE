@@ -22,9 +22,6 @@ class ReturnCell: UITableViewCell {
     @IBOutlet weak var lbl_name:UILabel!
     @IBOutlet weak var lbl_createdate:UILabel!
     @IBOutlet weak var lbl_reason:UILabel!
-    @IBOutlet weak var lbl_closedate:UILabel!
-    @IBOutlet weak var lbl_closeby:UILabel!
-    
     @IBOutlet weak var btn_Radio:UIButton!
     
     var radioButtonDelegate:RadioButtonProtocol!

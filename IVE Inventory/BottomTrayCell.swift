@@ -12,6 +12,7 @@ import AVFoundation
 protocol NextButtonProtocol:class
 {
     func nextbuttonTapped(images:[UIImage])
+    func showMaxImagesAlert()
 }
 
 class BottomTrayCell: UICollectionViewCell, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, ImageSaveProtocol
@@ -83,45 +84,58 @@ class BottomTrayCell: UICollectionViewCell, UICollectionViewDataSource, UICollec
     
     @IBAction func btnTapped_camera(sender: UIButton)
     {
-        if let videoConnection = sessionOutput.connection(with: AVMediaType.video)
+        if self.images_captured.count <= 5
         {
-            sessionOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (buffer:CMSampleBuffer?, error:Error?) in
-                
-                let imagedata = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer!)
-                if let image = UIImage.init(data: imagedata!)
-                {
-                    UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
+            if let videoConnection = sessionOutput.connection(with: AVMediaType.video)
+            {
+                sessionOutput.captureStillImageAsynchronously(from: videoConnection, completionHandler: { (buffer:CMSampleBuffer?, error:Error?) in
                     
-                    DispatchQueue.main.async {
-                     
-                        if !self.images_captured.contains(image)
+                    if let imagedata = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(buffer!)
+                    {
+                        if let image = UIImage.init(data: imagedata)
                         {
-                            self.images_captured.append(image)
-                        }
-                        
-                        if self.images_captured.count == 0
-                        {
-                            self.height_collectionView.constant = 0.0
-                            self.collecton_ContainerView.isHidden = true
-                        }
-                        else
-                        {
-                            self.collecton_ContainerView.isHidden = false
+                            //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
                             
-                            if UIDevice.current.userInterfaceIdiom == .phone
-                            {
-                                self.height_collectionView.constant = 84.0
-                            }
-                            else if UIDevice.current.userInterfaceIdiom == .pad
-                            {
-                                self.height_collectionView.constant = 120.0
+                            DispatchQueue.main.async {
+                                
+                                if !self.images_captured.contains(image)
+                                {
+                                    self.images_captured.append(image)
+                                }
+                                
+                                if self.images_captured.count == 0
+                                {
+                                    self.height_collectionView.constant = 0.0
+                                    self.collecton_ContainerView.isHidden = true
+                                }
+                                else
+                                {
+                                    self.collecton_ContainerView.isHidden = false
+                                    
+                                    if UIDevice.current.userInterfaceIdiom == .phone
+                                    {
+                                        self.height_collectionView.constant = 84.0
+                                    }
+                                    else if UIDevice.current.userInterfaceIdiom == .pad
+                                    {
+                                        self.height_collectionView.constant = 120.0
+                                    }
+                                }
+                                
+                                self.collecton_ContainerView.layoutIfNeeded()
+                                self.collectionView.reloadData()
                             }
                         }
-                        
-                        self.collectionView.reloadData()
                     }
-                }
-            })
+                })
+            }
+        }
+        else
+        {
+            if let _ = self.delegateNextBtn
+            {
+                self.delegateNextBtn.showMaxImagesAlert()
+            }
         }
     }
     

@@ -50,7 +50,8 @@ class DetailsViewController: UIViewController
         super.viewDidLoad()
         
         print("\n \n dataStruct = \(dataStruct)")
-        
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+
         self.navigationItem.hidesBackButton = true
         self.edgesForExtendedLayout = []
         btn_Save.isEnabled = false
@@ -61,7 +62,8 @@ class DetailsViewController: UIViewController
         damageProductFileClaim.sendActions(for: .touchUpInside)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
+    override func viewWillAppear(_ animated: Bool)
+    {
         super.viewWillAppear(true)
     }
     
@@ -155,15 +157,6 @@ class DetailsViewController: UIViewController
     //MARK:- NavigationBar Button Action
     @objc func goBack()
     {
-        let viewcontrollers = self.navigationController?.viewControllers
-        for viewcontroller in viewcontrollers!
-        {
-            if viewcontroller .isKind(of: ScannerViewController.self)
-            {
-                self.navigationController?.popToViewController(viewcontrollers![1], animated: true)
-            }
-        }
-        
         self.navigationController?.popViewController(animated: true)
     }
     

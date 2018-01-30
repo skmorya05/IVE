@@ -50,8 +50,8 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         cell.lbl_name.text = returnItem.name
         cell.lbl_createdate.text = returnItem.createdate
         cell.lbl_reason.text = returnItem.reason
-        cell.lbl_closedate.text = returnItem.closedate
-        cell.lbl_closeby.text = returnItem.closeby
+        //cell.lbl_closedate.text = returnItem.closedate
+        //cell.lbl_closeby.text = returnItem.closeby
         
         cell.btn_Radio.isHidden = true
         if self.screenMode == .PRINT

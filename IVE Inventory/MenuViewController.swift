@@ -9,7 +9,8 @@
 import UIKit
 
 
-class MenuViewController: UIViewController, MenuSelectionProtocol {
+class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadProtocol
+{
 
     //Outlets
     @IBOutlet weak var collectionView : UICollectionView!
@@ -138,10 +139,26 @@ class MenuViewController: UIViewController, MenuSelectionProtocol {
     @IBAction func swipeUp(sender:UISwipeGestureRecognizer)
     {
         let bottomTrayVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "BottomTrayViewController") as! BottomTrayViewController
+        bottomTrayVC.delegate_QRCRProtocol = self
         let navVC = UINavigationController.init(rootViewController: bottomTrayVC)
         self.present(navVC, animated: true, completion: nil)
         
     }
+    
+    //MARK:- QRCODERead Protocol
+    func didUpdate(qrcodeStr:String)
+    {
+        NetworkManager.sharedManager.getRmaDetails(rma: qrcodeStr, completion: { (returnStruct:Return?) in
+            
+            if let _ = returnStruct
+            {
+                let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+                detailsVC.dataStruct = returnStruct
+                self.navigationController?.pushViewController(detailsVC, animated: true)
+            }
+        })
+    }
+
     
     override func didReceiveMemoryWarning()
     {
