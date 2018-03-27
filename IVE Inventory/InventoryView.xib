@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="InventoryView" customModule="IVE_Inventory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="442"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="90z-ed-qv9">
+                    <rect key="frame" x="10" y="8" width="355" height="270"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="OXU-lT-3Ld">
+                            <rect key="frame" x="10" y="20" width="100" height="53"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="dkR-jH-CDf">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="125"/>
+                                </constraint>
+                                <constraint firstAttribute="height" constant="53" id="u2G-U2-2dm">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="73"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                            <state key="normal" title="Resale As Used"/>
+                            <connections>
+                                <action selector="btn_Tapped_ResaleAsUsedWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="9FN-ZH-wpj"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Olf-Ok-lDp">
+                            <rect key="frame" x="128" y="20" width="100" height="53"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="1ON-wR-P7G">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="125"/>
+                                </constraint>
+                                <constraint firstAttribute="height" constant="53" id="myL-K8-Dhl">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="73"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                            <state key="normal" title="Resale As New"/>
+                            <connections>
+                                <action selector="btn_Tapped_ResaleAsNewWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="4eN-Co-6fH"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="5Py-z6-Nv5">
+                            <rect key="frame" x="246" y="20" width="100" height="53"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="100" id="ax4-mU-csb">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="125"/>
+                                </constraint>
+                                <constraint firstAttribute="height" constant="53" id="q3h-zW-25U">
+                                    <variation key="heightClass=regular-widthClass=regular" constant="73"/>
+                                </constraint>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                            <state key="normal" title="Defective Not Working"/>
+                            <connections>
+                                <action selector="btn_Tapped_DefectiveNotWorkingWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="zm4-8y-EFf"/>
+                            </connections>
+                        </button>
+                        <stackView opaque="NO" contentMode="scaleAspectFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="YwY-dE-KbS">
+                            <rect key="frame" x="109.5" y="94" width="136.5" height="110"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Unknown Vendor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k2L-wa-WQy">
+                                    <rect key="frame" x="0.0" y="0.0" width="136.5" height="30"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Can't return to Vendor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eDw-5w-1zu">
+                                    <rect key="frame" x="0.0" y="40" width="136.5" height="30"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Return to Vendor" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PhN-db-tQL">
+                                    <rect key="frame" x="0.0" y="80" width="136.5" height="30"/>
+                                    <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="dIn-Qm-0Ph">
+                            <rect key="frame" x="74.5" y="94" width="30" height="110"/>
+                            <subviews>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3JC-f6-Mud">
+                                    <rect key="frame" x="0.0" y="0.0" width="30" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="PFs-tA-RwF"/>
+                                        <constraint firstAttribute="width" constant="30" id="YU0-Kp-cL0"/>
+                                    </constraints>
+                                    <state key="normal" image="radiobutton_Unselected"/>
+                                    <state key="selected" image="radiobutton_Selected"/>
+                                    <connections>
+                                        <action selector="btn_Tapped_unknownVendorWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="GKe-iD-ACo"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rm9-tT-Rsq">
+                                    <rect key="frame" x="0.0" y="40" width="30" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" image="radiobutton_Unselected"/>
+                                    <state key="selected" image="radiobutton_Selected"/>
+                                    <connections>
+                                        <action selector="btn_Tapped_notReturnToVendorWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="SH0-R9-71Q"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zUe-43-4Ei">
+                                    <rect key="frame" x="0.0" y="80" width="30" height="30"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                    <state key="normal" image="radiobutton_Unselected"/>
+                                    <state key="selected" image="radiobutton_Selected"/>
+                                    <connections>
+                                        <action selector="btn_Tapped_ReturnToVendorWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="PUG-u6-fOD"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                        </stackView>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuJ-0Y-vkO">
+                            <rect key="frame" x="121" y="224" width="113" height="30"/>
+                            <color key="backgroundColor" red="0.011764705882352941" green="0.035294117647058823" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="Sba-qP-COm"/>
+                                <constraint firstAttribute="width" secondItem="vuJ-0Y-vkO" secondAttribute="height" multiplier="35:9" id="VCS-6o-M0f"/>
+                            </constraints>
+                            <state key="normal" title="Select a Vendor ">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="VCS-6o-M0f"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=regular">
+                                <mask key="constraints">
+                                    <include reference="VCS-6o-M0f"/>
+                                </mask>
+                            </variation>
+                            <connections>
+                                <action selector="btn_Tapped_selectVendorWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="pQF-pP-8xt"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="vuJ-0Y-vkO" firstAttribute="top" secondItem="YwY-dE-KbS" secondAttribute="bottom" constant="20" id="1Ie-d5-sKm"/>
+                        <constraint firstItem="5Py-z6-Nv5" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" multiplier="5/3" id="4LI-mS-DFO"/>
+                        <constraint firstItem="YwY-dE-KbS" firstAttribute="top" secondItem="OXU-lT-3Ld" secondAttribute="bottom" constant="21" id="7MB-bN-PLY"/>
+                        <constraint firstItem="Olf-Ok-lDp" firstAttribute="centerY" secondItem="OXU-lT-3Ld" secondAttribute="centerY" id="BGQ-ri-3u5"/>
+                        <constraint firstItem="5Py-z6-Nv5" firstAttribute="centerY" secondItem="Olf-Ok-lDp" secondAttribute="centerY" id="L8M-7Q-ZZ6"/>
+                        <constraint firstItem="dIn-Qm-0Ph" firstAttribute="bottom" secondItem="YwY-dE-KbS" secondAttribute="bottom" id="Lu4-Hk-TjB"/>
+                        <constraint firstItem="OXU-lT-3Ld" firstAttribute="top" secondItem="90z-ed-qv9" secondAttribute="top" constant="20" id="N23-4F-EZP"/>
+                        <constraint firstItem="YwY-dE-KbS" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" id="Pha-lR-c5B"/>
+                        <constraint firstItem="vuJ-0Y-vkO" firstAttribute="centerX" secondItem="YwY-dE-KbS" secondAttribute="centerX" id="arb-tG-Ajp"/>
+                        <constraint firstItem="YwY-dE-KbS" firstAttribute="leading" secondItem="dIn-Qm-0Ph" secondAttribute="trailing" constant="5" id="cA1-Cw-Lcc"/>
+                        <constraint firstAttribute="height" constant="270" id="gZv-9e-ImD">
+                            <variation key="heightClass=regular-widthClass=regular" constant="300"/>
+                        </constraint>
+                        <constraint firstItem="dIn-Qm-0Ph" firstAttribute="top" secondItem="YwY-dE-KbS" secondAttribute="top" id="sLU-XI-Xeg"/>
+                        <constraint firstItem="OXU-lT-3Ld" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" multiplier="1/3" id="srv-C9-FC3"/>
+                        <constraint firstItem="Olf-Ok-lDp" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" id="yYr-DA-G6y"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sw0-rs-wh7">
+                    <rect key="frame" x="145" y="304" width="85" height="37"/>
+                    <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="37" id="dGD-R4-f8y">
+                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
+                        </constraint>
+                        <constraint firstAttribute="width" constant="85" id="vaU-L4-CIp">
+                            <variation key="heightClass=regular-widthClass=regular" constant="105"/>
+                        </constraint>
+                    </constraints>
+                    <state key="normal" title="Save"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4L-Be-tQl">
+                    <rect key="frame" x="62" y="361" width="251" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="251" id="U2v-Kk-Gp3"/>
+                        <constraint firstAttribute="height" constant="30" id="fyd-Fu-EKr"/>
+                    </constraints>
+                    <state key="normal" title="Internal Notes"/>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="90z-ed-qv9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="IRa-UB-qyB"/>
+                <constraint firstItem="Sw0-rs-wh7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Y74-5V-aDW"/>
+                <constraint firstItem="90z-ed-qv9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="YZj-oe-VY7"/>
+                <constraint firstAttribute="trailing" secondItem="90z-ed-qv9" secondAttribute="trailing" constant="10" id="hFq-pb-X95"/>
+                <constraint firstItem="Sw0-rs-wh7" firstAttribute="top" secondItem="90z-ed-qv9" secondAttribute="bottom" constant="26" id="htX-Xg-TXZ"/>
+                <constraint firstItem="d4L-Be-tQl" firstAttribute="centerX" secondItem="Sw0-rs-wh7" secondAttribute="centerX" id="oL2-Eo-jEl"/>
+                <constraint firstItem="d4L-Be-tQl" firstAttribute="top" secondItem="Sw0-rs-wh7" secondAttribute="bottom" constant="20" id="ptv-OV-gBZ"/>
+                <constraint firstItem="vuJ-0Y-vkO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="175:442" id="vsP-Ec-cVB"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="vsP-Ec-cVB"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="vsP-Ec-cVB"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="btn_DefectiveNotWorking" destination="5Py-z6-Nv5" id="24z-8J-yre"/>
+                <outlet property="btn_InternalNotes" destination="d4L-Be-tQl" id="omX-0S-vM7"/>
+                <outlet property="btn_ResaleAsNew" destination="Olf-Ok-lDp" id="cpF-Vi-jDr"/>
+                <outlet property="btn_ResaleAsUsed" destination="OXU-lT-3Ld" id="oqA-iN-S6H"/>
+                <outlet property="btn_ReturnToVendor" destination="zUe-43-4Ei" id="kgE-Bd-58E"/>
+                <outlet property="btn_notReturnToVendor" destination="Rm9-tT-Rsq" id="MVX-Ga-uKP"/>
+                <outlet property="btn_save" destination="Sw0-rs-wh7" id="Vha-vq-5Mg"/>
+                <outlet property="btn_selectVendor" destination="vuJ-0Y-vkO" id="UE2-BI-ei4"/>
+                <outlet property="btn_unknownVendor" destination="3JC-f6-Mud" id="wPD-Bh-7wA"/>
+                <outlet property="container_view" destination="90z-ed-qv9" id="CaE-fq-E6z"/>
+                <outlet property="height_Container" destination="gZv-9e-ImD" id="HCx-eW-sUP"/>
+                <outlet property="lbl_ReturnToVendor" destination="PhN-db-tQL" id="wl5-pM-HEN"/>
+                <outlet property="lbl_notReturnToVendor" destination="eDw-5w-1zu" id="3NW-ud-F3y"/>
+                <outlet property="lbl_unknownVendor" destination="k2L-wa-WQy" id="21r-A8-X2Z"/>
+                <outlet property="stack_view" destination="YwY-dE-KbS" id="pET-Nm-Rbe"/>
+            </connections>
+            <point key="canvasLocation" x="11.5" y="104"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="radiobutton_Selected" width="30" height="30"/>
+        <image name="radiobutton_Unselected" width="30" height="30"/>
+    </resources>
+</document>

@@ -25,6 +25,9 @@ class SetUpCell: UITableViewCell
     override func awakeFromNib()
     {
         super.awakeFromNib()
+        self.imageView_user.roundCorners(radius: self.imageView_user.frame.width/2)
+        self.imageView_user.clipsToBounds = true
+        self.imageView_user.contentMode = .scaleAspectFill
     }
 
     override func setSelected(_ selected: Bool, animated: Bool)

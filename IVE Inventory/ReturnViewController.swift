@@ -40,7 +40,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
         
         self.edgesForExtendedLayout = []
-        //self.tableView.backgroundColor = ColorConstant.blueFillColor
         self.tableView.register(UINib.init(nibName: "ReturnCell", bundle: nil), forCellReuseIdentifier: "ReturnCell")
         
         self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -50,13 +49,12 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     
     override func viewWillAppear(_ animated: Bool)
     {
-        
-        self.showLoading(isLoading: true)
+        JustHUD.shared.showInView(view: self.view)
         self.returnViewManager.getReturnList(completion: { (list:[Return]?) in
             
             if let _ = list
             {
-                self.showLoading(isLoading: false)
+                JustHUD.shared.hide()
                 self.savedDataArray = list!
                 
                 print("list= \(String(describing: list))")
@@ -86,6 +84,10 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
         
+        let scannerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "scanner"), target: self, action: #selector(scannerButtonTapped))
+
+        self.navigationItem.rightBarButtonItems = [printerButton, scannerButton]
+        
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
         {
             printerButton.isEnabled = true
@@ -95,7 +97,6 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
             printerButton.isEnabled = false
         }
         
-        self.navigationItem.rightBarButtonItem = printerButton
     }
     
     //MARK:- NavigationBar Button Action
@@ -108,6 +109,9 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     @objc func scannerButtonTapped()
     {
         print("#function = \(#function)")
+        
+        let scannerVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
+        self.navigationController?.pushViewController(scannerVC, animated: true)
     }
     
     
@@ -253,33 +257,20 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Detail))
         {
             let dataStruct = self.dataSource.returnList[indexPath.row]
-            
-            let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-            detailsVC.dataStruct = dataStruct
-            self.navigationController?.pushViewController(detailsVC, animated: true)
+            JustHUD.shared.showInView(view: self.view)
+           NetworkManager.sharedManager.getRmaDetails(rma: dataStruct.rma) { (returnStruct) in
+            JustHUD.shared.hide()
+            if let _ = returnStruct
+            {
+                let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+                detailsVC.dataStruct = returnStruct
+                self.navigationController?.pushViewController(detailsVC, animated: true)
+            }
+          }
         }
         else
         {
             self.showAlert(message: "You have no access of RMA Detail")
-        }
-        
-    }
-    
-    func showLoading(isLoading:Bool)
-    {
-        if isLoading
-        {
-            self.tableView.isSkeletonable = true
-            self.searchBar.isSkeletonable = true
-            self.tableView.showAnimatedGradientSkeleton()
-            self.searchBar.showAnimatedGradientSkeleton()
-        }
-        else
-        {
-            self.tableView.isSkeletonable = false
-            self.searchBar.isSkeletonable = false
-            self.tableView.hideSkeleton()
-            self.searchBar.hideSkeleton()
         }
     }
     

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 protocol MenuSelectionProtocol:class {
     func didSelectMenuButton(indexPath:IndexPath)
+    func didScrollTableView()
 }
 
 class MenuViewDelegate: NSObject {
@@ -34,13 +35,19 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
         return size
     }
     
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat
+    {
+        let cellWidth:CGFloat = 172.0
+        let h_space =  floor(ScreenSize.SCREEN_WIDTH - (2*cellWidth*DrConstants.kSCALE_FACTOR))
+        return floor(abs(h_space/3))
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize
     {
         if section == 1
         {
            return CGSize.init(width: ScreenSize.SCREEN_WIDTH, height: 10)
         }
-        
         return CGSize.zero
     }
     
@@ -51,10 +58,9 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
         {
             let width:CGFloat = 172.0
             let scaleFacetor = CGFloat().scaleFactor()
-            
+
             let edge = (ScreenSize.SCREEN_WIDTH -  floor((2*width*scaleFacetor)))/3
-            return UIEdgeInsets.init(top: floor(edge), left: floor(edge), bottom: 10, right: floor(edge))
-            
+            return UIEdgeInsets.init(top: floor(abs(edge)), left: floor(abs(edge)), bottom: 10, right: floor(abs(edge)))
         }
         
         return UIEdgeInsets.init(top: 0, left: 0, bottom: 0, right: 0)
@@ -69,7 +75,5 @@ extension MenuViewDelegate: UICollectionViewDelegate, UICollectionViewDelegateFl
                 self.menuBtnDelegate.didSelectMenuButton(indexPath: indexPath)
             }
         }
-        
     }
-  
 }

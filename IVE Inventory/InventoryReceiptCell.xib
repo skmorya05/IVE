@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InventoryReceiptCell" rowHeight="191" id="KGk-i7-Jjw" customClass="InventoryReceiptCell" customModule="IVE_Inventory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="191"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="190.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Apple" translatesAutoresizingMaskIntoConstraints="NO" id="kGz-mh-nQn">
+                        <rect key="frame" x="15" y="15" width="61.5" height="64"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="kGz-mh-nQn" secondAttribute="height" multiplier="77:79" id="7Cc-a6-rbU"/>
+                        </constraints>
+                    </imageView>
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="QBt-jP-3OH">
+                        <rect key="frame" x="86.5" y="15" width="223.5" height="59"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mYL-fa-m8i">
+                                <rect key="frame" x="0.0" y="0.0" width="108.5" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="IR#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oWQ-p8-nf7">
+                                        <rect key="frame" x="0.0" y="0.0" width="20.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="20180130-01" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ai6-Pv-qYa">
+                                        <rect key="frame" x="20.5" y="0.0" width="88" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" red="0.011764705882352941" green="0.039215686274509803" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="29J-BV-QRd">
+                                <rect key="frame" x="0.0" y="21" width="192" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Doy-jD-V6X">
+                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sony Stock DVD Player" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCT-QB-EFu">
+                                        <rect key="frame" x="39.5" y="0.0" width="152.5" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" red="0.011764705882352941" green="0.039215686274509803" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7Zt-LC-r5k">
+                                <rect key="frame" x="0.0" y="42" width="156" height="17"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Create Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NIK-UF-D6w">
+                                        <rect key="frame" x="0.0" y="0.0" width="77" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.68627450980392157" green="0.68627450980392157" blue="0.68627450980392157" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="01-30-2018" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NwH-NY-s7b">
+                                        <rect key="frame" x="77" y="0.0" width="79" height="17"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                                        <color key="textColor" red="0.011764705882352941" green="0.039215686274509803" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                    </stackView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="------- Status -------" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocm-7j-mJt">
+                        <rect key="frame" x="86.5" y="82" width="185.5" height="18"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="18" id="cQU-ek-g4G"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                        <color key="textColor" red="0.92941176470588238" green="0.44313725490196076" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lle-nh-mEJ">
+                        <rect key="frame" x="140" y="140.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="8WJ-jD-JJn"/>
+                            <constraint firstAttribute="height" constant="40" id="uGF-Ab-Hlj"/>
+                        </constraints>
+                        <state key="normal" image="Cancel IVE"/>
+                        <state key="selected" image="Selected IVE"/>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SgE-yv-vlX">
+                        <rect key="frame" x="246.5" y="140.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="3Zz-f5-WM7"/>
+                            <constraint firstAttribute="width" constant="40" id="jzu-Wd-Vc5"/>
+                        </constraints>
+                        <state key="normal" image="Cancel IVE"/>
+                        <state key="selected" image="Selected IVE"/>
+                    </button>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dB5-XY-6Y0">
+                        <rect key="frame" x="33.5" y="140.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="RwC-1z-NDt"/>
+                            <constraint firstAttribute="width" constant="40" id="Ys2-vY-ftd"/>
+                        </constraints>
+                        <state key="normal" image="Cancel IVE"/>
+                        <state key="selected" image="Selected IVE"/>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Received in QB?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Co-3W-48g">
+                        <rect key="frame" x="106.5" y="117.5" width="107" height="20.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="8Co-3W-48g" secondAttribute="height" multiplier="110:21" id="vJ6-gf-jgl"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invoice Paid?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dgK-Xz-ZAx">
+                        <rect key="frame" x="224" y="118" width="86.5" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="dgK-Xz-ZAx" secondAttribute="height" multiplier="30:7" id="iuD-VR-iMa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Price is OK?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="son-SN-sfF">
+                        <rect key="frame" x="13.5" y="118.5" width="80" height="19.5"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="son-SN-sfF" secondAttribute="height" multiplier="86:21" id="I3U-ul-AlG"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="8Co-3W-48g" firstAttribute="centerX" secondItem="Lle-nh-mEJ" secondAttribute="centerX" id="0pm-5t-dBH"/>
+                    <constraint firstItem="SgE-yv-vlX" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="5/3" id="1Mw-7W-qfd"/>
+                    <constraint firstAttribute="bottom" secondItem="SgE-yv-vlX" secondAttribute="bottom" constant="10" id="3WQ-iB-QGR"/>
+                    <constraint firstAttribute="bottom" secondItem="dB5-XY-6Y0" secondAttribute="bottom" constant="10" id="5DK-U2-e4f"/>
+                    <constraint firstItem="ocm-7j-mJt" firstAttribute="leading" secondItem="kGz-mh-nQn" secondAttribute="trailing" constant="10" id="5Qy-aX-5ZZ"/>
+                    <constraint firstItem="Lle-nh-mEJ" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="7CD-M5-lsM"/>
+                    <constraint firstItem="SgE-yv-vlX" firstAttribute="top" secondItem="dgK-Xz-ZAx" secondAttribute="bottom" constant="2.5" id="EP7-YI-gFc"/>
+                    <constraint firstAttribute="trailing" secondItem="ocm-7j-mJt" secondAttribute="trailing" constant="48" id="KR6-4N-NGk"/>
+                    <constraint firstItem="dB5-XY-6Y0" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" multiplier="1/3" id="Lny-cO-XZG"/>
+                    <constraint firstItem="kGz-mh-nQn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="15" id="RrN-5Y-L8d"/>
+                    <constraint firstItem="ocm-7j-mJt" firstAttribute="top" secondItem="QBt-jP-3OH" secondAttribute="bottom" constant="8" id="Tsz-Vd-tQw"/>
+                    <constraint firstAttribute="bottom" secondItem="Lle-nh-mEJ" secondAttribute="bottom" constant="10" id="USZ-F8-xZh"/>
+                    <constraint firstItem="8Co-3W-48g" firstAttribute="top" secondItem="ocm-7j-mJt" secondAttribute="bottom" constant="17.5" id="Uob-G5-xd8"/>
+                    <constraint firstItem="dB5-XY-6Y0" firstAttribute="top" secondItem="son-SN-sfF" secondAttribute="bottom" constant="2.5" id="Ys0-7X-zV8"/>
+                    <constraint firstItem="kGz-mh-nQn" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="dQy-qo-KAx"/>
+                    <constraint firstItem="dgK-Xz-ZAx" firstAttribute="centerX" secondItem="SgE-yv-vlX" secondAttribute="centerX" id="etB-B0-GMc"/>
+                    <constraint firstItem="Lle-nh-mEJ" firstAttribute="top" secondItem="8Co-3W-48g" secondAttribute="bottom" constant="2.5" id="k6r-rw-E20"/>
+                    <constraint firstItem="son-SN-sfF" firstAttribute="centerX" secondItem="dB5-XY-6Y0" secondAttribute="centerX" id="qmz-4b-Scv"/>
+                    <constraint firstItem="QBt-jP-3OH" firstAttribute="leading" secondItem="kGz-mh-nQn" secondAttribute="trailing" constant="10" id="t5Q-Bm-P2C"/>
+                    <constraint firstItem="QBt-jP-3OH" firstAttribute="top" secondItem="kGz-mh-nQn" secondAttribute="top" id="xV2-tZ-jlr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="QBt-jP-3OH" secondAttribute="trailing" constant="10" id="Iyf-Se-qd0"/>
+                <constraint firstItem="kGz-mh-nQn" firstAttribute="width" secondItem="KGk-i7-Jjw" secondAttribute="height" multiplier="77:239" id="wnc-Ns-su1"/>
+            </constraints>
+            <connections>
+                <outlet property="btn_InvoicePaid" destination="SgE-yv-vlX" id="w3F-cB-5QP"/>
+                <outlet property="btn_PriceOk" destination="dB5-XY-6Y0" id="c8M-Gt-6UL"/>
+                <outlet property="btn_ReceivedQB" destination="Lle-nh-mEJ" id="6AA-VX-70H"/>
+                <outlet property="img_IRReceipt" destination="kGz-mh-nQn" id="cOG-IN-ZRG"/>
+                <outlet property="lbl_CreateDate" destination="NwH-NY-s7b" id="fUR-A6-uNJ"/>
+                <outlet property="lbl_Ir" destination="ai6-Pv-qYa" id="Pm9-Hk-6qt"/>
+                <outlet property="lbl_Name" destination="OCT-QB-EFu" id="jSw-i5-Stz"/>
+            </connections>
+            <point key="canvasLocation" x="35" y="210.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Apple" width="619" height="929"/>
+        <image name="Cancel IVE" width="34" height="33"/>
+        <image name="Selected IVE" width="36" height="35"/>
+    </resources>
+</document>

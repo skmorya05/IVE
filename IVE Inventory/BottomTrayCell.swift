@@ -94,8 +94,6 @@ class BottomTrayCell: UICollectionViewCell, UICollectionViewDataSource, UICollec
                     {
                         if let image = UIImage.init(data: imagedata)
                         {
-                            //UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
-                            
                             DispatchQueue.main.async {
                                 
                                 if !self.images_captured.contains(image)

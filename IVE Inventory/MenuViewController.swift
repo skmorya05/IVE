@@ -9,9 +9,8 @@
 import UIKit
 
 
-class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadProtocol
+class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadProtocol, InternalProtocols
 {
-
     //Outlets
     @IBOutlet weak var collectionView : UICollectionView!
     @IBOutlet weak var swipeGSR : UISwipeGestureRecognizer!
@@ -28,27 +27,9 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
        
         //Remove BackButton
         self.navigationItem.hidesBackButton = true
-        
-        //FIXME:- Change Title Name Later
-        //Later Edit
-        //self.title = "Home"
-        //self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
-        //self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
+     
         self.navigationController?.setNavigationBarHidden(true, animated: false)
 
-        //Cancel Button Add Left Side
-        /* let cancelBtn = UIBarButtonItem.init(title: "CANCEL", style: .plain, target: self, action: #selector(cancelBtnPressed))
-        cancelBtn.setTitleTextAttributes( [NSFontAttributeName: UIFont.init(name:  FontConstant.SFUI_TEXT_MEDIUM, size: 12.0)!], for: .normal)
-        self.navigationItem.leftBarButtonItem = cancelBtn
-        */
-        
-        //Done Button Add Left Side
-        /*let doneBtn = UIBarButtonItem.init(title: "DONE", style: .plain, target: self, action: #selector(doneBtnPressed))
-        doneBtn.setTitleTextAttributes( [NSFontAttributeName: UIFont.init(name: FontConstant.SFUI_TEXT_MEDIUM, size: 12.0)!], for: .normal)
-        self.navigationItem.rightBarButtonItem = doneBtn
-         */
-        
-        
         //Register Cells
         self.collectionView.register(UINib.init(nibName: "MenuMainCell", bundle: nil), forCellWithReuseIdentifier: "MenuMainCell")
         
@@ -56,7 +37,6 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
         self.collectionView.register(headerView, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: "HeaderView")
         
         self.collectionView.register(UINib.init(nibName: "MenuCell", bundle: nil), forCellWithReuseIdentifier: "MenuCell")
-        
         
         //Set DataSource and Delegates
         dataSource.menuArray = self.menuArray
@@ -102,6 +82,9 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
             }
             else if indexPath.row == 1
             {
+                let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
+                self.navigationController?.pushViewController(controller, animated: true)
+                /*
                 if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kReturn))
                 {
                     let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ReturnViewController")
@@ -111,12 +94,12 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
                 {
                     self.showAlert(message: "You have no access of Returns")
                 }
-                
+                */
             }
             else if indexPath.row == 2
             {
-               /* let userdetailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "UserDetailViewController")
-                self.navigationController?.pushViewController(userdetailsVC, animated: true) */
+                let InventoryReceiptVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "InventoryReceiptViewController")
+                self.navigationController?.pushViewController(InventoryReceiptVC, animated: true)
             }
             else if indexPath.row == 3
             {
@@ -132,7 +115,11 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
                 
             }
         }
-        
+    }
+    
+    func didScrollTableView()
+    {
+        // No Need to Override
     }
     
     //MARK:- Open Bottom Tray
@@ -140,6 +127,7 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
     {
         let bottomTrayVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "BottomTrayViewController") as! BottomTrayViewController
         bottomTrayVC.delegate_QRCRProtocol = self
+        bottomTrayVC.delegate_InternalProtocol = self
         let navVC = UINavigationController.init(rootViewController: bottomTrayVC)
         self.present(navVC, animated: true, completion: nil)
         
@@ -159,6 +147,11 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
         })
     }
 
+    //MARK: Internal Protocols Methods
+    func didTappedInternalProtocols()
+    {
+        self.didSelectMenuButton(indexPath: IndexPath.init(row: 2, section: 1))
+    }
     
     override func didReceiveMemoryWarning()
     {

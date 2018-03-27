@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="RmaDetailCell" rowHeight="181" id="KGk-i7-Jjw" customClass="RmaDetailCell" customModule="IVE_Inventory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="252"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="251.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LX5-WA-chB" userLabel="Container">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="251.5"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tMX-2v-0VK">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="251.5"/>
+                                <subviews>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="rnf-I3-B14">
+                                        <rect key="frame" x="16" y="14" width="103.5" height="37"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="scS-51-lO5">
+                                                <rect key="frame" x="0.0" y="0.0" width="71.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="RMA#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6WF-Td-mLX">
+                                                        <rect key="frame" x="0.0" y="0.0" width="37" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ARJ-cA-R7C">
+                                                        <rect key="frame" x="37" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="djs-fT-LDB">
+                                                <rect key="frame" x="0.0" y="21" width="103.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Name:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JZI-Mu-Y8g">
+                                                        <rect key="frame" x="0.0" y="0.0" width="39.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="RMA# RMA" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xUq-Bj-Llr">
+                                                        <rect key="frame" x="39.5" y="0.0" width="64" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="2r2-gC-xND">
+                                        <rect key="frame" x="187" y="13.5" width="117" height="37"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08D-x7-diK">
+                                                <rect key="frame" x="0.0" y="0.0" width="117" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Type of RMA:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nvv-Jp-L5F">
+                                                        <rect key="frame" x="0.0" y="0.0" width="82.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1g-5E-1G7">
+                                                        <rect key="frame" x="82.5" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sug-wK-XhJ">
+                                                <rect key="frame" x="0.0" y="21" width="96.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DQl-U0-wSJ">
+                                                        <rect key="frame" x="0.0" y="0.0" width="62" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gsd-8O-D5G">
+                                                        <rect key="frame" x="62" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9eK-pQ-Ics">
+                                        <rect key="frame" x="16" y="55" width="54" height="16"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Recived Wrong Item Recived Wrong Item Recived Wrong Item Recived Wrong Item Recived Wrong Item " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4G7-3r-6td">
+                                        <rect key="frame" x="16" y="71" width="288" height="43"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="43" id="IOA-uC-5Kz"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="KUq-EE-V6a">
+                                        <rect key="frame" x="16" y="122" width="77.5" height="37"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cym-AV-Xtz">
+                                                <rect key="frame" x="0.0" y="0.0" width="77.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Brand:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tEN-Jr-xUp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="czT-4k-Dzh">
+                                                        <rect key="frame" x="43" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcT-MM-p1D">
+                                                <rect key="frame" x="0.0" y="21" width="77.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Serial#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OJi-b3-UTg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="43" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gh0-BZ-Jck">
+                                                        <rect key="frame" x="43" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="N1J-tj-TVO">
+                                        <rect key="frame" x="187" y="122" width="80.5" height="37"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bQY-Bz-yQp">
+                                                <rect key="frame" x="0.0" y="0.0" width="80.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Model#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ic2-Qk-3vg">
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SOi-wS-Uhp">
+                                                        <rect key="frame" x="46" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhK-CZ-4hc">
+                                                <rect key="frame" x="0.0" y="21" width="80.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Order#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hkg-3L-5Xp">
+                                                        <rect key="frame" x="0.0" y="0.0" width="46" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m6a-gg-7Rg">
+                                                        <rect key="frame" x="46" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="5Zr-mC-EJl">
+                                        <rect key="frame" x="16" y="167" width="167.5" height="37"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XEd-2b-6XQ">
+                                                <rect key="frame" x="0.0" y="0.0" width="167.5" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sales Receipt or Inv# " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OEv-XJ-2Ba">
+                                                        <rect key="frame" x="0.0" y="0.0" width="133" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0FF-hu-Mou">
+                                                        <rect key="frame" x="133" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0lz-2E-vc5">
+                                                <rect key="frame" x="0.0" y="21" width="128" height="16"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Purchase Date:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZSs-o3-aUR">
+                                                        <rect key="frame" x="0.0" y="0.0" width="93.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="RMA#" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wH8-Q2-eBQ">
+                                                        <rect key="frame" x="93.5" y="0.0" width="34.5" height="16"/>
+                                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                    </stackView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="Reason For Return:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sq3-ey-5nS">
+                                        <rect key="frame" x="16" y="212" width="117" height="16"/>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="13"/>
+                                        <color key="textColor" red="0.62352941179999999" green="0.62352941179999999" blue="0.62352941179999999" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" verticalCompressionResistancePriority="751" text="Reason --" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1OH-R4-jM8">
+                                        <rect key="frame" x="16" y="228" width="288" height="14.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="14.5" id="LoU-rK-koK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="12"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.010968616232275963" green="0.033069532364606857" blue="0.33158004283905029" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2r2-gC-xND" secondAttribute="trailing" constant="16" id="0A8-Bw-m4m"/>
+                                    <constraint firstItem="5Zr-mC-EJl" firstAttribute="leading" secondItem="KUq-EE-V6a" secondAttribute="leading" id="9Yr-SG-cLG"/>
+                                    <constraint firstItem="4G7-3r-6td" firstAttribute="top" secondItem="9eK-pQ-Ics" secondAttribute="bottom" id="CwQ-Gk-kcZ"/>
+                                    <constraint firstItem="rnf-I3-B14" firstAttribute="leading" secondItem="tMX-2v-0VK" secondAttribute="leading" constant="16" id="Cwh-ts-j6T"/>
+                                    <constraint firstItem="N1J-tj-TVO" firstAttribute="leading" secondItem="2r2-gC-xND" secondAttribute="leading" id="DyI-Nh-T4G"/>
+                                    <constraint firstItem="4G7-3r-6td" firstAttribute="trailing" secondItem="2r2-gC-xND" secondAttribute="trailing" id="Gsh-UD-KZo"/>
+                                    <constraint firstItem="1OH-R4-jM8" firstAttribute="top" secondItem="sq3-ey-5nS" secondAttribute="bottom" id="NOg-U3-aab"/>
+                                    <constraint firstItem="sq3-ey-5nS" firstAttribute="top" secondItem="5Zr-mC-EJl" secondAttribute="bottom" constant="8" id="RX3-tP-QmS"/>
+                                    <constraint firstItem="KUq-EE-V6a" firstAttribute="leading" secondItem="4G7-3r-6td" secondAttribute="leading" id="S26-8A-nZ4"/>
+                                    <constraint firstItem="4G7-3r-6td" firstAttribute="leading" secondItem="9eK-pQ-Ics" secondAttribute="leading" id="WJq-OD-wah"/>
+                                    <constraint firstItem="1OH-R4-jM8" firstAttribute="leading" secondItem="sq3-ey-5nS" secondAttribute="leading" id="XNB-P4-VQi"/>
+                                    <constraint firstItem="N1J-tj-TVO" firstAttribute="top" secondItem="KUq-EE-V6a" secondAttribute="top" id="Yr4-nR-9RO"/>
+                                    <constraint firstItem="9eK-pQ-Ics" firstAttribute="leading" secondItem="rnf-I3-B14" secondAttribute="leading" id="bZM-ix-djb"/>
+                                    <constraint firstItem="rnf-I3-B14" firstAttribute="top" secondItem="tMX-2v-0VK" secondAttribute="top" constant="14" id="bjY-7h-7fj"/>
+                                    <constraint firstAttribute="bottom" secondItem="1OH-R4-jM8" secondAttribute="bottom" constant="9" id="eAT-RP-wCI"/>
+                                    <constraint firstItem="1OH-R4-jM8" firstAttribute="trailing" secondItem="2r2-gC-xND" secondAttribute="trailing" id="ezd-4X-5jD"/>
+                                    <constraint firstItem="2r2-gC-xND" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rnf-I3-B14" secondAttribute="trailing" constant="67.5" id="fUc-4A-oHC"/>
+                                    <constraint firstItem="9eK-pQ-Ics" firstAttribute="top" secondItem="rnf-I3-B14" secondAttribute="bottom" constant="4" id="jfQ-aw-bH6"/>
+                                    <constraint firstItem="2r2-gC-xND" firstAttribute="centerY" secondItem="rnf-I3-B14" secondAttribute="centerY" id="njK-ae-ist"/>
+                                    <constraint firstItem="5Zr-mC-EJl" firstAttribute="top" secondItem="KUq-EE-V6a" secondAttribute="bottom" constant="8" id="qJJ-Sa-TdR"/>
+                                    <constraint firstItem="KUq-EE-V6a" firstAttribute="top" secondItem="4G7-3r-6td" secondAttribute="bottom" constant="8" id="rbm-j4-OQD"/>
+                                    <constraint firstItem="sq3-ey-5nS" firstAttribute="leading" secondItem="5Zr-mC-EJl" secondAttribute="leading" id="szq-Y5-srW"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="tMX-2v-0VK" firstAttribute="top" secondItem="LX5-WA-chB" secondAttribute="top" id="39k-Oe-vov"/>
+                            <constraint firstAttribute="bottom" secondItem="tMX-2v-0VK" secondAttribute="bottom" id="8ne-Jf-W7W"/>
+                            <constraint firstAttribute="trailing" secondItem="tMX-2v-0VK" secondAttribute="trailing" id="e0B-5W-1qh"/>
+                            <constraint firstItem="tMX-2v-0VK" firstAttribute="leading" secondItem="LX5-WA-chB" secondAttribute="leading" id="unS-xf-4fa"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="LX5-WA-chB" secondAttribute="bottom" id="820-PY-07b"/>
+                    <constraint firstItem="LX5-WA-chB" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="TiL-iZ-Mfk"/>
+                    <constraint firstItem="LX5-WA-chB" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="aO0-eT-hVR"/>
+                    <constraint firstAttribute="trailing" secondItem="LX5-WA-chB" secondAttribute="trailing" id="gLw-Ow-hQx"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="lbl_Address" destination="4G7-3r-6td" id="W5W-L6-3bR"/>
+                <outlet property="lbl_Brand" destination="czT-4k-Dzh" id="tF0-Ut-hA8"/>
+                <outlet property="lbl_Company" destination="gsd-8O-D5G" id="ROK-dr-5YM"/>
+                <outlet property="lbl_Model" destination="SOi-wS-Uhp" id="YeR-Rw-uzT"/>
+                <outlet property="lbl_Name" destination="xUq-Bj-Llr" id="H2u-Jl-KGT"/>
+                <outlet property="lbl_Order" destination="m6a-gg-7Rg" id="ER4-j9-CjP"/>
+                <outlet property="lbl_PurchaseDate" destination="wH8-Q2-eBQ" id="rwO-DQ-sPs"/>
+                <outlet property="lbl_ReasonForReturn" destination="1OH-R4-jM8" id="Enl-cA-Sqs"/>
+                <outlet property="lbl_Rma" destination="ARJ-cA-R7C" id="jmY-Mf-c8k"/>
+                <outlet property="lbl_RmaType" destination="Z1g-5E-1G7" id="cmp-6T-2h1"/>
+                <outlet property="lbl_SalesReceipt" destination="0FF-hu-Mou" id="TwI-7g-xCS"/>
+                <outlet property="lbl_Serial" destination="gh0-BZ-Jck" id="06y-Bi-b3V"/>
+            </connections>
+            <point key="canvasLocation" x="50" y="157"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -8,6 +8,7 @@
 
 import UIKit
 import Material
+import Alamofire
 
 let grayTextColor = UIColor.getColorWithRGB(color: [190,189,190])
 let darkGrayBorderColor = UIColor.getColorWithRGB(color: [213,213,212])
@@ -114,9 +115,11 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         }
         else
         {
+            JustHUD.shared.showInView(view: self.view)
             let dict = [IVE_KeyConstant.kName: username, IVE_KeyConstant.kPassword: password]
             NetworkManager.sharedManager.getLoginDetails(dict: dict, completion: { (user:IVE_User?) in
                 
+                JustHUD.shared.hide()
                 print("loginDetails = \(String(describing: user))")
                 
                 if let userId = user?.id
@@ -131,7 +134,52 @@ class LoginViewController: UIViewController, UITextFieldDelegate
                 }
             })
         }
+ 
+       //testImage()
+        
     }
+    
+    func testImage()
+    {
+          let image1 = UIImage.init(named: "1.jpeg")!
+         let image2 = UIImage.init(named: "2.jpeg")!
+         let image3 = UIImage.init(named: "3.jpeg")!
+         
+         let imagesList:[UIImage] = [image1, image2, image3]
+         
+         var imageStrArr = [String]()
+         for image in imagesList
+         {
+             if let base64String = image.base64(format: .JPEG(1.0))
+             {
+                imageStrArr.append(base64String)
+                print("base64String = \(base64String)")
+             }
+         }
+         
+         Alamofire.request(
+         URL(string: "http://stackup.mobi/220electronics/image_upload.php")!,
+         method: .post,
+         parameters: ["images":imageStrArr])
+         .validate()
+         .responseJSON { (response) -> Void in
+         guard response.result.isSuccess else
+         {
+         print("Error: \(String(describing: response.result.error))")
+         return
+         }
+         
+         guard (response.result.value as? [String: Any]) != nil else
+         {
+         print("Malformed data received from fetchAllRooms service")
+         return
+         }
+         
+         print("\n response.result.value = \(response.result.value)")
+         }
+        
+    }
+    
     
     @IBAction func forgotYourPasswordButtonTapped(sender: UIButton)
     {
@@ -141,6 +189,7 @@ class LoginViewController: UIViewController, UITextFieldDelegate
     @IBAction func signUpButtonTapped(sender: UIButton)
     {
         let regVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        regVC.pageDisplayMode = .register
         self.navigationController?.pushViewController(regVC, animated: true)
     }
 

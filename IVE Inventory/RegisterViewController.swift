@@ -15,6 +15,12 @@ enum PhotoSource {
     case None
 }
 
+enum RegisterPageDisplayMode {
+    case register
+    case profileUpdate
+    case none
+}
+
 class RegisterViewController: UIViewController, UITextFieldDelegate
 {
 
@@ -30,8 +36,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     @IBOutlet weak var btn_AlreadyhasAccount: UIButton!
     @IBOutlet weak var btn_SignIn: UIButton!
     
-    var selectedImage: UIImage!
+    @IBOutlet weak var view_container_btn_sign: UIView!
     
+    var selectedImage: UIImage!
+    var pageDisplayMode: RegisterPageDisplayMode = .none
+    var isProfileUpdate = false
+    
+    //MARK: ------------Methods--------------
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
@@ -42,9 +53,57 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         
         self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
 
+        if pageDisplayMode == .profileUpdate
+        {
+            print("DrConstants.kAppDelegate.loginUser = \(DrConstants.kAppDelegate.loginUser)")
+            
+            self.title = "Profile Update"
+            self.navigationItem.hidesBackButton = false
+            let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(goBack))
+            self.navigationItem.leftBarButtonItem = backButton
+            
+            if let loginUser = DrConstants.kAppDelegate.loginUser
+            {
+                var imageStr = String()
+                if loginUser.photo.count != 0
+                {
+                    imageStr = "\(DrConstants.kBaseUrlImage)\(loginUser.photo!)"
+                    DispatchQueue.global().async {
+                        do {
+                            let url = URL(string:imageStr)!
+                            let data = try Data.init(contentsOf: url)
+                            DispatchQueue.main.async {
+                               self.btn_userImageView.setImage(UIImage.init(data: data), for: .normal)
+                                self.btn_userImageView.layer.cornerRadius = self.btn_userImageView.frame.size.width/2
+                                self.btn_userImageView.clipsToBounds = true
+                            }
+                        }
+                        catch
+                        {
+                            
+                        }
+                    }
+                }
+                else
+                {
+                    btn_userImageView.setBackgroundImage(UIImage.init(named: imageStr) , for: .normal)
+                }
+                
+                tf_UserName.text = loginUser.name
+                tf_Password.text = "XXXXXXXXXXX"
+                tf_Email.text = loginUser.email
+                tf_initial.text = loginUser.initial
+                
+                btn_SignUp.setTitle("Update", for: .normal)
+                view_container_btn_sign.isHidden = true
+            }
+        }
     }
     
-   
+    @objc func goBack()
+   {
+       self.navigationController?.popViewController(animated: true)
+   }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?)
     {
@@ -92,10 +151,13 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
             {
                 let tf = view as! UITextField
                 tf.resignFirstResponder()
+                
+                self.isProfileUpdate = true
             }
         }
     }
     
+    //MARK:-------------Button Actions--------------
     @IBAction func btnTapped_selectUserImage(sender: UIButton)
     {
         let alertController = UIAlertController.init(title: "Choose Image", message: "", preferredStyle: .actionSheet)
@@ -162,9 +224,9 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     @IBAction func btnTapped_signUp(sender: UIButton)
     {
         
-        self.updateUserImage(id:"28")
+        //self.updateUserImage(id:"78")  //DrConstants.kAppDelegate.loginUser.id!
         
-       /* guard let username = tf_UserName.text else { return }
+        guard let username = tf_UserName.text else { return }
         guard let password = tf_Password.text else { return }
         guard let email = tf_Email.text else { return }
         guard let initial = tf_initial.text else { return }
@@ -189,17 +251,29 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         {
             showAlert(message: "Please enter initial")
         }
+        else if self.selectedImage == nil
+        {
+            showAlert(message: "Please select user image")
+        }
         else
         {
-            
+            registerOrUpdateUserProfile(username: username, email: username, password: password, initial: initial)
+        }
+    }
+    
+    func registerOrUpdateUserProfile(username: String, email:  String, password:String, initial:String)
+    {
+        if self.pageDisplayMode == .register
+        {
             let properties:[String: String] = [IVE_KeyConstant.kName: username,
-                              IVE_KeyConstant.kEmail: email,
-                              IVE_KeyConstant.kPassword: password,
-                              IVE_KeyConstant.kInitial: initial,
-                              ]
-           
+                                               IVE_KeyConstant.kEmail: email,
+                                               IVE_KeyConstant.kPassword: password,
+                                               IVE_KeyConstant.kInitial: initial,
+                                               ]
+            JustHUD.shared.showInView(view: self.view)
             NetworkManager.sharedManager.registerUser(properties: properties, completion: { (_ user:IVE_User?) in
                 
+                JustHUD.shared.hide()
                 guard let _ = user else { return }
                 
                 if let userId = user?.id
@@ -208,25 +282,59 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
                     DrConstants.kUser_Default.synchronize()
                     DrConstants.kAppDelegate.loginUser = user!
                     
-                    //let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
-                    //self.navigationController?.pushViewController(menuVC, animated: true)
-                    
                     if self.selectedImage != nil
                     {
                         self.updateUserImage(id:userId)
                     }
                 }
             })
-        } */
+        }
+        else if self.pageDisplayMode == .profileUpdate
+        {
+            let properties:[String: String] = [IVE_KeyConstant.kName: username,
+                                               IVE_KeyConstant.kEmail: email,
+                                               IVE_KeyConstant.kInitial: initial,
+                                               ]
+            JustHUD.shared.showInView(view: self.view)
+            NetworkManager.sharedManager.profileUpdate(properties: properties, completion: {
+                JustHUD.shared.hide()
+                if self.selectedImage != nil
+                {
+                    self.updateUserImage(id:DrConstants.kAppDelegate.loginUser.id!)
+                }
+                else if self.pageDisplayMode == .register
+                {
+                    let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                    self.navigationController?.pushViewController(menuVC, animated: true)
+                }
+                else if self.pageDisplayMode == .profileUpdate
+                {
+                     self.navigationController?.popViewController(animated: true)
+                }
+            })
+        }
     }
-
     
     func updateUserImage(id:String)
     {
-        if let imageData:Data = UIImageJPEGRepresentation(self.selectedImage, 1.0)
-        {
-            NetworkManager.sharedManager.uploadImage(imageData, id, nil, withCompletion: { _,_ in })
-        }
+        JustHUD.shared.showInView(view: self.view)
+        NetworkManager.sharedManager.uploadImage(self.selectedImage, id, nil, withCompletion: {
+            isSuccess in
+            
+            JustHUD.shared.hide()
+             if isSuccess == true
+             {
+                if self.pageDisplayMode == .register
+                {
+                    let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
+                    self.navigationController?.pushViewController(menuVC, animated: true)
+                }
+                else
+                {
+                    self.navigationController?.popViewController(animated: true)
+                }
+             }
+        })
     }
     
     

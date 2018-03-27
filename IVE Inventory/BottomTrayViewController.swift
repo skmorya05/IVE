@@ -9,6 +9,8 @@
 import UIKit
 import Foundation
 import AVFoundation
+import Alamofire
+
 
 enum CameraMode {
     case QRCode
@@ -31,8 +33,10 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
     var picker = UIImagePickerController()
     var cell : BottomTrayCell!
     var actionToEnable : UIAlertAction!
+    var irNameStr = String()
     
     weak var delegate_QRCRProtocol:QRCodeReadProtocol!
+    weak var delegate_InternalProtocol: InternalProtocols!
     
     override func viewDidLoad()
     {
@@ -215,8 +219,6 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
     //MARK:- NextButtonProtocol
     func nextbuttonTapped(images:[UIImage])
     {
-        print("images = \(images)")
-        
         let alertController = UIAlertController(title: "Message!", message: "Inventory Camera Receipt", preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: { (textField) -> Void in
@@ -231,20 +233,23 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         
         let saveAction = UIAlertAction(title: "Save", style: .default, handler: {
             alert -> Void in
-            //TODO: Add UITextField code
             
-           // let nameField = alertController.textFields![0] as UITextField
-            
-            self.dismiss(animated: true, completion: {
+            JustHUD.shared.showInView(view: self.view)
+            NetworkManager.sharedManager.uploadInventoryReceipts(images: self.cell.images_captured, irNameStr: self.irNameStr, completion: {
+                JustHUD.shared.hide()
                 
                 let errorAlert = UIAlertController(title: "Message", message: "Inventory images saved", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
                     alert -> Void in
-                    self.present(alertController, animated: true, completion: nil)
+                    self.dismiss(animated: true, completion: {
+                        if let _ = self.delegate_InternalProtocol
+                        {
+                            self.delegate_InternalProtocol.didTappedInternalProtocols()
+                        }
+                    })
                 }))
                 self.present(errorAlert, animated: true, completion: nil)
             })
-            
         })
         
         self.actionToEnable = saveAction
@@ -252,6 +257,7 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         saveAction.isEnabled = false
         
         self.present(alertController, animated: true, completion: nil)
+ 
     }
     
     @objc func textChanged(_ sender:UITextField)
@@ -264,6 +270,8 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         {
             self.actionToEnable?.isEnabled = false
         }
+        
+        irNameStr = sender.text!
     }
     
     func showMaxImagesAlert()
@@ -272,9 +280,22 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-    
+
+
+    /*
+     self.dismiss(animated: true, completion: {
+
+     */
+
+    func getDocumentsDirectory() -> URL
+    {
+        let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        return paths[0]
+    }
+   
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()
     }
 }
+

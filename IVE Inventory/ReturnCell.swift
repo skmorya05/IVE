@@ -24,6 +24,10 @@ class ReturnCell: UITableViewCell {
     @IBOutlet weak var lbl_reason:UILabel!
     @IBOutlet weak var btn_Radio:UIButton!
     
+    @IBOutlet weak var lbl_ItemReceive:UILabel!
+    @IBOutlet weak var lbl_CustomerSide:UILabel!
+    @IBOutlet weak var lbl_InventorySide:UILabel!
+    
     var radioButtonDelegate:RadioButtonProtocol!
     var dataStruct: Return!
     

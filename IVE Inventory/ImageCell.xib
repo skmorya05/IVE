@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -18,9 +18,22 @@
                 <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4RV-Kd-TLk">
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ONx-DY-mL2">
                         <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
-                    </imageView>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4RV-Kd-TLk">
+                                <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="4RV-Kd-TLk" firstAttribute="top" secondItem="ONx-DY-mL2" secondAttribute="top" id="Bsa-54-qWl"/>
+                            <constraint firstItem="4RV-Kd-TLk" firstAttribute="centerY" secondItem="ONx-DY-mL2" secondAttribute="centerY" id="CjB-4S-iLD"/>
+                            <constraint firstItem="4RV-Kd-TLk" firstAttribute="leading" secondItem="ONx-DY-mL2" secondAttribute="leading" id="VZ3-eh-Hbi"/>
+                            <constraint firstAttribute="trailing" secondItem="4RV-Kd-TLk" secondAttribute="trailing" id="kGJ-Ap-MFh"/>
+                            <constraint firstItem="4RV-Kd-TLk" firstAttribute="centerX" secondItem="ONx-DY-mL2" secondAttribute="centerX" id="qbV-TU-ex4"/>
+                            <constraint firstAttribute="bottom" secondItem="4RV-Kd-TLk" secondAttribute="bottom" id="va0-hI-mJk"/>
+                        </constraints>
+                    </scrollView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OcF-BE-qcE">
                         <rect key="frame" x="54" y="0.0" width="30" height="30"/>
                         <constraints>
@@ -35,16 +48,18 @@
                 </subviews>
             </view>
             <constraints>
+                <constraint firstItem="ONx-DY-mL2" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="5px-IB-PPM"/>
+                <constraint firstAttribute="trailing" secondItem="ONx-DY-mL2" secondAttribute="trailing" id="7FY-Gq-fwZ"/>
                 <constraint firstItem="OcF-BE-qcE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="7dr-jE-f3Q"/>
                 <constraint firstAttribute="trailing" secondItem="OcF-BE-qcE" secondAttribute="trailing" id="Bws-md-9Xo"/>
-                <constraint firstAttribute="trailing" secondItem="4RV-Kd-TLk" secondAttribute="trailing" id="StN-WB-k94"/>
-                <constraint firstItem="4RV-Kd-TLk" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="U5o-h8-YGV"/>
-                <constraint firstAttribute="bottom" secondItem="4RV-Kd-TLk" secondAttribute="bottom" id="V1F-cO-VCt"/>
-                <constraint firstItem="4RV-Kd-TLk" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="jgH-Pl-Ulz"/>
+                <constraint firstAttribute="bottom" secondItem="ONx-DY-mL2" secondAttribute="bottom" id="IiF-EO-sLW"/>
+                <constraint firstItem="ONx-DY-mL2" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QWO-jF-1eh"/>
             </constraints>
             <size key="customSize" width="53" height="63"/>
             <connections>
+                <outlet property="cancelButton" destination="OcF-BE-qcE" id="SK0-Ic-Y4o"/>
                 <outlet property="capturedImageView" destination="4RV-Kd-TLk" id="JIa-80-t67"/>
+                <outlet property="scrollImageView" destination="ONx-DY-mL2" id="byv-6X-7mf"/>
             </connections>
             <point key="canvasLocation" x="34" y="109"/>
         </collectionViewCell>

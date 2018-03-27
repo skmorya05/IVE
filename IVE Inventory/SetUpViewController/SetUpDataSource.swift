@@ -31,6 +31,16 @@ extension SetUpDataSource: UITableViewDataSource
         
         let userStruct = self.usersList[indexPath.row]
         cell.ive_user = userStruct
+        
+        var imageStr = String()
+        if userStruct.photo.count != 0
+        {
+            imageStr = "\(DrConstants.kBaseUrlImage)\(userStruct.photo!)"
+        }
+        
+        
+        cell.imageView_user?.sd_setImage(with: URL(string:imageStr), placeholderImage: #imageLiteral(resourceName: "User_Default"))
+        
 
         cell.lbl_userName.text = userStruct.name
         cell.lbl_userName?.font = UIFont.systemFont(ofSize: 20 * DrConstants.kSCALE_FACTOR)

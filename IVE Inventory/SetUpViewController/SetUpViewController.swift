@@ -71,8 +71,8 @@ class SetUpViewController: UIViewController, SetUpTapProtocol, SwitchStatusChang
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
-        let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "User_Default_nav") , target: self, action: #selector(printerButtonTapped))
-        self.navigationItem.rightBarButtonItem = printerButton
+        let userButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "User_Default") , target: self, action: #selector(userButtonTapped))
+        self.navigationItem.rightBarButtonItem = userButton
     }
     
     //MARK:- NavigationBar Button Action
@@ -81,9 +81,13 @@ class SetUpViewController: UIViewController, SetUpTapProtocol, SwitchStatusChang
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func printerButtonTapped()
+    @objc func userButtonTapped()
     {
         print("#function = \(#function)")
+        let registerVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "RegisterViewController") as! RegisterViewController
+        registerVC.pageDisplayMode = .profileUpdate
+        self.navigationController?.pushViewController(registerVC, animated: true)
+        
     }
     
     //MARK:- SetUpTapProtocol -

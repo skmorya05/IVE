@@ -7,5 +7,7 @@ target 'IVE Inventory' do
     pod 'Alamofire', '~> 4.5'
     pod 'IQKeyboardManagerSwift', '5.0.0'
     pod 'SkeletonView'
+    pod 'SDWebImage', '~> 4.0'
+
 end
 

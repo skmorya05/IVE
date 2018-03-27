@@ -9,7 +9,7 @@
 import Foundation
 import Alamofire
 
-typealias serviceCompletion = (_ : Any?, _ : String?) -> Void
+typealias serviceCompletion = (_ isSuccess:Bool) -> Void
 
 class NetworkManager: NSObject
 {
@@ -35,6 +35,8 @@ class NetworkManager: NSObject
                         print("Malformed data received from fetchAllRooms service")
                         return
                 }
+                
+                print("Rows = \(rows)")
                 
                 let rooms = rows.flatMap({ (rmaDict) -> Return? in
                     return Return.init(dict: rmaDict)
@@ -156,7 +158,7 @@ class NetworkManager: NSObject
                 .validate()
                 .responseJSON { (response) -> Void in
                     
-                    print("response.result.value = \(response.result.value)")
+                    //print("response.result.value = \(response.result.value)")
                     
                     guard response.result.isSuccess else
                     {
@@ -174,63 +176,6 @@ class NetworkManager: NSObject
                     completion(userStruct)
             }
             
-            
-            
-            
-            
-            
-            
-            
-            
-           /* let headers: HTTPHeaders = [
-                "Content-Type":"multipart/form-data",
-                "Accept": "application/json"
-            ]
-            
-            Alamofire.request(URL(string: IVE_URLConstant.kRegisterUser)!, method: .post, parameters:prop , encoding: JSONEncoding(), headers: headers).responseJSON{ (response) -> Void in
-                    
-                    print("result = \(response.result)")
-                    
-                    guard response.result.isSuccess else
-                    {
-                        print("Error: \(String(describing: response.result.error))")
-                        return
-                    }
-                    
-                    guard let value = response.result.value as? [String: Any],
-                    let dict = value[IVE_KeyConstant.kData] as? [String: Any] else
-                    {
-                        print("Malformed data received from fetchAllRooms service")
-                        return
-                    }
-                    
-                    let user = IVE_User.init(dict: dict)
-                    completion(user)
-            }
- 
-             */
-
-            
-           /*Alamofire.upload(multipartFormData: { multipartFormData in
-                // import image to request
-                
-                multipartFormData.append(imagedata, withName: "photo")
-                
-                for (key, value) in parameters
-                {
-                    multipartFormData.append(value.data(using: String.Encoding.utf8)!, withName: key)
-                }
-            }, to: IVE_URLConstant.kRegisterUser, encodingCompletion: {
-                switch encodingResult
-                {
-                    case .success(let upload, _, _):
-                        upload.responseJSON { response in
-                            
-                        }
-                    case .failure(let error):
-                        print(error)
-                }
-            })*/
         }
     }
     
@@ -366,10 +311,41 @@ class NetworkManager: NSObject
     }*/
  
     
-    func uploadImage(_ imageData:Data, _ userid:String , _ parameters: [String: Any]?,  withCompletion getResponse: @escaping serviceCompletion)
+    func uploadImage(_ image:UIImage, _ userid:String , _ parameters: [String: Any]?,  withCompletion completion:@escaping (_ isSuccess: Bool)-> Void)
     {        
+       
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kPhotoUpdate)\(userid)")!,
+            method: .post,
+            parameters: ["photo":image.base64(format: .JPEG(0.7))!])
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("value = \(String(describing: response.result.value))")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+        }
         
-        Alamofire.upload(multipartFormData: { multipartFormData in
+        
+        
+        
+      /*  Alamofire.upload(multipartFormData: { multipartFormData in
             
             multipartFormData.append(imageData, withName: "file", fileName: "file.png", mimeType: "image/png")
             
@@ -393,7 +369,354 @@ class NetworkManager: NSObject
                         print("error:\(encodingError)")
                         getResponse(nil, encodingError.localizedDescription)
                     }
-        })
+        }) */
     }
- 
+    
+    func getVendorsList(completion:@escaping (_ vendors:[[String:Any]]?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: IVE_URLConstant.kVendorsList)!,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let usersList = value[IVE_KeyConstant.kData] as? [[String: Any]] else
+                {
+                    print("Value is not in specified format")
+                    return
+                }
+                
+                print("\n usersList = \(usersList)")
+                completion(usersList)
+                
+        }
+    }
+    
+    func getRmaLogsList( rmaId:String , completion:@escaping (_ rmaLogs:[[String:Any]]?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: IVE_URLConstant.kInternalNotes)!,
+            method: .get,
+            parameters: [IVE_KeyConstant.kId: rmaId])
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                print("response.result.value = \(response.result.value)")
+                
+                guard let value = response.result.value as? [String: Any], let rmaLogs = value[IVE_KeyConstant.kData] as? [[String: Any]] else
+                {
+                    print("Value is not in specified format")
+                    return
+                }
+                
+                print("\n rmaLogs = \(rmaLogs)")
+                completion(rmaLogs)
+                
+        }
+    }
+    
+    func updateCustomerSide(prop:[String:String], completion:@escaping (_ isUpdate:Bool?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kCustomerSideUpdate)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                if let _ = dict["status"]
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+        }
+    }
+    
+    func updateInventorySide(prop:[String:String], completion:@escaping (_ isUpdate:Bool?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kInventorySideUpdate)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                if let _ = dict["status"]
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+        }
+    }
+    
+    func getInventoryReceiptListFromServer(completion:@escaping (_ receiptList:[IVEReceipt]?)->Void)
+    {
+        Alamofire.request(
+            URL(string: IVE_URLConstant.kInventoryReceipt)!,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                if let value = response.result.value as? [String: Any],
+                    let status = value["status"] as? String
+                {
+                    if status == "success"
+                    {
+                        let dataArr = value["data"] as? [[String: Any]]
+                        let receiptArr = dataArr?.flatMap({ (dict) -> IVEReceipt? in
+                            return IVEReceipt.init(dict: dict)
+                        })
+                        
+                        completion(receiptArr)
+                    }
+                }
+                else
+                {
+                    completion(nil)
+                }
+         }
+    }
+    
+    func getUpdateInventoryReceipts(mode:IR_Type, selectionStatus:String, inventory_id: String, completion:@escaping (_ status:Bool?)-> Void)
+    {
+        var urlString = ""
+        
+        if mode == .PRICE
+        {
+            urlString = "\(IVE_URLConstant.kPrice_ok)"
+        }
+        else if mode == .RECEIVED
+        {
+            urlString = "\(IVE_URLConstant.kReceived_qb)"
+        }
+        else if mode == .INVOICE
+        {
+            urlString = "\(IVE_URLConstant.kInvoice_paid)"
+        }
+        
+        let prop = ["inventory_id": inventory_id, "emp_id": DrConstants.kAppDelegate.loginUser.id!, "value":selectionStatus]
+        
+        Alamofire.request(
+            URL(string: urlString)!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                print("response.result.value = \(response.result.value)")
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                if let _ = dict["status"]
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+        }
+    }
+    
+    func getInventoryLogsList( invId:String , completion:@escaping (_ invLogs:[[String:String]]?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kInventory_Logs)")!,
+            method: .get,
+            parameters: [IVE_KeyConstant.kId: invId])
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+
+                guard let value = response.result.value as? [String: Any], let invLogs = value[IVE_KeyConstant.kData] as? [[String: String]] else
+                {
+                    print("Value is not in specified format")
+                    return
+                }
+                
+                print("\n invLogs = \(invLogs)")
+                completion(invLogs)
+                
+        }
+    }
+    
+    //MARK: Inventory Receipts upload
+    func uploadInventoryReceipts(images:[UIImage], irNameStr:String, completion:@escaping ()-> Void)
+    {
+        var imageStrArr = [String]()
+        for image in images
+        {
+            if let base64String = image.base64(format: .JPEG(0.7))
+            {
+                imageStrArr.append(base64String)
+                print("base64String = \(base64String)")
+            }
+        }
+        
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kInventory_Submit)")!,
+            method: .post,
+            parameters: ["name":irNameStr, "images":imageStrArr])
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("Malformed data received from fetchAllRooms service")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion()
+                }
+                
+        }
+    }
+    
+    func uploadCustomLogsReceipts(_ id:String, screenMode:InternalNoteMode, _ message: String, _ completion:@escaping ()-> Void)
+    {
+        var prop:[String: String] = ["log_comment":message,
+                                     "emp_id": DrConstants.kAppDelegate.loginUser.id!,
+                                            ]
+        
+        var urlString = String()
+        if screenMode == .rma
+        {
+            prop["ticket_id"] = id
+            urlString = "\(IVE_URLConstant.kPostRma_Log)"
+        }
+        else if screenMode == .ir
+        {
+            prop["inventory_id"] = id
+            urlString = "\(IVE_URLConstant.kPostInventory_Log)"
+        }
+        
+        
+        Alamofire.request(
+            URL(string: "\(urlString)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("Malformed data received from fetchAllRooms service")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion()
+                }
+                
+        }
+    }
+    
+    
+    func profileUpdate(properties:[String: String], completion:@escaping ()->Void)
+    {
+        print("\n prop = \(properties)")
+        
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kUsersUpdate)\(DrConstants.kAppDelegate.loginUser.id!)")!,
+            method: .post,
+            parameters: properties)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                print("response.result.value = \(String(describing: response.result.value))")
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("Malformed data received from fetchAllRooms service")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion()
+                }
+        }
+
+    }
 }

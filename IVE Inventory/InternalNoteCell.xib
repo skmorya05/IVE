@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-UI-Text-Regular.otf">
+            <string>SFUIText-Regular</string>
+        </array>
+        <array key="SF-UI-Text-Semibold.otf">
+            <string>SFUIText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="InternalNoteCell" rowHeight="67" id="KGk-i7-Jjw" customClass="InternalNoteCell" customModule="IVE_Inventory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Nn-vL-Oag">
+                        <rect key="frame" x="47" y="5" width="268" height="34"/>
+                        <fontDescription key="fontDescription" name="SFUIText-Regular" family="SF UI Text" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eM5-0y-W5R">
+                        <rect key="frame" x="8" y="5" width="34" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="0ag-8G-6HW"/>
+                            <constraint firstAttribute="width" constant="34" id="36r-YN-wqc"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFUIText-Semibold" family="SF UI Text" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="3Nn-vL-Oag" secondAttribute="bottom" constant="5" id="4nl-r6-VYz"/>
+                    <constraint firstAttribute="trailing" secondItem="3Nn-vL-Oag" secondAttribute="trailing" constant="5" id="BYg-pV-z9r"/>
+                    <constraint firstItem="eM5-0y-W5R" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="Ggr-Uo-mvr"/>
+                    <constraint firstItem="eM5-0y-W5R" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="8" id="QGH-22-6F8"/>
+                    <constraint firstItem="3Nn-vL-Oag" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="omV-se-iWP"/>
+                    <constraint firstItem="3Nn-vL-Oag" firstAttribute="leading" secondItem="eM5-0y-W5R" secondAttribute="trailing" constant="5" id="r71-pk-mP7"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="note_label" destination="3Nn-vL-Oag" id="0NL-qB-KKw"/>
+                <outlet property="number_label" destination="eM5-0y-W5R" id="WZk-QA-iZ4"/>
+            </connections>
+            <point key="canvasLocation" x="36" y="100"/>
+        </tableViewCell>
+    </objects>
+</document>

@@ -8,58 +8,33 @@
 
 import UIKit
 
-class DetailsViewController: UIViewController
+class DetailsViewController: UIViewController, InternalProtocols
 {
-    @IBOutlet weak var lbl_rma:UILabel!
-    @IBOutlet weak var lbl_serial:UILabel!
-    @IBOutlet weak var lbl_brand:UILabel!
-    @IBOutlet weak var lbl_model:UILabel!
-    @IBOutlet weak var lbl_name:UILabel!
-    @IBOutlet weak var lbl_createdate:UILabel!
-    @IBOutlet weak var lbl_reason:UILabel!
-    @IBOutlet weak var lbl_closedate:UILabel!
-    @IBOutlet weak var lbl_closeby:UILabel!
-    
+    @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var view_gradientBorder:UIView!
-    @IBOutlet weak var view_container:UIView!
-
-    @IBOutlet weak var btn_PutBack_Stock:UIButton!
-    @IBOutlet weak var btn_return_back_ToVendor:UIButton!
-    @IBOutlet weak var damageProductFileClaim:UIButton!
-
     
-    @IBOutlet weak var btn_UPS:UIButton!
-    @IBOutlet weak var btn_FedEx:UIButton!
-    @IBOutlet weak var btn_USPS:UIButton!
-    @IBOutlet weak var btn_DHL:UIButton!
-    
-    @IBOutlet weak var lbl_UPS:UILabel!
-    @IBOutlet weak var lbl_FedEx:UILabel!
-    @IBOutlet weak var lbl_USPS:UILabel!
-    @IBOutlet weak var lbl_DHL:UILabel!
-    
-    
-    @IBOutlet weak var btn_Save:UIButton!
     var operation = String()
     var curior = String()
 
 
     var dataStruct: Return!
+    var views: [UIView]!
+    
+    var dataSource = DataSource_DetailsVC()
+    var delegate = Delegate_DetailsVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("\n \n dataStruct = \(dataStruct)")
         self.navigationController?.setNavigationBarHidden(false, animated: true)
-
         self.navigationItem.hidesBackButton = true
         self.edgesForExtendedLayout = []
-        btn_Save.isEnabled = false
+
+       //configureView()
+       configureNavigationBar()
         
-        configureView()
-        configureNavigationBar()
-        loadData()
-        damageProductFileClaim.sendActions(for: .touchUpInside)
+       tableView.register(UINib.init(nibName: "RmaDetailCell", bundle: nil), forCellReuseIdentifier: "RmaDetailCell")
+       tableView.register(UINib.init(nibName: "RmaContainerCell", bundle: nil), forCellReuseIdentifier: "RmaContainerCell")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -91,11 +66,42 @@ class DetailsViewController: UIViewController
         self.navigationItem.rightBarButtonItem = printerButton
     }
     
+    override func viewDidAppear(_ animated: Bool)
+    {
+        super.viewDidAppear(true)
+        
+        self.dataSource.vc = self
+        self.dataSource.rmaStruct = self.dataStruct
+        
+        tableView.dataSource = self.dataSource
+        tableView.delegate = self.delegate
+        tableView.estimatedRowHeight = 277.0
+        tableView.rowHeight = UITableViewAutomaticDimension
+    }
+    
     func configureView()
     {
-        self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
+       /* self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
         self.view_container.addShadow()
         
+        self.views = [UIView]()
+        guard let invView = Bundle.main.loadNibNamed("InventoryView", owner: self, options: nil)?.first as? InventoryView else { return }
+        invView.frame = CGRect.init(x: 0, y: 0, width:ScreenSize.SCREEN_WIDTH-10 , height: self.view_container.frame.height)
+        self.views.append(invView)
+        
+        guard let cusView = Bundle.main.loadNibNamed("CustomerView", owner: self, options: nil)?.first as? CustomerView else { return }
+        cusView.frame = CGRect.init(x: 0, y: 0, width:ScreenSize.SCREEN_WIDTH-10 , height: self.view_container.frame.height)
+        self.views.append(cusView)
+        
+        for v in self.views
+        {
+            self.view_container.addSubview(v)
+        }
+        
+        self.view_container.bringSubview(toFront: self.views[0])
+        self.updateContainerFrame(view:self.views[0])
+ */
+        /*
         btn_PutBack_Stock.titleLabel?.adjustsFontSizeToFitWidth = true
         btn_return_back_ToVendor.titleLabel?.adjustsFontSizeToFitWidth = true
         damageProductFileClaim.titleLabel?.adjustsFontSizeToFitWidth = true
@@ -128,7 +134,26 @@ class DetailsViewController: UIViewController
         updateButtonsUI(sender: btn_return_back_ToVendor, text:"Return Back to Vendor")
         updateButtonsUI(sender: damageProductFileClaim, text:"Damage Product file a claim")
         
-        self.btn_Save.setTitleColor(ColorConstant.navBarColor, for: .normal)
+        self.btn_Save.setTitleColor(ColorConstant.navBarColor, for: .normal) */
+    }
+    
+    @IBAction func segmentButtonTapped(sender:UISegmentedControl)
+    {
+//        self.view_container.bringSubview(toFront: self.views[sender.selectedSegmentIndex])
+//        self.updateContainerFrame(view: self.views[sender.selectedSegmentIndex])
+    }
+    
+    
+    
+    func updateContainerFrame(view:UIView)
+    {
+//        let origin = self.view_container.frame.origin
+//        let size =   view.frame.size
+//
+//        self.view_container.frame = CGRect.init(x: origin.x, y: origin.y, width: size.width, height: size.height)
+//        self.view_container.layoutIfNeeded()
+//        self.view.layoutIfNeeded()
+//        self.view.layoutSubviews()
     }
     
     func updateButtonsUI(sender:UIButton,  text:String)
@@ -148,12 +173,7 @@ class DetailsViewController: UIViewController
 
     }
     
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        
-         super.viewWillDisappear(true)
-    }
-    
+ 
     //MARK:- NavigationBar Button Action
     @objc func goBack()
     {
@@ -166,124 +186,22 @@ class DetailsViewController: UIViewController
         WirelessPrinterManager.shared.openPrinterPreview(printDocArray: [self.dataStruct], viewController: self)
     }
     
-    
-    func loadData()
-    {
-        self.lbl_rma.text = self.dataStruct.rma
-        self.lbl_serial.text = self.dataStruct.serial
-        self.lbl_brand.text = self.dataStruct.brand
-        self.lbl_model.text = self.dataStruct.model
-        self.lbl_name.text = self.dataStruct.name
-        self.lbl_createdate.text = self.dataStruct.createdate
-        self.lbl_reason.text = self.dataStruct.reason
-        self.lbl_closedate.text = self.dataStruct.closedate
-        self.lbl_closeby.text = self.dataStruct.closeby
-    }
-    
     @IBAction func selectOperationOnRMA(sender:UIButton)
     {
-        if sender.tag == 0
-        {
-            updateOperationButtonUI(sender: btn_return_back_ToVendor, isSelected: true)
-            updateOperationButtonUI(sender: btn_PutBack_Stock, isSelected: false)
-            updateOperationButtonUI(sender: damageProductFileClaim, isSelected: false)
-            makeUpdateRadioButtons(isActive: false)
-            operation = "btnreturnbacktovendor"
-        }
-        else if sender.tag == 1
-        {
-            updateOperationButtonUI(sender: btn_return_back_ToVendor, isSelected: false)
-            updateOperationButtonUI(sender: btn_PutBack_Stock, isSelected: true)
-            updateOperationButtonUI(sender: damageProductFileClaim, isSelected: false)
-            makeUpdateRadioButtons(isActive: false)
-            operation = "btnputbackstock"
-
-        }
-        else if sender.tag == 2
-        {
-            updateOperationButtonUI(sender: btn_return_back_ToVendor, isSelected: false)
-            updateOperationButtonUI(sender: btn_PutBack_Stock, isSelected: false)
-            updateOperationButtonUI(sender: damageProductFileClaim, isSelected: true)
-            makeUpdateRadioButtons(isActive: true)
-            operation = "damageproductfileclaim"
-        }
         
-        btn_Save.isEnabled = true
     }
     
-    func updateOperationButtonUI(sender:UIButton, isSelected:Bool)
-    {
-        
-        if isSelected
-        {
-            sender.isSelected = true
-            sender.backgroundColor = ColorConstant.saffroFillColor
-        }
-        else
-        {
-            sender.isSelected = false
-            sender.backgroundColor = ColorConstant.btnBgColor
-        }
-       
-    }
+    
     
     @IBAction func manageButtonsState(btn_Radio:UIButton)
     {
-        switch btn_Radio.tag
-        {
-            case 0:
-                btn_UPS.isSelected = true
-                btn_FedEx.isSelected = false
-                btn_USPS.isSelected = false
-                btn_DHL.isSelected = false
-                curior = "UPS"
-
-            break
-            case 1:
-                btn_UPS.isSelected = false
-                btn_FedEx.isSelected = true
-                btn_USPS.isSelected = false
-                btn_DHL.isSelected = false
-                curior = "FedEx"
-                break
-            case 2:
-                btn_UPS.isSelected = false
-                btn_FedEx.isSelected = false
-                btn_USPS.isSelected = true
-                btn_DHL.isSelected = false
-                curior = "USPS"
-                break
-            case 3:
-                btn_UPS.isSelected = false
-                btn_FedEx.isSelected = false
-                btn_USPS.isSelected = false
-                btn_DHL.isSelected = true
-                curior = "DHL"
-                break
-            default:
-                  break
-        }
         
-        btn_Save.isEnabled = true
     }
     
     
     func makeUpdateRadioButtons(isActive:Bool)
     {
-        if isActive
-        {
-            self.radioButton(sender: btn_UPS, isActive: true)
-            self.radioButton(sender: btn_DHL, isActive: true)
-            self.radioButton(sender: btn_FedEx, isActive: true)
-            self.radioButton(sender: btn_USPS, isActive: true)
-        }
-        else
-        {
-            self.radioButton(sender: btn_UPS, isActive: false)
-            self.radioButton(sender: btn_DHL, isActive: false)
-            self.radioButton(sender: btn_FedEx, isActive: false)
-            self.radioButton(sender: btn_USPS, isActive: false)
-        }
+    
     }
     
     
@@ -325,6 +243,15 @@ class DetailsViewController: UIViewController
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd-mm-yyyy"
         return dateFormatter.string(from: date)
+    }
+    
+    //MARK:- InternalProtocols
+    func didTappedInternalProtocols()
+    {
+        let internalVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "InternalNotesViewController") as! InternalNotesViewController
+        internalVC.id = self.dataStruct.id!
+        internalVC.irNote_Mode = .rma
+        self.navigationController?.pushViewController(internalVC, animated: true)
     }
     
     override func didReceiveMemoryWarning()

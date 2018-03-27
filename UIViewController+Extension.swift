@@ -41,6 +41,7 @@ extension RegisterViewController: UINavigationControllerDelegate, UIImagePickerC
             self.selectedImage = originalImage
             self.btn_userImageView.setBackgroundImage(self.selectedImage, for: .normal)
             self.btn_userImageView.roundCorners(radius: self.btn_userImageView.frame.width/2)
+            self.isProfileUpdate = true
             
         }
         else

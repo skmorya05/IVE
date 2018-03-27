@@ -25,15 +25,17 @@ extension CGFloat
     {
         let screenRect:CGRect = UIScreen.main.bounds
         let screenHeight:CGFloat = screenRect.size.height
+        
         let scalefactor:CGFloat!
         scalefactor = screenHeight / 667.0
+        
         if UIDevice.current.userInterfaceIdiom == .pad
         {
             return scalefactor
         }
         else
         {
-            return scalefactor < 1.3 ? scalefactor:1.3
+            return scalefactor < 1.1 ? scalefactor:1.0  //1.3 , 1.3
         }
     }
 }

@@ -50,6 +50,11 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         cell.lbl_name.text = returnItem.name
         cell.lbl_createdate.text = returnItem.createdate
         cell.lbl_reason.text = returnItem.reason
+        
+        //#Rma-Status#
+        cell.lbl_ItemReceive.text = returnItem.item_receive
+        cell.lbl_CustomerSide.text = returnItem.customer_side
+        cell.lbl_InventorySide.text = returnItem.inventory_side
         //cell.lbl_closedate.text = returnItem.closedate
         //cell.lbl_closeby.text = returnItem.closeby
         
