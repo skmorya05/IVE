@@ -17,6 +17,16 @@ protocol VendorSelectionProtocol:class
 class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     @IBOutlet weak var pickerView: UIPickerView!
+    @IBOutlet weak var addVendorView: UIView!
+    
+    @IBOutlet weak var tfName: UITextField!
+    @IBOutlet weak var tfPhone: UITextField!
+    @IBOutlet weak var tfEmail: UITextField!
+    
+    @IBOutlet weak var barBtnItem: UIBarButtonItem!
+
+
+
     var vendors:[[String:Any]]!
     var selectedStr:String!
     var delegateVendor:VendorSelectionProtocol!
@@ -30,6 +40,8 @@ class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
         {
             self.selectedStr = name
         }
+        
+        self.addVendorView.isHidden = true
     }
     
     //MARK: Buttons Actions
@@ -37,6 +49,13 @@ class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
     {
         self.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func btn_Tapped_Add(sender:Any)
+    {
+         self.addVendorView.isHidden = false
+         self.barBtnItem.isEnabled = false
+    }
+    
     @IBAction func btn_Tapped_Done(sender:Any)
     {
         self.dismiss(animated: true) {

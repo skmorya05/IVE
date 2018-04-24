@@ -86,7 +86,10 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         
         let scannerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "scanner"), target: self, action: #selector(scannerButtonTapped))
 
-        self.navigationItem.rightBarButtonItems = [printerButton, scannerButton]
+        let plusButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "plus_button"), target: self, action: #selector(openRmaForm))
+        plusButton.tintColor = ColorConstant.blueFillColor
+        
+        self.navigationItem.rightBarButtonItems = [printerButton, scannerButton, plusButton]
         
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin ||   DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
         {
@@ -100,6 +103,27 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
     }
     
     //MARK:- NavigationBar Button Action
+    @objc func openRmaForm()
+    {
+        let loginUser = DrConstants.kAppDelegate.loginUser
+        let userName = loginUser?.name!
+        let password = loginUser?.password
+        
+        let urlStr = "http://stackup.mobi/220electronics/app/user/guest_login/\(userName!)/\(password!)"
+        
+        if let url = URL.init(string:urlStr)
+        {
+            if UIApplication.shared.canOpenURL(url)
+            {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }
+        else
+        {
+            print("Bad Url")
+        }
+    }
+    
     @objc func goBack()
     {
         self.navigationController?.popViewController(animated: true)

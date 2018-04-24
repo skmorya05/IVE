@@ -59,9 +59,9 @@ static char TAG_ACTIVITY_SHOW;
     
     if (url) {
         // check if activityView is enabled or not
-        if ([self sd_showActivityIndicatorView]) {
+        //if ([self sd_showActivityIndicatorView]) {
             [self sd_addActivityIndicator];
-        }
+        //}
         
         __weak __typeof(self)wself = self;
         id <SDWebImageOperation> operation = [SDWebImageManager.sharedManager loadImageWithURL:url options:options progress:progressBlock completed:^(UIImage *image, NSData *data, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -191,7 +191,7 @@ static char TAG_ACTIVITY_SHOW;
 #if SD_UIKIT
     dispatch_main_async_safe(^{
         if (!self.activityIndicator) {
-            self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:[self sd_getIndicatorStyle]];
+            self.activityIndicator = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray]; //[self sd_getIndicatorStyle]
             self.activityIndicator.translatesAutoresizingMaskIntoConstraints = NO;
         
             [self addSubview:self.activityIndicator];

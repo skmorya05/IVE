@@ -23,6 +23,7 @@ protocol QRCodeReadProtocol:class {
 
 let cellIdef = "BottomTrayCell"
 
+
 class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NextButtonProtocol
 {
 
@@ -38,25 +39,60 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
     weak var delegate_QRCRProtocol:QRCodeReadProtocol!
     weak var delegate_InternalProtocol: InternalProtocols!
     
+    var isCameraOnly:Bool = false
+    
     override func viewDidLoad()
     {
         super.viewDidLoad()
         self.edgesForExtendedLayout = []
-        
+        self.navigationItem.leftBarButtonItem = nil
+
         self.collectionView.register(UINib.init(nibName: "BottomTrayCell", bundle: nil), forCellWithReuseIdentifier: cellIdef)
-        self.showNavigationBar(mode: .QRCode)
     }
     
     override func viewDidAppear(_ animated: Bool)
     {
         self.collectionView.dataSource = self
         self.collectionView.reloadData()
+        
+        if self.isCameraOnly == true
+        {
+            self.updatePageIfShowCameraOnly()
+        }
+        else
+        {
+            self.showNavigationBar(mode: .QRCode)
+        }
+    }
+    
+    func updatePageIfShowCameraOnly()
+    {
+        self.collectionView.scrollToItem(at: IndexPath.init(row: 0, section: 1), at: .centeredHorizontally, animated: false)
+        
+        let flashButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "Flash"), target: self, action: #selector(btnTapped_Flash))
+        self.navigationItem.rightBarButtonItem = flashButton
+        
+        
+        let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(goBack))
+        self.navigationItem.leftBarButtonItem = backButton
+
+        
+        self.title = "Inventory Camera Receipt"
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
+        self.pageControl.isHidden = true
     }
     
     //MARK:- NavigationBar Button Action
     @objc func goBack()
     {
-        self.navigationController?.dismiss(animated: true, completion: nil)
+        if isCameraOnly
+        {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else
+        {
+            self.navigationController?.dismiss(animated: true, completion: nil)
+        }
     }
     
     
@@ -241,12 +277,25 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
                 let errorAlert = UIAlertController(title: "Message", message: "Inventory images saved", preferredStyle: .alert)
                 errorAlert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: {
                     alert -> Void in
-                    self.dismiss(animated: true, completion: {
+                    
+                    if self.isCameraOnly == true
+                    {
                         if let _ = self.delegate_InternalProtocol
                         {
                             self.delegate_InternalProtocol.didTappedInternalProtocols()
                         }
-                    })
+                        
+                        self.navigationController?.popViewController(animated: true)
+                    }
+                    else
+                    {
+                        self.dismiss(animated: true, completion: {
+                            if let _ = self.delegate_InternalProtocol
+                            {
+                                self.delegate_InternalProtocol.didTappedInternalProtocols()
+                            }
+                        })
+                    }
                 }))
                 self.present(errorAlert, animated: true, completion: nil)
             })

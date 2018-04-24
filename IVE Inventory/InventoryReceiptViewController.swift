@@ -8,7 +8,7 @@
 
 import UIKit
 
-class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, ReturnSearchProtocol
+class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, ReturnSearchProtocol, InternalProtocols
 {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var view_gradientBorder:UIView!
@@ -46,37 +46,40 @@ class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, R
     {
         super.viewWillAppear(animated)
         self.searchBar.resignFirstResponder()
-
-        
-            JustHUD.shared.showInView(view: self.view)
-            inventoryReceiptManager.getReceiptList { (list) in
-                JustHUD.shared.hide()
-             
-                    if let _ = list
-                    {
-                        self.globalReceipts = list
-                        
-                        if self.searchBar.text?.count == 0
-                        {
-                            self.delegate.receipts = list
-                            self.delegate.menuBtnDelegate = self
-                            
-                            self.dataSource.receipts = list
-                            
-                            self.inventoryTableView.dataSource = self.dataSource
-                            self.inventoryTableView.delegate = self.delegate
-                            
-                            //For Searching
-                            self.searchBar.delegate = self.returnSearchDelegate
-                            self.returnSearchDelegate.returnDelegate = self
-                            
-                            self.inventoryTableView.reloadData()
-                        }
-                        else
-                        {
-                            self.didFilterWithSearchText(searchText: self.searchBar.text!)
-                        }
-                    }
+        self.pageRefresh()
+    }
+    
+    func pageRefresh()
+    {
+        JustHUD.shared.showInView(view: self.view)
+        inventoryReceiptManager.getReceiptList { (list) in
+            JustHUD.shared.hide()
+            
+            if let _ = list
+            {
+                self.globalReceipts = list
+                
+                if self.searchBar.text?.count == 0
+                {
+                    self.delegate.receipts = list
+                    self.delegate.menuBtnDelegate = self
+                    
+                    self.dataSource.receipts = list
+                    
+                    self.inventoryTableView.dataSource = self.dataSource
+                    self.inventoryTableView.delegate = self.delegate
+                    
+                    //For Searching
+                    self.searchBar.delegate = self.returnSearchDelegate
+                    self.returnSearchDelegate.returnDelegate = self
+                    
+                    self.inventoryTableView.reloadData()
+                }
+                else
+                {
+                    self.didFilterWithSearchText(searchText: self.searchBar.text!)
+                }
+            }
         }
     }
 
@@ -131,8 +134,10 @@ class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, R
     
     @objc func scannerButtonTapped()
     {
-        let scannerVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "ScannerViewController") as! ScannerViewController
-        self.navigationController?.pushViewController(scannerVC, animated: true)
+        let bottomTrayVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "BottomTrayViewController") as! BottomTrayViewController
+        bottomTrayVC.delegate_InternalProtocol = self
+        bottomTrayVC.isCameraOnly = true
+        self.navigationController?.pushViewController(bottomTrayVC, animated: true)
     }
     
     //MARK: Delegate Methods
@@ -141,8 +146,7 @@ class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, R
         print("#function = \(#function)")
         
         let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "InventoryReceiptDetailsVC") as! InventoryReceiptDetailsVC
-        
-        detailsVC.iveReceipt = self.self.dataSource.receipts[indexPath.row]
+        detailsVC.iveReceipt = self.dataSource.receipts[indexPath.row]
         self.navigationController?.pushViewController(detailsVC, animated: true)
     }
     
@@ -194,6 +198,11 @@ class InventoryReceiptViewController: UIViewController, MenuSelectionProtocol, R
         self.inventoryTableView.reloadData()
     }
     
+    //MARK: - ------------InternalProtocols-----------
+    func didTappedInternalProtocols()
+    {
+        self.pageRefresh()
+    }
     
     override func didReceiveMemoryWarning()
     {

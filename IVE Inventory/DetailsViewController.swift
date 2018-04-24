@@ -7,16 +7,22 @@
 //
 
 import UIKit
+import MessageUI
 
-class DetailsViewController: UIViewController, InternalProtocols
+enum RMAShareMode {
+    case email
+    case message
+}
+
+class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeViewControllerDelegate, MFMessageComposeViewControllerDelegate
 {
     @IBOutlet weak var tableView:UITableView!
     @IBOutlet weak var view_gradientBorder:UIView!
     
     var operation = String()
     var curior = String()
-
-
+    
+    
     var dataStruct: Return!
     var views: [UIView]!
     
@@ -29,12 +35,11 @@ class DetailsViewController: UIViewController, InternalProtocols
         self.navigationController?.setNavigationBarHidden(false, animated: true)
         self.navigationItem.hidesBackButton = true
         self.edgesForExtendedLayout = []
-
-       //configureView()
-       configureNavigationBar()
         
-       tableView.register(UINib.init(nibName: "RmaDetailCell", bundle: nil), forCellReuseIdentifier: "RmaDetailCell")
-       tableView.register(UINib.init(nibName: "RmaContainerCell", bundle: nil), forCellReuseIdentifier: "RmaContainerCell")
+        configureNavigationBar()
+        
+        tableView.register(UINib.init(nibName: "RmaDetailCell", bundle: nil), forCellReuseIdentifier: "RmaDetailCell")
+        tableView.register(UINib.init(nibName: "RmaContainerCell", bundle: nil), forCellReuseIdentifier: "RmaContainerCell")
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -48,11 +53,13 @@ class DetailsViewController: UIViewController, InternalProtocols
         let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(goBack))
         self.navigationItem.leftBarButtonItem = backButton
         
+        //Share
         self.title = "RMA#\(self.dataStruct.rma!)"
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
+        let shareButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "Share"), target: self, action: #selector(shareButtonTapped))
         
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
         {
@@ -63,7 +70,7 @@ class DetailsViewController: UIViewController, InternalProtocols
             printerButton.isEnabled = false
         }
         
-        self.navigationItem.rightBarButtonItem = printerButton
+        self.navigationItem.rightBarButtonItems = [printerButton, shareButton]
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -78,84 +85,8 @@ class DetailsViewController: UIViewController, InternalProtocols
         tableView.estimatedRowHeight = 277.0
         tableView.rowHeight = UITableViewAutomaticDimension
     }
-    
-    func configureView()
-    {
-       /* self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
-        self.view_container.addShadow()
-        
-        self.views = [UIView]()
-        guard let invView = Bundle.main.loadNibNamed("InventoryView", owner: self, options: nil)?.first as? InventoryView else { return }
-        invView.frame = CGRect.init(x: 0, y: 0, width:ScreenSize.SCREEN_WIDTH-10 , height: self.view_container.frame.height)
-        self.views.append(invView)
-        
-        guard let cusView = Bundle.main.loadNibNamed("CustomerView", owner: self, options: nil)?.first as? CustomerView else { return }
-        cusView.frame = CGRect.init(x: 0, y: 0, width:ScreenSize.SCREEN_WIDTH-10 , height: self.view_container.frame.height)
-        self.views.append(cusView)
-        
-        for v in self.views
-        {
-            self.view_container.addSubview(v)
-        }
-        
-        self.view_container.bringSubview(toFront: self.views[0])
-        self.updateContainerFrame(view:self.views[0])
- */
-        /*
-        btn_PutBack_Stock.titleLabel?.adjustsFontSizeToFitWidth = true
-        btn_return_back_ToVendor.titleLabel?.adjustsFontSizeToFitWidth = true
-        damageProductFileClaim.titleLabel?.adjustsFontSizeToFitWidth = true
-        
-        btn_PutBack_Stock.titleLabel?.numberOfLines = 0
-        btn_return_back_ToVendor.titleLabel?.numberOfLines = 0
-        damageProductFileClaim.titleLabel?.numberOfLines = 0
-        
-        
-        btn_Save.layer.borderColor = ColorConstant.navBarColor.cgColor
-        btn_Save.layer.borderWidth = 2.0
-        
-        btn_return_back_ToVendor.contentHorizontalAlignment = .center
-        btn_return_back_ToVendor.titleLabel?.textAlignment = .center
-        btn_return_back_ToVendor.contentVerticalAlignment = .center
-        btn_return_back_ToVendor.titleLabel?.textAlignment = .center
-        
-        btn_PutBack_Stock.contentHorizontalAlignment = .center
-        btn_PutBack_Stock.titleLabel?.textAlignment = .center
-        btn_PutBack_Stock.contentVerticalAlignment = .center
-        btn_PutBack_Stock.titleLabel?.textAlignment = .center
 
-        damageProductFileClaim.contentHorizontalAlignment = .center
-        damageProductFileClaim.titleLabel?.textAlignment = .center
-        damageProductFileClaim.contentVerticalAlignment = .center
-        damageProductFileClaim.titleLabel?.textAlignment = .center
 
-        
-        updateButtonsUI(sender: btn_PutBack_Stock, text:"Put Back in Stock")
-        updateButtonsUI(sender: btn_return_back_ToVendor, text:"Return Back to Vendor")
-        updateButtonsUI(sender: damageProductFileClaim, text:"Damage Product file a claim")
-        
-        self.btn_Save.setTitleColor(ColorConstant.navBarColor, for: .normal) */
-    }
-    
-    @IBAction func segmentButtonTapped(sender:UISegmentedControl)
-    {
-//        self.view_container.bringSubview(toFront: self.views[sender.selectedSegmentIndex])
-//        self.updateContainerFrame(view: self.views[sender.selectedSegmentIndex])
-    }
-    
-    
-    
-    func updateContainerFrame(view:UIView)
-    {
-//        let origin = self.view_container.frame.origin
-//        let size =   view.frame.size
-//
-//        self.view_container.frame = CGRect.init(x: origin.x, y: origin.y, width: size.width, height: size.height)
-//        self.view_container.layoutIfNeeded()
-//        self.view.layoutIfNeeded()
-//        self.view.layoutSubviews()
-    }
-    
     func updateButtonsUI(sender:UIButton,  text:String)
     {
         sender.layer.cornerRadius = 2.0
@@ -170,10 +101,10 @@ class DetailsViewController: UIViewController, InternalProtocols
         // .Normal
         let attr2 = NSAttributedString(string: text, attributes: [NSAttributedStringKey.foregroundColor : UIColor.darkGray])
         sender.setAttributedTitle(attr2, for: .normal)
-
+        
     }
     
- 
+    
     //MARK:- NavigationBar Button Action
     @objc func goBack()
     {
@@ -182,15 +113,140 @@ class DetailsViewController: UIViewController, InternalProtocols
     
     @objc func printerButtonTapped()
     {
-        print("#function = \(#function)")
         WirelessPrinterManager.shared.openPrinterPreview(printDocArray: [self.dataStruct], viewController: self)
+    }
+    
+    @objc func shareButtonTapped()
+    {
+        
+        let alertController = UIAlertController(title: "Select Share Mode", message: "", preferredStyle: .actionSheet)
+        
+        let email = UIAlertAction(title: "Email", style: .default) { (action:UIAlertAction) in
+            self.openShare(mode: .email)
+        }
+        
+        let message = UIAlertAction(title: "Message", style: .default) { (action:UIAlertAction) in
+            self.openShare(mode: .message)
+        }
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        }
+        
+        alertController.addAction(email)
+        alertController.addAction(message)
+        alertController.addAction(cancel)
+
+        self.present(alertController, animated: true, completion: nil)
+    }
+    
+    func openShare(mode:RMAShareMode)
+    {
+        if mode == .email
+        {
+            if MFMailComposeViewController.canSendMail()
+            {
+                let mail = MFMailComposeViewController()
+                mail.mailComposeDelegate = self
+                mail.setSubject("RMA Report")
+                mail.setMessageBody(self.getMessageToShare(), isHTML: false)
+                
+                self.present(mail, animated: true, completion: nil)
+            }
+        }
+        else if mode == .message
+        {
+            if MFMessageComposeViewController.canSendText()
+            {
+                let message = MFMessageComposeViewController()
+                message.messageComposeDelegate = self
+                message.body = self.getMessageToShare()
+                self.present(message, animated: true, completion: nil)
+            }
+        }
+    }
+    
+    func getMessageToShare() -> String
+    {
+        var message = String()
+        
+        message = "Report"
+        
+        if let _ = dataStruct.rma
+        {
+            message = message + "\nRMA = \(dataStruct.rma!)"
+        }
+        if let _ = dataStruct.rma_type
+        {
+            message = message + "\nRMA Type = \(dataStruct.rma_type!)"
+        }
+        if let _ = dataStruct.name
+        {
+            message = message + "\nName = \(dataStruct.name!)"
+        }
+        if let _ = dataStruct.address
+        {
+            message = message + "\nAddress = \(dataStruct.address!)"
+        }
+        if let _ = dataStruct.company_name
+        {
+            message = message + "\nCompany Name = \(dataStruct.company_name!)"
+        }
+        if let _ = dataStruct.brand
+        {
+            message = message + "\nBrand = \(dataStruct.brand!)"
+        }
+        if let _ = dataStruct.model
+        {
+            message = message + "\nModel = \(dataStruct.model!)"
+        }
+        if let _ = dataStruct.serial
+        {
+            message = message + "\nSerial = \(dataStruct.serial!)"
+        }
+        if let _ = dataStruct.orders
+        {
+            message = message + "\nOrders = \(dataStruct.orders!)"
+        }
+        
+        if let _ = dataStruct.sales_receipt
+        {
+            message = message + "\nSales Receipt = \(dataStruct.sales_receipt!)"
+        }
+        if let _ = dataStruct.purchase_date
+        {
+            message = message + "\nPurchase Date = \(dataStruct.purchase_date!)"
+        }
+        if let _ = dataStruct.reason
+        {
+            message = message + "\nReason = \(dataStruct.reason!)"
+        }
+        if let _ = dataStruct.customer_side
+        {
+            message = message + "\nCustomer Side = \(dataStruct.customer_side!)"
+        }
+        if let _ = dataStruct.inventory_side
+        {
+            message = message + "\nInventory Side = \(dataStruct.inventory_side!)"
+        }
+
+        return message
+    }
+    
+    //MARK:------- Protocols Methods--------
+    func mailComposeController(_ controller: MFMailComposeViewController, didFinishWith result: MFMailComposeResult, error: Error?)
+    {
+        controller.dismiss(animated: true)
+    }
+    
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult)
+    {
+        controller.dismiss(animated: true)
     }
     
     @IBAction func selectOperationOnRMA(sender:UIButton)
     {
         
     }
-    
     
     
     @IBAction func manageButtonsState(btn_Radio:UIButton)
@@ -201,7 +257,7 @@ class DetailsViewController: UIViewController, InternalProtocols
     
     func makeUpdateRadioButtons(isActive:Bool)
     {
-    
+        
     }
     
     
@@ -218,7 +274,7 @@ class DetailsViewController: UIViewController, InternalProtocols
     }
     
     
-   @IBAction func saveButtonTapped(sender:UIButton)
+    @IBAction func saveButtonTapped(sender:UIButton)
     {
         let prop:[String: String] =
             ["shipping_method": self.curior,
@@ -226,7 +282,7 @@ class DetailsViewController: UIViewController, InternalProtocols
              "by" : "Ray Shah",
              "return_type":self.operation,
              "id" : dataStruct.id
-            ]
+        ]
         
         NetworkManager.sharedManager.updateRma(properties: prop) { (result:Bool) in
             
@@ -258,5 +314,5 @@ class DetailsViewController: UIViewController, InternalProtocols
     {
         super.didReceiveMemoryWarning()
     }
-
+    
 }

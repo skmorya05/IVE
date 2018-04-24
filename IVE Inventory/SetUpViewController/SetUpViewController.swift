@@ -71,7 +71,7 @@ class SetUpViewController: UIViewController, SetUpTapProtocol, SwitchStatusChang
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.foregroundColor : ColorConstant.blueFillColor]
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
-        let userButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "User_Default") , target: self, action: #selector(userButtonTapped))
+        let userButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "Ele_userprofile") , target: self, action: #selector(userButtonTapped))
         self.navigationItem.rightBarButtonItem = userButton
     }
     

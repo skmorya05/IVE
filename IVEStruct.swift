@@ -358,6 +358,7 @@ struct IVE_User {
     var photo: String!
     var is_deleted: String!
     var pin: String!
+    var password = ""
     
     init(dict:[String:Any])
     {

@@ -75,41 +75,38 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
             //CustomerSide
             switch self.rmaStruct.customer_side.lowercased()
             {
-                case "exchanged":
+                case "exchange", "exchanged":
                     self.cusView.btn_Save.isHidden = false
                     self.cusView.btn_Exchanged.updateButtonState(isSelected: true)
-                break
-                case "refunded":
+                
+                case "need to refund", "refunded":
                     self.cusView.btn_Save.isHidden = false
                     self.cusView.btn_Refend.updateButtonState(isSelected: true)
-                break
+                
                 case "pending":
                     self.cusView.btn_Save.isHidden = false
                     self.cusView.btn_Pending.updateButtonState(isSelected: true)
-                break
+                
                 default:
                 break
             }
             
             //InventorySide
             self.invView.showLabels(isHidden:true)
-            self.invView.height_Container.constant =  93.0
+            self.invView.height_Container.constant =  115.0
             
             switch self.rmaStruct.inventory_side.lowercased()
             {
                 case "resale as a used":
                     self.invView.btn_save.isHidden = false
                     self.invView.btn_ResaleAsUsed.updateButtonState(isSelected: true)
-                    
-                    //self.updateContainerFrame(view:self.views[1])
-
                     break
                 
                 case "resale as a new":
                     self.invView.btn_save.isHidden = false
                     self.invView.btn_ResaleAsNew.updateButtonState(isSelected: true)
                     self.invView.showLabels(isHidden:true)
-                    self.invView.height_Container.constant =  93.0
+                    self.invView.height_Container.constant =  115.0
                     break
                 
                 case "defective not working":
@@ -117,8 +114,6 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
                     self.invView.btn_DefectiveNotWorking.updateButtonState(isSelected: true)
                     self.invView.showRadioButtons(isShow: false)
                     self.invView.height_Container.constant =  270.0
-                    
-                    //print("\n \n self.rmaStruct = \(self.rmaStruct)")
                     
                     if self.rmaStruct.defective_option.lowercased() == "defective unknown vendor"
                     {
@@ -131,6 +126,11 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
                     else if self.rmaStruct.defective_option.lowercased() == "defective return to vendor"
                     {
                         self.invView.btn_ReturnToVendor.isSelected = true
+                        if DeviceType.IS_IPAD
+                        {
+                           self.invView.height_Container.constant =  310.0
+                           self.invView.btn_selectVendor.backgroundColor = ColorConstant.blueFillColor
+                        }
                     }
                     
                     
@@ -141,6 +141,7 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
                         {
                             self.invView.btn_selectVendor.setTitle(self.rmaStruct.vendor, for: .normal)
                             self.vendorName = self.rmaStruct.vendor
+                            
                         }
                     }
                     else
@@ -189,8 +190,10 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
     //MARK: VendorSelectionProtocol Methods
     func didSelectVendor(name:String)
     {
-        self.vendorName = name
-        self.invView.btn_selectVendor.setTitle(name, for: .normal)
+        DispatchQueue.main.async {
+            self.vendorName = name
+            self.invView.btn_selectVendor.setTitle(name, for: .normal)
+        }
     }
     
     
@@ -202,15 +205,15 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
         
         if self.cusView.btn_Exchanged.isSelected
         {
-            prop["value"] = "Exchanged"
+            prop["value"] = "exchange"
         }
         else if self.cusView.btn_Refend.isSelected
         {
-            prop["value"] = "Refunded"
+            prop["value"] = "need to refund"
         }
         else if self.cusView.btn_Pending.isSelected
         {
-            prop["value"] = "Pending"
+            prop["value"] = "pending"
         }
         
         NetworkManager.sharedManager.updateCustomerSide(prop: prop) { (isUpdated) in
@@ -275,8 +278,6 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
             {
                 print("\n Inventory Side not Update")
             }
-            
         }
     }
-    
 }

@@ -135,11 +135,11 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuJ-0Y-vkO">
-                            <rect key="frame" x="121" y="224" width="113" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuJ-0Y-vkO">
+                            <rect key="frame" x="97.5" y="224" width="160" height="30"/>
                             <color key="backgroundColor" red="0.011764705882352941" green="0.035294117647058823" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="113" id="Sba-qP-COm"/>
+                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Sba-qP-COm"/>
                                 <constraint firstAttribute="width" secondItem="vuJ-0Y-vkO" secondAttribute="height" multiplier="35:9" id="VCS-6o-M0f"/>
                             </constraints>
                             <state key="normal" title="Select a Vendor ">
@@ -181,20 +181,15 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Sw0-rs-wh7">
-                    <rect key="frame" x="145" y="304" width="85" height="37"/>
+                    <rect key="frame" x="153" y="304" width="69" height="30"/>
                     <color key="backgroundColor" red="0.90980392160000001" green="0.90980392160000001" blue="0.90980392160000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="37" id="dGD-R4-f8y">
-                            <variation key="heightClass=regular-widthClass=regular" constant="50"/>
-                        </constraint>
-                        <constraint firstAttribute="width" constant="85" id="vaU-L4-CIp">
-                            <variation key="heightClass=regular-widthClass=regular" constant="105"/>
-                        </constraint>
+                        <constraint firstAttribute="width" secondItem="Sw0-rs-wh7" secondAttribute="height" multiplier="85:37" id="x2o-oe-8YZ"/>
                     </constraints>
                     <state key="normal" title="Save"/>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d4L-Be-tQl">
-                    <rect key="frame" x="62" y="361" width="251" height="30"/>
+                    <rect key="frame" x="62" y="354" width="251" height="30"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="251" id="U2v-Kk-Gp3"/>
                         <constraint firstAttribute="height" constant="30" id="fyd-Fu-EKr"/>
@@ -205,6 +200,7 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="90z-ed-qv9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="IRa-UB-qyB"/>
+                <constraint firstItem="Sw0-rs-wh7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="69:442" id="No5-Pl-cxW"/>
                 <constraint firstItem="Sw0-rs-wh7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Y74-5V-aDW"/>
                 <constraint firstItem="90z-ed-qv9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="YZj-oe-VY7"/>
                 <constraint firstAttribute="trailing" secondItem="90z-ed-qv9" secondAttribute="trailing" constant="10" id="hFq-pb-X95"/>
@@ -241,7 +237,7 @@
                 <outlet property="lbl_unknownVendor" destination="k2L-wa-WQy" id="21r-A8-X2Z"/>
                 <outlet property="stack_view" destination="YwY-dE-KbS" id="pET-Nm-Rbe"/>
             </connections>
-            <point key="canvasLocation" x="11.5" y="104"/>
+            <point key="canvasLocation" x="-70" y="72"/>
         </view>
     </objects>
     <resources>

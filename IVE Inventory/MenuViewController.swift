@@ -73,7 +73,8 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
             {
                 if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kVendors))
                 {
-                    //Do Processing
+                    let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "VendorsViewController")
+                    self.navigationController?.pushViewController(controller, animated: true)
                 }
                 else
                 {
@@ -140,9 +141,14 @@ class MenuViewController: UIViewController, MenuSelectionProtocol, QRCodeReadPro
             
             if let _ = returnStruct
             {
-                let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
-                detailsVC.dataStruct = returnStruct
-                self.navigationController?.pushViewController(detailsVC, animated: true)
+                let empID = DrConstants.kAppDelegate.loginUser.id!
+                let prop = ["ticket_id": returnStruct?.id!, "emp_id": empID, "value":"Yes"] as! [String: String]
+                
+                NetworkManager.sharedManager.itemReceiveUpdate(properties: prop, completion: {
+                    let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
+                    detailsVC.dataStruct = returnStruct
+                    self.navigationController?.pushViewController(detailsVC, animated: true)
+                })
             }
         })
     }

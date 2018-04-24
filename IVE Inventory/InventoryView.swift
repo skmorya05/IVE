@@ -79,6 +79,7 @@ class InventoryView: UIView
         }
     }
     
+    //MARK: ---------Buttons Action----------
     @IBAction func btn_Tapped_ResaleAsUsed(sender:UIButton)
     {
         self.btn_save.isHidden = false
@@ -135,6 +136,8 @@ class InventoryView: UIView
         self.btn_ReturnToVendor.isSelected = false
         
         self.btn_selectVendor.isHidden = true
+        
+
     }
     
     @IBAction func btn_Tapped_ReturnToVendor(sender:UIButton)
@@ -151,13 +154,13 @@ class InventoryView: UIView
         {
             self.showLabels(isHidden:true)
             UIView.animate(withDuration: 1.5, animations: {
-                self.height_Container.constant =  93.0
+                self.height_Container.constant =  115.0
             }, completion: nil)
         }
         else
         {
             UIView.animate(withDuration: 1.5, animations: {
-                self.height_Container.constant =   270.0
+                self.height_Container.constant =   DeviceType.IS_IPHONE ? 270.0 : 310
             }, completion: { _ in
                 self.showLabels(isHidden:false)
             })
@@ -175,20 +178,33 @@ class InventoryView: UIView
         self.btn_ReturnToVendor.isHidden = isHidden
     }
     
+    func animateView(animateView:UIView , isSelected:Bool)
+    {
+        if isSelected == true
+        {
+            UIView.animate(withDuration: 0.3,
+                           animations: {
+                            animateView.transform = CGAffineTransform(scaleX: 1.2, y: 1.2)
+            },
+                           completion: { _ in
+                            
+            })
+        }
+        else
+        {
+            UIView.animate(withDuration: 0.3,
+                           animations: {
+                            animateView.transform = CGAffineTransform.identity
+            },
+                           completion: { _ in
+                            
+            })
+        }
+    }
+    
     //MARK:- Action Select Vendors
     @IBAction func btn_Tapped_selectVendor(sender:UIButton)
     {
-       //Webservice hit then load pickerview page
-       /* NetworkManager.sharedManager.getVendorsList { (vendorsList) in
-            
-            if let _ = vendorsList
-            {
-                let vc = VendorSelectionVC.init(nibName: "VendorSelectionVC", bundle: nil)
-                vc.vendors = vendorsList
-                vc.modalPresentationStyle = .overFullScreen
-                vc.modalTransitionStyle = .crossDissolve
-                self.vcObject.present(vc, animated: true, completion: nil)
-            }
-        } */
+       //N.A
     }
 }

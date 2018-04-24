@@ -77,6 +77,11 @@
 		923C2A051FEFD29C00D805B0 /* ReturnCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923C2A031FEFD29C00D805B0 /* ReturnCell.xib */; };
 		923C2A0B1FEFEDB400D805B0 /* ReturnViewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */; };
 		923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */; };
+		923C31FF208E3FE9009233D6 /* VendorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C31FD208E3FE9009233D6 /* VendorsViewController.swift */; };
+		923C3202208E41F4009233D6 /* IVEVendor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C3201208E41F3009233D6 /* IVEVendor.swift */; };
+		923C3205208E4DC7009233D6 /* VendorsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C3203208E4DC7009233D6 /* VendorsCell.swift */; };
+		923C3206208E4DC7009233D6 /* VendorsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 923C3204208E4DC7009233D6 /* VendorsCell.xib */; };
+		923C3208208E541D009233D6 /* VendorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 923C3207208E541D009233D6 /* VendorManager.swift */; };
 		92472529200E5F3400C34B42 /* IVEStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92472528200E5F3400C34B42 /* IVEStruct.swift */; };
 		925B8264202774110023A0A7 /* ScannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B8263202774110023A0A7 /* ScannerViewController.swift */; };
 		925B82662027789B0023A0A7 /* UIButton+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 925B82652027789B0023A0A7 /* UIButton+Extension.swift */; };
@@ -95,6 +100,9 @@
 		92D79E092014B83C0083E5CE /* BottomTrayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D79E082014B83C0083E5CE /* BottomTrayViewController.swift */; };
 		92D79E0C2014BE5F0083E5CE /* BottomTrayCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92D79E0A2014BE5F0083E5CE /* BottomTrayCell.swift */; };
 		92D79E0D2014BE5F0083E5CE /* BottomTrayCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92D79E0B2014BE5F0083E5CE /* BottomTrayCell.xib */; };
+		92E294D8208ECB580025A9D6 /* VendorsRmaStatusVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E294D6208ECB580025A9D6 /* VendorsRmaStatusVC.swift */; };
+		92E294DC208ED0740025A9D6 /* RmaStatusCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E294DA208ED0740025A9D6 /* RmaStatusCell.swift */; };
+		92E294DD208ED0740025A9D6 /* RmaStatusCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92E294DB208ED0740025A9D6 /* RmaStatusCell.xib */; };
 		92E672CE202D3E3600AC53E1 /* InventoryReceiptDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92E672CD202D3E3600AC53E1 /* InventoryReceiptDetailsVC.swift */; };
 		92F308612024F1D800CA930D /* DataSource_DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F308602024F1D800CA930D /* DataSource_DetailsVC.swift */; };
 		92F308632024F2C400CA930D /* Delegate_DetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F308622024F2C400CA930D /* Delegate_DetailsVC.swift */; };
@@ -106,6 +114,7 @@
 		92F3087120258DCA00CA930D /* CustomProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F3087020258DCA00CA930D /* CustomProtocols.swift */; };
 		92F308742025A9A800CA930D /* InternalNoteCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92F308722025A9A800CA930D /* InternalNoteCell.swift */; };
 		92F308752025A9A800CA930D /* InternalNoteCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 92F308732025A9A800CA930D /* InternalNoteCell.xib */; };
+		92F6B56F208F22AA00F2E61C /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 92F6B56E208F22AA00F2E61C /* MessageUI.framework */; };
 		D00225CE200131B4001EAD9C /* ScanManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D00225CD200131B4001EAD9C /* ScanManager.swift */; };
 		D0C3EDB51FFF46B9005DA4A0 /* SetUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */; };
 		D0C3EDB91FFF46CB005DA4A0 /* UserDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D0C3EDB71FFF46CB005DA4A0 /* UserDetailViewController.swift */; };
@@ -185,6 +194,11 @@
 		923C2A031FEFD29C00D805B0 /* ReturnCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReturnCell.xib; sourceTree = "<group>"; };
 		923C2A0A1FEFEDB400D805B0 /* ReturnViewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnViewManager.swift; sourceTree = "<group>"; };
 		923C2A0C1FF00CDF00D805B0 /* ReturnSearchDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReturnSearchDelegate.swift; sourceTree = "<group>"; };
+		923C31FD208E3FE9009233D6 /* VendorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsViewController.swift; sourceTree = "<group>"; };
+		923C3201208E41F3009233D6 /* IVEVendor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVEVendor.swift; sourceTree = "<group>"; };
+		923C3203208E4DC7009233D6 /* VendorsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsCell.swift; sourceTree = "<group>"; };
+		923C3204208E4DC7009233D6 /* VendorsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = VendorsCell.xib; sourceTree = "<group>"; };
+		923C3207208E541D009233D6 /* VendorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorManager.swift; sourceTree = "<group>"; };
 		92472528200E5F3400C34B42 /* IVEStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IVEStruct.swift; sourceTree = "<group>"; };
 		925B8263202774110023A0A7 /* ScannerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScannerViewController.swift; sourceTree = "<group>"; };
 		925B82652027789B0023A0A7 /* UIButton+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Extension.swift"; sourceTree = "<group>"; };
@@ -203,6 +217,9 @@
 		92D79E082014B83C0083E5CE /* BottomTrayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTrayViewController.swift; sourceTree = "<group>"; };
 		92D79E0A2014BE5F0083E5CE /* BottomTrayCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTrayCell.swift; sourceTree = "<group>"; };
 		92D79E0B2014BE5F0083E5CE /* BottomTrayCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomTrayCell.xib; sourceTree = "<group>"; };
+		92E294D6208ECB580025A9D6 /* VendorsRmaStatusVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VendorsRmaStatusVC.swift; sourceTree = "<group>"; };
+		92E294DA208ED0740025A9D6 /* RmaStatusCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RmaStatusCell.swift; sourceTree = "<group>"; };
+		92E294DB208ED0740025A9D6 /* RmaStatusCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RmaStatusCell.xib; sourceTree = "<group>"; };
 		92E672CD202D3E3600AC53E1 /* InventoryReceiptDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryReceiptDetailsVC.swift; sourceTree = "<group>"; };
 		92F308602024F1D800CA930D /* DataSource_DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataSource_DetailsVC.swift; sourceTree = "<group>"; };
 		92F308622024F2C400CA930D /* Delegate_DetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate_DetailsVC.swift; sourceTree = "<group>"; };
@@ -214,6 +231,7 @@
 		92F3087020258DCA00CA930D /* CustomProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomProtocols.swift; sourceTree = "<group>"; };
 		92F308722025A9A800CA930D /* InternalNoteCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternalNoteCell.swift; sourceTree = "<group>"; };
 		92F308732025A9A800CA930D /* InternalNoteCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InternalNoteCell.xib; sourceTree = "<group>"; };
+		92F6B56E208F22AA00F2E61C /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CE0906F99B8C102E1A47C8C0 /* Pods-IVE Inventory.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-IVE Inventory.release.xcconfig"; path = "Pods/Target Support Files/Pods-IVE Inventory/Pods-IVE Inventory.release.xcconfig"; sourceTree = "<group>"; };
 		D00225CD200131B4001EAD9C /* ScanManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScanManager.swift; sourceTree = "<group>"; };
 		D0C3EDB31FFF46B9005DA4A0 /* SetUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetUpViewController.swift; sourceTree = "<group>"; };
@@ -227,6 +245,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				92F6B56F208F22AA00F2E61C /* MessageUI.framework in Frameworks */,
 				92181FE91FF785C300950F56 /* LocalAuthentication.framework in Frameworks */,
 				0A2BB94BA46B8DE768AC82D9 /* Pods_IVE_Inventory.framework in Frameworks */,
 			);
@@ -323,6 +342,7 @@
 				922AEA2C1FFBF4C5004246F9 /* DrConstants.swift */,
 				92472528200E5F3400C34B42 /* IVEStruct.swift */,
 				920D01E1205CB82800E3C6AB /* IVEReceipt.swift */,
+				923C3201208E41F3009233D6 /* IVEVendor.swift */,
 			);
 			name = Constants;
 			sourceTree = "<group>";
@@ -441,6 +461,8 @@
 			isa = PBXGroup;
 			children = (
 				923411731FEA166900BC82E0 /* AppDelegate.swift */,
+				92E294D5208ECB1D0025A9D6 /* VendorsRmaStatusVC */,
+				923C31FC208E3FA9009233D6 /* VendorsViewController */,
 				92D33D292056342800F8FFD5 /* VendorSelectionVC */,
 				92E672CC202D3DE400AC53E1 /* InventoryReceiptDetailsVC */,
 				92172E22202CC21500F213FD /* InventoryReceiptViewController */,
@@ -473,6 +495,17 @@
 			path = Printer;
 			sourceTree = "<group>";
 		};
+		923C31FC208E3FA9009233D6 /* VendorsViewController */ = {
+			isa = PBXGroup;
+			children = (
+				923C31FD208E3FE9009233D6 /* VendorsViewController.swift */,
+				923C3203208E4DC7009233D6 /* VendorsCell.swift */,
+				923C3204208E4DC7009233D6 /* VendorsCell.xib */,
+				923C3207208E541D009233D6 /* VendorManager.swift */,
+			);
+			name = VendorsViewController;
+			sourceTree = "<group>";
+		};
 		925B8262202773F70023A0A7 /* ScannerViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,6 +533,16 @@
 				9203D0AF201DD3A600FB2F7E /* ImageCell.xib */,
 			);
 			name = BottomTrayViewController;
+			sourceTree = "<group>";
+		};
+		92E294D5208ECB1D0025A9D6 /* VendorsRmaStatusVC */ = {
+			isa = PBXGroup;
+			children = (
+				92E294D6208ECB580025A9D6 /* VendorsRmaStatusVC.swift */,
+				92E294DA208ED0740025A9D6 /* RmaStatusCell.swift */,
+				92E294DB208ED0740025A9D6 /* RmaStatusCell.xib */,
+			);
+			name = VendorsRmaStatusVC;
 			sourceTree = "<group>";
 		};
 		92E672CC202D3DE400AC53E1 /* InventoryReceiptDetailsVC */ = {
@@ -551,6 +594,7 @@
 		D1677139AF4570E56863EE67 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				92F6B56E208F22AA00F2E61C /* MessageUI.framework */,
 				92181FE81FF785B900950F56 /* LocalAuthentication.framework */,
 				D923680D55883DFA925F5DE5 /* Pods_IVE_Inventory.framework */,
 			);
@@ -633,6 +677,7 @@
 				922AEA1B1FFBF497004246F9 /* SF-UI-Display-Bold.otf in Resources */,
 				922AEA271FFBF498004246F9 /* SF-UI-Display-Thin.otf in Resources */,
 				923C2A051FEFD29C00D805B0 /* ReturnCell.xib in Resources */,
+				92E294DD208ED0740025A9D6 /* RmaStatusCell.xib in Resources */,
 				922AEA191FFBF497004246F9 /* SF-UI-Text-Medium.otf in Resources */,
 				92D79E0D2014BE5F0083E5CE /* BottomTrayCell.xib in Resources */,
 				922AEA211FFBF498004246F9 /* SF-UI-Text-Regular.otf in Resources */,
@@ -644,6 +689,7 @@
 				923A9086200267470024BFE6 /* Assets.xcassets in Resources */,
 				922AEA241FFBF498004246F9 /* SF-UI-Text-LightItalic.otf in Resources */,
 				922AEA221FFBF498004246F9 /* SF-UI-Text-Ultrathin.otf in Resources */,
+				923C3206208E4DC7009233D6 /* VendorsCell.xib in Resources */,
 				9203D0B1201DD3A600FB2F7E /* ImageCell.xib in Resources */,
 				922AEA2A1FFBF498004246F9 /* SF-UI-Display-Black.otf in Resources */,
 				922B95171FEF46B600C176B4 /* MenuMainCell.xib in Resources */,
@@ -747,6 +793,7 @@
 				9231D3011FF6AA720055F6B1 /* LoginViewController.swift in Sources */,
 				92BAF51B200BAA1D008FCFC3 /* SetUpCell.swift in Sources */,
 				920D01E0205CB74E00E3C6AB /* InventoryReceiptManager.swift in Sources */,
+				923C3202208E41F4009233D6 /* IVEVendor.swift in Sources */,
 				925B8264202774110023A0A7 /* ScannerViewController.swift in Sources */,
 				92F308632024F2C400CA930D /* Delegate_DetailsVC.swift in Sources */,
 				9231D3031FF6AA870055F6B1 /* RegisterViewController.swift in Sources */,
@@ -754,6 +801,7 @@
 				92472529200E5F3400C34B42 /* IVEStruct.swift in Sources */,
 				92181FEC1FF7861400950F56 /* LocalAuthenticationManager.swift in Sources */,
 				92D40273202391BF004F143F /* CustomerView.swift in Sources */,
+				92E294DC208ED0740025A9D6 /* RmaStatusCell.swift in Sources */,
 				922AEA351FFBF4D6004246F9 /* UIColor+Extension.swift in Sources */,
 				92F308612024F1D800CA930D /* DataSource_DetailsVC.swift in Sources */,
 				923411761FEA166900BC82E0 /* MenuViewController.swift in Sources */,
@@ -761,10 +809,12 @@
 				923A908D200299D20024BFE6 /* WirelessPrinterManager.swift in Sources */,
 				922B95141FEF46B600C176B4 /* MenuViewDataSource.swift in Sources */,
 				92F308662024F4A200CA930D /* RmaDetailCell.swift in Sources */,
+				923C3208208E541D009233D6 /* VendorManager.swift in Sources */,
 				923A90922002B5630024BFE6 /* NDHTMLtoPDF.m in Sources */,
 				923C2A0D1FF00CDF00D805B0 /* ReturnSearchDelegate.swift in Sources */,
 				922B95181FEF46B600C176B4 /* MenuCell.swift in Sources */,
 				92BAF512200AC19E008FCFC3 /* UIViewController+Extension.swift in Sources */,
+				92E294D8208ECB580025A9D6 /* VendorsRmaStatusVC.swift in Sources */,
 				922AEA2D1FFBF4C5004246F9 /* DrConstants.swift in Sources */,
 				925F43A82060B61A00824A45 /* UIImage+Extension.swift in Sources */,
 				922AEA361FFBF4D6004246F9 /* UIBarButtonItem+Extension.swift in Sources */,
@@ -789,11 +839,13 @@
 				922B95151FEF46B600C176B4 /* MenuViewDelegate.swift in Sources */,
 				922AEA341FFBF4D6004246F9 /* UIView+Extension.swift in Sources */,
 				92E672CE202D3E3600AC53E1 /* InventoryReceiptDetailsVC.swift in Sources */,
+				923C31FF208E3FE9009233D6 /* VendorsViewController.swift in Sources */,
 				9231D3061FF6B3490055F6B1 /* UITextField-Inspectable.swift in Sources */,
 				92D33D2C2056348300F8FFD5 /* VendorSelectionVC.swift in Sources */,
 				92F3086A2024F4C100CA930D /* RmaContainerCell.swift in Sources */,
 				922B954D1FEF6B0A00C176B4 /* ReturnViewController.swift in Sources */,
 				923C2A0B1FEFEDB400D805B0 /* ReturnViewManager.swift in Sources */,
+				923C3205208E4DC7009233D6 /* VendorsCell.swift in Sources */,
 				922AEA3A1FFBF526004246F9 /* NetworkManager.swift in Sources */,
 				923C2A011FEFD1D300D805B0 /* ReturnDelegate.swift in Sources */,
 				923BC6ED1FFE682900134E0D /* UILabel+Extension.swift in Sources */,

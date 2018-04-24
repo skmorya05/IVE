@@ -21,11 +21,11 @@ enum RegisterPageDisplayMode {
     case none
 }
 
-class RegisterViewController: UIViewController, UITextFieldDelegate
+class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate
 {
-
     @IBOutlet weak var view_gradientBorder:UIView!
     @IBOutlet weak var btn_userImageView: UIButton!
+    @IBOutlet weak var imageView_userImageView: UIImageView!
 
     @IBOutlet weak var tf_UserName: TextField!
     @IBOutlet weak var tf_Password: TextField!
@@ -38,6 +38,7 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     @IBOutlet weak var view_container_btn_sign: UIView!
     
+    var imagePicker:UIImagePickerController!
     var selectedImage: UIImage!
     var pageDisplayMode: RegisterPageDisplayMode = .none
     var isProfileUpdate = false
@@ -55,48 +56,15 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
 
         if pageDisplayMode == .profileUpdate
         {
-            print("DrConstants.kAppDelegate.loginUser = \(DrConstants.kAppDelegate.loginUser)")
-            
             self.title = "Profile Update"
             self.navigationItem.hidesBackButton = false
-            let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(goBack))
+            let backButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "backbutton_icon"), target: self, action: #selector(self.goBack))
             self.navigationItem.leftBarButtonItem = backButton
             
-            if let loginUser = DrConstants.kAppDelegate.loginUser
-            {
-                var imageStr = String()
-                if loginUser.photo.count != 0
-                {
-                    imageStr = "\(DrConstants.kBaseUrlImage)\(loginUser.photo!)"
-                    DispatchQueue.global().async {
-                        do {
-                            let url = URL(string:imageStr)!
-                            let data = try Data.init(contentsOf: url)
-                            DispatchQueue.main.async {
-                               self.btn_userImageView.setImage(UIImage.init(data: data), for: .normal)
-                                self.btn_userImageView.layer.cornerRadius = self.btn_userImageView.frame.size.width/2
-                                self.btn_userImageView.clipsToBounds = true
-                            }
-                        }
-                        catch
-                        {
-                            
-                        }
-                    }
-                }
-                else
-                {
-                    btn_userImageView.setBackgroundImage(UIImage.init(named: imageStr) , for: .normal)
-                }
-                
-                tf_UserName.text = loginUser.name
-                tf_Password.text = "XXXXXXXXXXX"
-                tf_Email.text = loginUser.email
-                tf_initial.text = loginUser.initial
-                
-                btn_SignUp.setTitle("Update", for: .normal)
-                view_container_btn_sign.isHidden = true
-            }
+            self.btn_SignUp.setTitle("Update", for: .normal)
+            self.view_container_btn_sign.isHidden = true
+            
+            getUserProfile()
         }
     }
     
@@ -157,29 +125,83 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         }
     }
     
+    //MARK:----------------Webservice----------------
+    func getUserProfile()
+    {
+        JustHUD.shared.showInView(view: self.view)
+        NetworkManager.sharedManager.getLoginUserProfile { (user) in
+            JustHUD.shared.hide()
+            if let _ = user
+            {
+                if let loginUser = user
+                {
+                    var imageStr = String()
+                    if loginUser.photo.count != 0
+                    {
+                        imageStr = "\(DrConstants.kBaseUrlImage)\(loginUser.photo!)"
+                        DispatchQueue.global().async {
+                            do {
+                                let url = URL(string:imageStr)!
+                                let data = try Data.init(contentsOf: url)
+                                DispatchQueue.main.async {
+                                    if self.selectedImage == nil
+                                    {
+                                        let image = UIImage.init(data: data)!
+                                        print("image = \(String(describing: image))")
+                                        
+                                        self.btn_userImageView.setImage(image, for: .normal)
+                                        self.btn_userImageView.layer.cornerRadius = self.btn_userImageView.frame.size.width/2
+                                        self.btn_userImageView.clipsToBounds = true
+                                    }
+                                }
+                            }
+                            catch
+                            {
+                                
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if self.selectedImage == nil
+                        {
+                           self.btn_userImageView.setBackgroundImage(UIImage.init(named: imageStr) , for: .normal)
+                        }
+                    }
+                    
+                    self.tf_UserName.text = loginUser.name
+                    self.tf_Password.text = "XXXXXXXXXXX"
+                    self.tf_Email.text = loginUser.email
+                    self.tf_initial.text = loginUser.initial
+                }
+            }
+        }
+    }
+    
     //MARK:-------------Button Actions--------------
     @IBAction func btnTapped_selectUserImage(sender: UIButton)
     {
-        let alertController = UIAlertController.init(title: "Choose Image", message: "", preferredStyle: .actionSheet)
-        
-        let cameraAction = UIAlertAction.init(title: "Camera", style: .default) { (action:UIAlertAction) in
+        DispatchQueue.main.async {
+            let alertController = UIAlertController.init(title: "Choose Image", message: "", preferredStyle: .actionSheet)
             
-            self.openSourceToChoosePhotos(source: .Camera)
-        }
-        alertController.addAction(cameraAction)
-        
-        let galleryAction = UIAlertAction.init(title: "Gallery", style: .default) { (action:UIAlertAction) in
+            let cameraAction = UIAlertAction.init(title: "Camera", style: .default) { (action:UIAlertAction) in
+                
+                self.openSourceToChoosePhotos(source: .Camera)
+            }
+            alertController.addAction(cameraAction)
             
-            self.openSourceToChoosePhotos(source: .Gallery)
+            let galleryAction = UIAlertAction.init(title: "Gallery", style: .default) { (action:UIAlertAction) in
+                
+                self.openSourceToChoosePhotos(source: .Gallery)
+            }
+            alertController.addAction(galleryAction)
+            
+            let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
+            }
+            alertController.addAction(cancelAction)
+            
+            self.present(alertController, animated: true, completion: nil)
         }
-        alertController.addAction(galleryAction)
-
-        let cancelAction = UIAlertAction.init(title: "Cancel", style: .cancel) { (action:UIAlertAction) in
-        }
-        alertController.addAction(cancelAction)
-        
-        present(alertController, animated: true, completion: nil)
-        
     }
     
     func openSourceToChoosePhotos(source: PhotoSource)
@@ -188,11 +210,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         {
             if UIImagePickerController.isSourceTypeAvailable(.camera)
             {
-                let imagePicker = UIImagePickerController()
-                imagePicker.sourceType = .camera
-                imagePicker.allowsEditing = true
-                imagePicker.delegate = self
-                present(imagePicker, animated: true, completion: nil)
+                self.imagePicker = UIImagePickerController()
+                self.imagePicker.sourceType = .camera
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.delegate = self
+                present(self.imagePicker, animated: true, completion: nil)
             }
             else
             {
@@ -203,11 +225,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         {
             if UIImagePickerController.isSourceTypeAvailable(.photoLibrary)
             {
-                let imagePicker = UIImagePickerController()
-                imagePicker.sourceType = .photoLibrary
-                imagePicker.allowsEditing = true
-                imagePicker.delegate = self
-                present(imagePicker, animated: true, completion: nil)
+                self.imagePicker = UIImagePickerController()
+                self.imagePicker.sourceType = .photoLibrary
+                self.imagePicker.allowsEditing = true
+                self.imagePicker.delegate = self
+                present(self.imagePicker, animated: true, completion: nil)
             }
             else
             {
@@ -223,9 +245,6 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
     
     @IBAction func btnTapped_signUp(sender: UIButton)
     {
-        
-        //self.updateUserImage(id:"78")  //DrConstants.kAppDelegate.loginUser.id!
-        
         guard let username = tf_UserName.text else { return }
         guard let password = tf_Password.text else { return }
         guard let email = tf_Email.text else { return }
@@ -278,9 +297,11 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
                 
                 if let userId = user?.id
                 {
+                    var userUpdate = user
+                    userUpdate?.password = password
                     DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
                     DrConstants.kUser_Default.synchronize()
-                    DrConstants.kAppDelegate.loginUser = user!
+                    DrConstants.kAppDelegate.loginUser = userUpdate!
                     
                     if self.selectedImage != nil
                     {
@@ -337,6 +358,36 @@ class RegisterViewController: UIViewController, UITextFieldDelegate
         })
     }
     
+    //MARK:------------UIImagePickerControllerDelegate---------------
+    @objc func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
+    {
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        
+        print("\n info = \(info)")
+        
+        picker.dismiss(animated: true, completion: {
+            
+            if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage
+            {
+                print("\n originalImage = \(originalImage)")
+
+                DispatchQueue.main.async {
+                    // Use originalImage Here
+                    self.selectedImage = originalImage
+                    self.btn_userImageView.roundCorners(radius: self.btn_userImageView.frame.width/2)
+                    self.btn_userImageView.setImage(originalImage, for: .normal)
+                    self.isProfileUpdate = true
+                }
+            }
+            else
+            {
+                print("Image Not Found")
+            }
+        })
+    }
     
     override func viewWillDisappear(_ animated: Bool)
     {

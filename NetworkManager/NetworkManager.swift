@@ -399,6 +399,64 @@ class NetworkManager: NSObject
         }
     }
     
+    func getRmaStatusList(completion:@escaping (_ rmaStatusList:[[String:Any]]?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: IVE_URLConstant.kVendorsRmaList)!,
+            method: .get,
+            parameters: ["vendor_id": "2"])
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+
+                guard let value = response.result.value as? [String: Any], let usersList = value[IVE_KeyConstant.kData] as? [[String: Any]] else
+                {
+                    print("Value is not in specified format")
+                    return
+                }
+                
+                completion(usersList)
+        }
+    }
+    
+    func updateRmaStatus(prop:[String:String], completion:@escaping (_ isUpdate:Bool?) -> Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kVendorsRmaUpdate)")!,
+            method: .post,
+            parameters: prop)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let dict = response.result.value as? [String: Any] else
+                {
+                    return
+                }
+                
+                if let _ = dict["status"]
+                {
+                    completion(true)
+                }
+                else
+                {
+                    completion(false)
+                }
+                
+            }
+    }
+    
+    
     func getRmaLogsList( rmaId:String , completion:@escaping (_ rmaLogs:[[String:Any]]?) -> Void)
     {
         Alamofire.request(
@@ -414,17 +472,13 @@ class NetworkManager: NSObject
                     return
                 }
                 
-                print("response.result.value = \(response.result.value)")
-                
                 guard let value = response.result.value as? [String: Any], let rmaLogs = value[IVE_KeyConstant.kData] as? [[String: Any]] else
                 {
                     print("Value is not in specified format")
                     return
                 }
                 
-                print("\n rmaLogs = \(rmaLogs)")
                 completion(rmaLogs)
-                
         }
     }
     
@@ -719,4 +773,96 @@ class NetworkManager: NSObject
         }
 
     }
+    
+    
+    func getLoginUserProfile(completion:@escaping (_ user: IVE_User?)-> Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kUserProfile)\(DrConstants.kAppDelegate.loginUser.id!)")!,
+            method: .get,
+            parameters: nil)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                print("response.result.value = \(String(describing: response.result.value))")
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("Malformed data received from fetchAllRooms service")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    //completion()
+                    
+                    if let dataDict = value["data"] as? [String: Any]
+                    {
+                        let userStruct = IVE_User.init(dict: dataDict)
+                        completion(userStruct)
+                    }
+                }
+                else
+                {
+                    completion(nil)
+                }
+        }
+    }
+    
+    
+    func itemReceiveUpdate(properties:[String: String], completion:@escaping ()->Void)
+    {
+        print("\n prop = \(properties)")
+        
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kItemReceiveUpdate)")!,
+            method: .post,
+            parameters: properties)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                print("response.result.value = \(String(describing: response.result.value))")
+                
+                guard response.result.isSuccess else
+                {
+                    print("Error: \(String(describing: response.result.error))")
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    print("Malformed data received from fetchAllRooms service")
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion()
+                }
+        }
+        
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 }

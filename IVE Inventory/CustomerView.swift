@@ -37,8 +37,8 @@ class CustomerView: UIView
         self.updateButtonView(senders: [btn_Exchanged, btn_Refend, btn_Pending, btn_Save])
         self.btn_Save.isHidden = true
         
-        btn_Exchanged.updateButtonsUI(text: "Exchanged")
-        btn_Refend.updateButtonsUI(text: "Refunded")
+        btn_Exchanged.updateButtonsUI(text: "Exchange")
+        btn_Refend.updateButtonsUI(text: "Need to Refund")
         btn_Pending.updateButtonsUI(text: "Pending")
     }
     

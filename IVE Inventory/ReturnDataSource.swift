@@ -40,7 +40,6 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         let cell = tableView.dequeueReusableCell(withIdentifier: "ReturnCell", for: indexPath) as! ReturnCell
         cell.contentView.backgroundColor = ColorConstant.blueFillColor
         let returnItem = self.returnList[indexPath.row]
-        //print("returnItem = \(returnItem)")
         
         cell.dataStruct = returnItem
         cell.lbl_rma.text = returnItem.rma
@@ -52,11 +51,9 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         cell.lbl_reason.text = returnItem.reason
         
         //#Rma-Status#
-        cell.lbl_ItemReceive.text = returnItem.item_receive
-        cell.lbl_CustomerSide.text = returnItem.customer_side
+        cell.lbl_ItemReceive.text = returnItem.item_receive.localizedCapitalized
+        cell.lbl_CustomerSide.text = returnItem.customer_side.localizedCapitalized
         cell.lbl_InventorySide.text = returnItem.inventory_side
-        //cell.lbl_closedate.text = returnItem.closedate
-        //cell.lbl_closeby.text = returnItem.closeby
         
         cell.btn_Radio.isHidden = true
         if self.screenMode == .PRINT
@@ -87,8 +84,6 @@ extension ReturnDataSource: UITableViewDataSource, RadioButtonProtocol
         {
            cell.btn_Radio.isSelected = false
         }
-        
-        print("\n returnItem.status = \(returnItem.status)")
         
         if returnItem.status == "open"
         {

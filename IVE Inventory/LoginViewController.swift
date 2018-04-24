@@ -39,6 +39,25 @@ class LoginViewController: UIViewController, UITextFieldDelegate
         
         self.view_gradientBorder.addHorizontalGradientColor(leftColor: ColorConstant.leftRedColor, and: ColorConstant.rightRedColor)
 
+        let userDefault = DrConstants.kUser_Default
+
+        if let value =  userDefault.value(forKey: "rememberme") as? Bool
+        {
+            if value == true
+            {
+                self.btn_rememberMe.isSelected = true
+            }
+            
+            if let userName = userDefault.value(forKey: "username") as? String
+            {
+                tf_UserName.text = userName
+            }
+            
+            if let password = userDefault.value(forKey: "password") as?  String
+            {
+                tf_Password.text = password
+            }
+        }
     }
 
     func setUpViews()
@@ -120,66 +139,35 @@ class LoginViewController: UIViewController, UITextFieldDelegate
             NetworkManager.sharedManager.getLoginDetails(dict: dict, completion: { (user:IVE_User?) in
                 
                 JustHUD.shared.hide()
-                print("loginDetails = \(String(describing: user))")
                 
                 if let userId = user?.id
                 {
+                    var userUpdated = user
+                    userUpdated?.password = password
                     DrConstants.kUser_Default.set(userId, forKey: IVE_KeyConstant.kId)
-                    DrConstants.kUser_Default.synchronize()
-                    DrConstants.kAppDelegate.loginUser = user!
+                    DrConstants.kAppDelegate.loginUser = userUpdated!
                     
                     let menuVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "MenuViewController") as! MenuViewController
                     self.navigationController?.pushViewController(menuVC, animated: true)
                     
+                    if  self.btn_rememberMe.isSelected == true
+                    {
+                        DrConstants.kUser_Default.set(username, forKey: "username")
+                        DrConstants.kUser_Default.set(password, forKey: "password")
+                        DrConstants.kUser_Default.set(true, forKey: "rememberme")
+                    }
+                    else
+                    {
+                        DrConstants.kUser_Default.set("", forKey: "username")
+                        DrConstants.kUser_Default.set("", forKey: "password")
+                        DrConstants.kUser_Default.set(false, forKey: "rememberme")
+                    }
+                    
+                    DrConstants.kUser_Default.synchronize()
                 }
             })
         }
- 
-       //testImage()
-        
     }
-    
-    func testImage()
-    {
-          let image1 = UIImage.init(named: "1.jpeg")!
-         let image2 = UIImage.init(named: "2.jpeg")!
-         let image3 = UIImage.init(named: "3.jpeg")!
-         
-         let imagesList:[UIImage] = [image1, image2, image3]
-         
-         var imageStrArr = [String]()
-         for image in imagesList
-         {
-             if let base64String = image.base64(format: .JPEG(1.0))
-             {
-                imageStrArr.append(base64String)
-                print("base64String = \(base64String)")
-             }
-         }
-         
-         Alamofire.request(
-         URL(string: "http://stackup.mobi/220electronics/image_upload.php")!,
-         method: .post,
-         parameters: ["images":imageStrArr])
-         .validate()
-         .responseJSON { (response) -> Void in
-         guard response.result.isSuccess else
-         {
-         print("Error: \(String(describing: response.result.error))")
-         return
-         }
-         
-         guard (response.result.value as? [String: Any]) != nil else
-         {
-         print("Malformed data received from fetchAllRooms service")
-         return
-         }
-         
-         print("\n response.result.value = \(response.result.value)")
-         }
-        
-    }
-    
     
     @IBAction func forgotYourPasswordButtonTapped(sender: UIButton)
     {

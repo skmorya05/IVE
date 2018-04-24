@@ -52,8 +52,6 @@ class InventoryReceiptDetailsVC: UIViewController, UICollectionViewDataSource, U
         self.collectionView.register(UINib.init(nibName: "ImageCell", bundle: nil), forCellWithReuseIdentifier: "ImageCell")
         self.collectionView.dataSource = self
         self.collectionView.delegate = self
-
-        print("#iveReceipt = \(self.iveReceipt!)")
         
         self.pageControl.numberOfPages = self.iveReceipt.images.count
 

@@ -19,36 +19,3 @@ extension UIViewController
     }
 }
 
-
-extension RegisterViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate
-{
-    
-    public func imagePickerControllerDidCancel(_ picker: UIImagePickerController)
-    {
-        picker.dismiss(animated: true)
-    }
-    
-    public func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any])
-    {
-        if let _ = info[UIImagePickerControllerEditedImage] as? UIImage
-        {
-            // Use editedImage Here
-        }
-        
-        if let originalImage = info[UIImagePickerControllerOriginalImage] as? UIImage
-        {
-            // Use originalImage Here
-            self.selectedImage = originalImage
-            self.btn_userImageView.setBackgroundImage(self.selectedImage, for: .normal)
-            self.btn_userImageView.roundCorners(radius: self.btn_userImageView.frame.width/2)
-            self.isProfileUpdate = true
-            
-        }
-        else
-        {
-            print("Image Not Found")
-        }
-        
-        picker.dismiss(animated: true)
-    }
-}
