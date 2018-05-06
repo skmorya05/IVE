@@ -33,6 +33,38 @@
             endingLineNumber = "26"
             landmarkName = "authenticationWithTouchID()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "IVE_Inventory.LoginViewController.authenticationWithTouchID() -&gt; ()"
+                  moduleName = "IVE Inventory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
+                  timestampString = "547263645.475297"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26"
+                  offsetFromSymbolStart = "394">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Bool, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in IVE_Inventory.LoginViewController.authenticationWithTouchID() -&gt; ()"
+                  moduleName = "IVE Inventory"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
+                  timestampString = "547263645.478724"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "28"
+                  endingLineNumber = "28"
+                  offsetFromSymbolStart = "32">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -186,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetworkManager/NetworkManager.swift"
-            timestampString = "546256784.532671"
+            timestampString = "547263645.143729"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "280"
-            endingLineNumber = "280"
+            startingLineNumber = "279"
+            endingLineNumber = "279"
             landmarkName = "NetworkManager"
             landmarkType = "3">
          </BreakpointContent>
@@ -202,11 +234,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetworkManager/NetworkManager.swift"
-            timestampString = "546256784.532792"
+            timestampString = "547263645.144281"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "477"
-            endingLineNumber = "477"
+            startingLineNumber = "476"
+            endingLineNumber = "476"
             landmarkName = "getRmaLogsList(rmaId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -234,23 +266,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "IVE Inventory/RmaContainerCell.swift"
-            timestampString = "546256784.532892"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "271"
-            endingLineNumber = "271"
-            landmarkName = "btn_SaveInventoryUpdate()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "IVE Inventory/RmaContainerCell.swift"
-            timestampString = "546256784.533397"
+            timestampString = "546273971.854249"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "235"

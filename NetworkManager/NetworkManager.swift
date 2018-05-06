@@ -32,7 +32,6 @@ class NetworkManager: NSObject
                 guard let value = response.result.value as? [String: Any],
                     let rows = value["data"] as? [[String: Any]] else
                 {
-                        print("Malformed data received from fetchAllRooms service")
                         return
                 }
                 
@@ -849,7 +848,34 @@ class NetworkManager: NSObject
         
     }
     
-    
+    func addNewvendor(properties:[String: String], completion:@escaping ()->Void)
+    {
+        Alamofire.request(
+            URL(string: "\(IVE_URLConstant.kAddNewVendor)")!,
+            method: .post,
+            parameters: properties)
+            .validate()
+            .responseJSON { (response) -> Void in
+                
+                print("response.result.value = \(String(describing: response.result.value))")
+                
+                guard response.result.isSuccess else
+                {
+                    return
+                }
+                
+                guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
+                {
+                    return
+                }
+                
+                if status == "success"
+                {
+                    completion()
+                }
+          }
+        
+    }
     
     
     

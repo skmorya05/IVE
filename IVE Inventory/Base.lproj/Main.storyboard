@@ -1531,6 +1531,68 @@
             </objects>
             <point key="canvasLocation" x="428" y="142"/>
         </scene>
+        <!--Gallery View Controller-->
+        <scene sceneID="NzQ-SL-6vo">
+            <objects>
+                <viewController storyboardIdentifier="GalleryViewController" id="knQ-gz-RAU" customClass="GalleryViewController" customModule="CollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="pqR-1Q-6I5"/>
+                        <viewControllerLayoutGuide type="bottom" id="PO4-3r-3yE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="HUC-6c-lBR">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Mpi-th-kZR">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pKj-kp-4Oc">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="iJY-jM-eKB">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </view>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                            <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="15" translatesAutoresizingMaskIntoConstraints="NO" id="ZSB-V8-Nk8">
+                                <rect key="frame" x="101" y="610" width="172" height="37"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="172" id="808-H5-RUr"/>
+                                    <constraint firstAttribute="height" constant="37" id="QLI-oG-nL7"/>
+                                </constraints>
+                                <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="currentPageIndicatorTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </pageControl>
+                        </subviews>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="PO4-3r-3yE" firstAttribute="top" secondItem="Mpi-th-kZR" secondAttribute="bottom" id="2M7-aO-G4A"/>
+                            <constraint firstItem="Mpi-th-kZR" firstAttribute="leading" secondItem="HUC-6c-lBR" secondAttribute="leading" id="9df-QR-DMG"/>
+                            <constraint firstItem="Mpi-th-kZR" firstAttribute="top" secondItem="pqR-1Q-6I5" secondAttribute="bottom" id="NVs-9u-IZb"/>
+                            <constraint firstItem="ZSB-V8-Nk8" firstAttribute="centerX" secondItem="HUC-6c-lBR" secondAttribute="centerX" id="XuW-zb-ByA"/>
+                            <constraint firstItem="PO4-3r-3yE" firstAttribute="top" secondItem="ZSB-V8-Nk8" secondAttribute="bottom" constant="20" id="p0c-8S-OCl"/>
+                            <constraint firstAttribute="trailing" secondItem="Mpi-th-kZR" secondAttribute="trailing" id="syZ-Xz-NzY"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="h1o-rv-A0Q"/>
+                    <connections>
+                        <outlet property="pageControl" destination="ZSB-V8-Nk8" id="WXg-4Y-ldc"/>
+                        <outlet property="photoCollectionView" destination="Mpi-th-kZR" id="QzN-2H-ega"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cUm-Cq-rPn" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2911.1999999999998" y="116.49175412293854"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Cancel IVE" width="34" height="33"/>

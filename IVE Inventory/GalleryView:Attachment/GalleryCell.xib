@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="GalleryCell" customModule="IVE_Inventory" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="172" height="149"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="172" height="149"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aP4-EY-CCs">
+                        <rect key="frame" x="0.0" y="0.0" width="172" height="149"/>
+                        <subviews>
+                            <imageView contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="PbR-zZ-3yo">
+                                <rect key="frame" x="0.0" y="0.0" width="172" height="150"/>
+                            </imageView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="PbR-zZ-3yo" secondAttribute="trailing" id="OME-RF-14P"/>
+                            <constraint firstItem="PbR-zZ-3yo" firstAttribute="top" secondItem="aP4-EY-CCs" secondAttribute="top" id="U3F-Eq-EZK"/>
+                            <constraint firstItem="PbR-zZ-3yo" firstAttribute="centerX" secondItem="aP4-EY-CCs" secondAttribute="centerX" id="Zb6-0y-fEi"/>
+                            <constraint firstItem="PbR-zZ-3yo" firstAttribute="leading" secondItem="aP4-EY-CCs" secondAttribute="leading" id="aFd-Ik-Kjy"/>
+                            <constraint firstItem="PbR-zZ-3yo" firstAttribute="centerY" secondItem="aP4-EY-CCs" secondAttribute="centerY" id="h7g-y9-6OD"/>
+                            <constraint firstAttribute="bottom" secondItem="PbR-zZ-3yo" secondAttribute="bottom" id="hqX-Fh-G8r"/>
+                        </constraints>
+                    </scrollView>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="aP4-EY-CCs" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="OGh-0k-BCe"/>
+                <constraint firstItem="aP4-EY-CCs" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="eoY-zK-gFE"/>
+                <constraint firstAttribute="trailing" secondItem="aP4-EY-CCs" secondAttribute="trailing" id="g8f-i9-sJJ"/>
+                <constraint firstAttribute="bottom" secondItem="aP4-EY-CCs" secondAttribute="bottom" id="uUF-rT-bKE"/>
+            </constraints>
+            <size key="customSize" width="226" height="284"/>
+            <connections>
+                <outlet property="capturedImageView" destination="PbR-zZ-3yo" id="eoo-xx-lyO"/>
+                <outlet property="scrollImageView" destination="aP4-EY-CCs" id="7cf-zm-tsQ"/>
+            </connections>
+            <point key="canvasLocation" x="-45" y="139.5"/>
+        </collectionViewCell>
+    </objects>
+</document>

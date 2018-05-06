@@ -24,6 +24,7 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
     
     
     var dataStruct: Return!
+    var photos: [[String: String]]!
     var views: [UIView]!
     
     var dataSource = DataSource_DetailsVC()
@@ -61,6 +62,17 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
         let shareButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "Share"), target: self, action: #selector(shareButtonTapped))
         
+        let galleryButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "photo_library_white"), target: self, action: #selector(galleryButtonTapped))
+        
+        if self.photos.count > 0
+        {
+            self.navigationItem.rightBarButtonItems = [printerButton, shareButton, galleryButton]
+        }
+        else
+        {
+            self.navigationItem.rightBarButtonItems = [printerButton, shareButton]
+        }
+        
         if (DrConstants.kAppDelegate.loginUser.role == IVEUserRole.kAdmin || DrConstants.kAppDelegate.loginUser.access.contains(IVEAccess.kRma_Print))
         {
             printerButton.isEnabled = true
@@ -69,8 +81,6 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         {
             printerButton.isEnabled = false
         }
-        
-        self.navigationItem.rightBarButtonItems = [printerButton, shareButton]
     }
     
     override func viewDidAppear(_ animated: Bool)
@@ -109,6 +119,13 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
     @objc func goBack()
     {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func galleryButtonTapped()
+    {
+        let galleryVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "GalleryViewController") as! GalleryViewController
+        galleryVC.photos = self.photos
+        self.navigationController?.pushViewController(galleryVC, animated: true)
     }
     
     @objc func printerButtonTapped()

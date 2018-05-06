@@ -58,6 +58,19 @@ class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
     
     @IBAction func btn_Tapped_Done(sender:Any)
     {
+        if self.addVendorView.isHidden == false && self.barBtnItem.isEnabled == false
+        {
+            getVendorDetails()
+        }
+        else
+        {
+           dismissController()
+        }
+    }
+    
+    
+    @objc func dismissController()
+    {
         self.dismiss(animated: true) {
             if let _ = self.delegateVendor
             {
@@ -97,6 +110,28 @@ class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewD
             self.selectedStr = name
         }
     }
+    
+    func getVendorDetails()
+    {
+        if self.addVendorView.isHidden == false && self.barBtnItem.isEnabled == false
+        {
+            guard let name = tfName.text, name.count > 1 else
+            {
+                self.showAlert(message: "Please enter new vendor name")
+                return
+            }
+            let phone = tfPhone.text!
+            let email = tfEmail.text!
+            let prop:[String: String] = ["name": name, "email": email, "phone":phone]
+            NetworkManager.sharedManager.addNewvendor(properties: prop, completion: {
+                DispatchQueue.main.async {
+                    self.selectedStr = name
+                    self.perform(#selector(self.dismissController) , with: nil, afterDelay: 0.3)
+                }
+            })
+        }
+    }
+    
     override func didReceiveMemoryWarning()
     {
         super.didReceiveMemoryWarning()

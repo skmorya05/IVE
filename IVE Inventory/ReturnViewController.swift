@@ -282,12 +282,14 @@ class ReturnViewController: UIViewController, ReturnSearchProtocol, RadioButtonP
         {
             let dataStruct = self.dataSource.returnList[indexPath.row]
             JustHUD.shared.showInView(view: self.view)
+            
            NetworkManager.sharedManager.getRmaDetails(rma: dataStruct.rma) { (returnStruct) in
             JustHUD.shared.hide()
             if let _ = returnStruct
             {
                 let detailsVC = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "DetailsViewController") as! DetailsViewController
                 detailsVC.dataStruct = returnStruct
+                detailsVC.photos = dataStruct.images
                 self.navigationController?.pushViewController(detailsVC, animated: true)
             }
           }

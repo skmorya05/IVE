@@ -46,6 +46,7 @@ struct Return {
     var defective_option: String!
     var vendor: String!
 
+    var images = [[String: String]]()
     
     //Status
     var item_receive: String!
@@ -292,6 +293,11 @@ struct Return {
             self.defective_explain = ""
         }
         
+        //Attached images
+        if let images = dict["images"] as? [[String: String]]
+        {
+            self.images = images
+        }
         
         //#Rma-Status
         if let receive = dict["item_receive"] as? String

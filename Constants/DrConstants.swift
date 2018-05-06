@@ -50,6 +50,10 @@ public struct IVE_URLConstant
     
     static let kPostInventory_Log = DrConstants.kBaseUrl+"inventory/internal_note"
     static let kPostRma_Log = DrConstants.kBaseUrl+"ticket/internal_note"
+    
+    static let kAddNewVendor = DrConstants.kBaseUrl+"ticket/add_new_vendor"
+    static let kUpdateVendor = DrConstants.kBaseUrl+"ticket/update_vendor"
+    static let kDeleteVendor = DrConstants.kBaseUrl+"ticket/delete_vendor"
 
     
 }
