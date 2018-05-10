@@ -35,7 +35,7 @@ extension DataSource_ViewController: UICollectionViewDataSource
             image_name = "\(DrConstants.kBaseUrlImage)\(image_name)"
             if let url = URL.init(string: image_name)
             {
-               cell.capturedImageView.sd_setImage(with: url, completed: nil)
+               cell.capturedImageView.sd_setImage(with: url, placeholderImage: #imageLiteral(resourceName: "electronics"))
             }
         }
         return cell

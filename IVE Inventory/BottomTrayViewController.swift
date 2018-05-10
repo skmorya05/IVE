@@ -24,7 +24,7 @@ protocol QRCodeReadProtocol:class {
 let cellIdef = "BottomTrayCell"
 
 
-class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NextButtonProtocol
+class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout, NextButtonProtocol, VendorSelectionProtocol
 {
 
     @IBOutlet weak var collectionView:UICollectionView!
@@ -255,14 +255,54 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
     //MARK:- NextButtonProtocol
     func nextbuttonTapped(images:[UIImage])
     {
+        NetworkManager.sharedManager.getVendorsList { (vendorsList) in
+            
+            if let _ = vendorsList
+            {
+                DispatchQueue.main.async {
+                    let vc = VendorSelectionVC.init(nibName: "VendorSelectionVC", bundle: nil)
+                    vc.vendors = vendorsList
+                    vc.modalPresentationStyle = .overFullScreen
+                    vc.modalTransitionStyle = .crossDissolve
+                    vc.delegateVendor = self
+                    
+                    if let appDelegate = UIApplication.shared.delegate as? AppDelegate
+                    {
+                        //appDelegate.window?.rootViewController?.present(vc, animated: true, completion: nil)
+                        self.present(vc, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
+    
+    @objc func textChangedBegain(_ sender:UITextField)
+    {
+        if sender.text?.count != 0
+        {
+            self.actionToEnable?.isEnabled = true
+        }
+        else
+        {
+            self.actionToEnable?.isEnabled = false
+        }
+        
+        sender.isUserInteractionEnabled = false
+        sender.resignFirstResponder()
+    }
+    
+    func didSelectVendor(name:String)
+    {
         let alertController = UIAlertController(title: "Message!", message: "Inventory Camera Receipt", preferredStyle: .alert)
         
         alertController.addTextField(configurationHandler: { (textField) -> Void in
             textField.placeholder = "Please enter receipt name"
             textField.textAlignment = .left
-
-            textField.addTarget(self, action: #selector(BottomTrayViewController.textChanged(_ :)), for: .editingChanged)
-
+            
+            textField.addTarget(self, action: #selector(BottomTrayViewController.textChangedBegain(_ :)), for: .editingDidBegin)
+            
+            textField.text = name
+            
         })
         
         alertController.addAction(UIAlertAction(title: "Cancel", style: .default, handler:nil))
@@ -271,7 +311,8 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
             alert -> Void in
             
             JustHUD.shared.showInView(view: self.view)
-            NetworkManager.sharedManager.uploadInventoryReceipts(images: self.cell.images_captured, irNameStr: self.irNameStr, completion: {
+            NetworkManager.sharedManager.uploadInventoryReceipts(images: self.cell.images_captured, irNameStr: name, completion: {
+                
                 JustHUD.shared.hide()
                 
                 let errorAlert = UIAlertController(title: "Message", message: "Inventory images saved", preferredStyle: .alert)
@@ -297,7 +338,9 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
                         })
                     }
                 }))
+                
                 self.present(errorAlert, animated: true, completion: nil)
+                
             })
         })
         
@@ -306,21 +349,6 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         saveAction.isEnabled = false
         
         self.present(alertController, animated: true, completion: nil)
- 
-    }
-    
-    @objc func textChanged(_ sender:UITextField)
-    {
-        if sender.text?.count != 0
-        {
-            self.actionToEnable?.isEnabled = true
-        }
-        else
-        {
-            self.actionToEnable?.isEnabled = false
-        }
-        
-        irNameStr = sender.text!
     }
     
     func showMaxImagesAlert()
@@ -329,12 +357,6 @@ class BottomTrayViewController: UIViewController, UICollectionViewDataSource, UI
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
-
-
-    /*
-     self.dismiss(animated: true, completion: {
-
-     */
 
     func getDocumentsDirectory() -> URL
     {

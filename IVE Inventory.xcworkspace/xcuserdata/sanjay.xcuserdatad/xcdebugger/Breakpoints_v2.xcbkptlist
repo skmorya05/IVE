@@ -42,12 +42,12 @@
                   moduleName = "IVE Inventory"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
-                  timestampString = "547263645.475297"
+                  timestampString = "547673989.6019059"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "26"
                   endingLineNumber = "26"
-                  offsetFromSymbolStart = "394">
+                  offsetFromSymbolStart = "324">
                </Location>
                <Location
                   shouldBeEnabled = "Yes"
@@ -57,7 +57,7 @@
                   moduleName = "IVE Inventory"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/sanjay/Dropbox/Projects/InProgress%20Project/IVE%20Inventory/IVE%20Inventory/LocalAuthenticationManager.swift"
-                  timestampString = "547263645.478724"
+                  timestampString = "547673989.604959"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "28"
@@ -218,7 +218,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetworkManager/NetworkManager.swift"
-            timestampString = "547263645.143729"
+            timestampString = "547673984.583034"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "279"
@@ -234,7 +234,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "NetworkManager/NetworkManager.swift"
-            timestampString = "547263645.144281"
+            timestampString = "547673984.583589"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "476"
@@ -265,13 +265,77 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "IVE Inventory/RmaContainerCell.swift"
-            timestampString = "546273971.854249"
+            filePath = "NetworkManager/NetworkManager.swift"
+            timestampString = "547673984.584022"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "235"
-            endingLineNumber = "235"
-            landmarkName = "btn_SaveInventoryUpdate()"
+            startingLineNumber = "672"
+            endingLineNumber = "672"
+            landmarkName = "uploadInventoryReceipts(images:irNameStr:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkManager/NetworkManager.swift"
+            timestampString = "547673984.584386"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "684"
+            endingLineNumber = "684"
+            landmarkName = "uploadInventoryReceipts(images:irNameStr:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkManager/NetworkManager.swift"
+            timestampString = "547673984.584741"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "678"
+            endingLineNumber = "678"
+            landmarkName = "uploadInventoryReceipts(images:irNameStr:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "NetworkManager/NetworkManager.swift"
+            timestampString = "547673984.585125"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "689"
+            endingLineNumber = "689"
+            landmarkName = "uploadInventoryReceipts(images:irNameStr:completion:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "IVE Inventory/DetailsViewController.swift"
+            timestampString = "547671131.148753"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "161"
+            endingLineNumber = "161"
+            landmarkName = "openShare(mode:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

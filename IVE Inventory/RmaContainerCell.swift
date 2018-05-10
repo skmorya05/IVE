@@ -48,7 +48,7 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
         self.invView.btn_save.addTarget(self, action: #selector(btn_SaveInventoryUpdate), for: .touchUpInside)
         self.invView.btn_InternalNotes.addTarget(self, action: #selector(internalNotes), for: .touchUpInside)
         self.invView.btn_selectVendor.addTarget(self, action: #selector(btn_Tapped_selectVendor), for: .touchUpInside)
-        
+        self.invView.btn_selectVendor.isHidden = true
         self.views.append(self.invView)
          
          for v in self.views
@@ -129,7 +129,12 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
                         if DeviceType.IS_IPAD
                         {
                            self.invView.height_Container.constant =  310.0
-                           self.invView.btn_selectVendor.backgroundColor = ColorConstant.blueFillColor
+                            self.invView.btn_selectVendor.layoutIfNeeded()
+                            self.invView.btn_selectVendor.layoutSubviews()
+                            self.invView.btn_selectVendor.backgroundColor = ColorConstant.blueFillColor
+                            self.invView.btn_selectVendor.updateConstraints()
+                            self.invView.btn_selectVendor.setNeedsDisplay()
+                          
                         }
                     }
                     
@@ -137,10 +142,11 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
                     if self.invView.btn_ReturnToVendor.isSelected == true
                     {
                         self.invView.btn_selectVendor.isHidden = false
+                        
                         if self.rmaStruct.vendor.count != 0  //Vendor Selected
                         {
-                            self.invView.btn_selectVendor.setTitle(self.rmaStruct.vendor, for: .normal)
-                            self.vendorName = self.rmaStruct.vendor
+                            self.invView.btn_selectVendor.setTitle("   \(self.rmaStruct.vendor!)   ", for: .normal)
+                            self.vendorName = self.rmaStruct.vendor!
                             
                         }
                     }
@@ -192,7 +198,8 @@ class RmaContainerCell: UITableViewCell, VendorSelectionProtocol
     {
         DispatchQueue.main.async {
             self.vendorName = name
-            self.invView.btn_selectVendor.setTitle(name, for: .normal)
+            self.invView.btn_selectVendor.setTitle("   \(name)   ", for: .normal)
+            self.invView.btn_selectVendor.layoutIfNeeded()
         }
     }
     

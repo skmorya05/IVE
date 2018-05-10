@@ -20,6 +20,8 @@ class VendorsViewController: UIViewController, UITableViewDataSource, UITableVie
 
        configureNavigationBar()
        self.vendor_tableView.register(UINib.init(nibName: "VendorsCell", bundle: nil), forCellReuseIdentifier: "VendorsCell")
+       self.vendor_tableView.estimatedRowHeight = 110
+       self.vendor_tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(_ animated: Bool)
@@ -63,17 +65,27 @@ class VendorsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat
     {
-        return 97.0
+        if (DrConstants.kDevice == .pad)
+        {
+            return 110.0*DrConstants.kSCALE_FACTOR
+        }
+        
+        return  UITableViewAutomaticDimension
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         let cell = tableView.dequeueReusableCell(withIdentifier: "VendorsCell", for: indexPath) as! VendorsCell
-        cell.accessoryType = .disclosureIndicator
         let vendor = self.vendorsList[indexPath.row]
         cell.lblName.text =  "   \(vendor.name)"
         cell.lblEmail.text = "   \(vendor.email)"
         cell.lblPhone.text = "   \(vendor.phone)"
+        
+        if Int(vendor.openStatus) != 0 || Int(vendor.shipStatus) != 0
+        {
+            cell.accessoryType = .disclosureIndicator
+        }
+
         cell.lblOpen.text = "  Open:  \(vendor.openStatus)"
         cell.lblShipped.text = "  Shipped: \(vendor.shipStatus)  "
         return cell
@@ -81,9 +93,16 @@ class VendorsViewController: UIViewController, UITableViewDataSource, UITableVie
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "VendorsRmaStatusVC") as! VendorsRmaStatusVC
-        controller.vendor = self.vendorsList[indexPath.row]
-        self.navigationController?.pushViewController(controller, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+        let vendor = self.vendorsList[indexPath.row]
+        
+        if Int(vendor.openStatus) != 0 || Int(vendor.shipStatus) != 0
+        {
+            let controller = DrConstants.kStoryBoard.instantiateViewController(withIdentifier: "VendorsRmaStatusVC") as! VendorsRmaStatusVC
+            controller.vendor = self.vendorsList[indexPath.row]
+            self.navigationController?.pushViewController(controller, animated: true)
+        }
+        
     }
     
     override func didReceiveMemoryWarning()

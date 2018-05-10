@@ -149,7 +149,7 @@ class InventoryReceiptDetailsVC: UIViewController, UICollectionViewDataSource, U
         if var imageStr = imageDict["image_name"] as? String
         {
             imageStr = "\(DrConstants.kBaseUrlImage)\(imageStr)"
-            cell.capturedImageView?.sd_setImage(with: URL(string:imageStr), placeholderImage: UIImage(named: "electronics"))
+            cell.capturedImageView?.sd_setImage(with: URL(string:imageStr), placeholderImage: #imageLiteral(resourceName: "electronics"))
         }
         
         cell.capturedImageView.contentMode = .scaleAspectFill

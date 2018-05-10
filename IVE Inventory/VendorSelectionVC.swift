@@ -13,7 +13,6 @@ protocol VendorSelectionProtocol:class
     func didSelectVendor(name:String)
 }
 
-
 class VendorSelectionVC: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate
 {
     @IBOutlet weak var pickerView: UIPickerView!

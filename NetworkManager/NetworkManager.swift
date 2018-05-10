@@ -398,12 +398,12 @@ class NetworkManager: NSObject
         }
     }
     
-    func getRmaStatusList(completion:@escaping (_ rmaStatusList:[[String:Any]]?) -> Void)
+    func getRmaStatusList(vendorid: String ,completion:@escaping (_ rmaStatusList:[[String:Any]]?) -> Void)
     {
         Alamofire.request(
             URL(string: IVE_URLConstant.kVendorsRmaList)!,
             method: .get,
-            parameters: ["vendor_id": "2"])
+            parameters: ["vendor_id": vendorid])
             .validate()
             .responseJSON { (response) -> Void in
                 
@@ -526,6 +526,8 @@ class NetworkManager: NSObject
                     print("Error: \(String(describing: response.result.error))")
                     return
                 }
+                
+                 ///print("response.result.value: \(String(describing: response.result.value))")
                 
                 guard let dict = response.result.value as? [String: Any] else
                 {
@@ -664,7 +666,6 @@ class NetworkManager: NSObject
             if let base64String = image.base64(format: .JPEG(0.7))
             {
                 imageStrArr.append(base64String)
-                print("base64String = \(base64String)")
             }
         }
         
@@ -682,7 +683,6 @@ class NetworkManager: NSObject
                 
                 guard let value = response.result.value as? [String: Any], let status = value["status"] as? String else
                 {
-                    print("Malformed data received from fetchAllRooms service")
                     return
                 }
                 

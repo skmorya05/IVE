@@ -23,8 +23,12 @@ class VendorsRmaStatusVC: UIViewController, UITableViewDataSource, UITableViewDe
         
         print("vendor = \(vendor)")
         configureNavigationBar()
+        self.edgesForExtendedLayout = []
         
         self.vendor_tableView.register(UINib.init(nibName: "RmaStatusCell", bundle: nil), forCellReuseIdentifier: "RmaStatusCell")
+        
+        self.vendor_tableView.estimatedRowHeight = 121.0
+        self.vendor_tableView.rowHeight = UITableViewAutomaticDimension
         
         refreshTable()
     }
@@ -33,7 +37,8 @@ class VendorsRmaStatusVC: UIViewController, UITableViewDataSource, UITableViewDe
     {
         self.rmaStatusList = [Return]()
         JustHUD.shared.showInView(view: self.view)
-        NetworkManager.sharedManager.getRmaStatusList { (rmaStatusList) in
+        
+        NetworkManager.sharedManager.getRmaStatusList(vendorid: self.vendor.id) { (rmaStatusList) in
             
             for rma in rmaStatusList!
             {

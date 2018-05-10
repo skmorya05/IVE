@@ -54,8 +54,6 @@ public struct IVE_URLConstant
     static let kAddNewVendor = DrConstants.kBaseUrl+"ticket/add_new_vendor"
     static let kUpdateVendor = DrConstants.kBaseUrl+"ticket/update_vendor"
     static let kDeleteVendor = DrConstants.kBaseUrl+"ticket/delete_vendor"
-
-    
 }
 
 public struct IVE_KeyConstant

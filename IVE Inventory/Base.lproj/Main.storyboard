@@ -1534,7 +1534,7 @@
         <!--Gallery View Controller-->
         <scene sceneID="NzQ-SL-6vo">
             <objects>
-                <viewController storyboardIdentifier="GalleryViewController" id="knQ-gz-RAU" customClass="GalleryViewController" customModule="CollectionView" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GalleryViewController" id="knQ-gz-RAU" customClass="GalleryViewController" customModule="IVE_Inventory" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pqR-1Q-6I5"/>
                         <viewControllerLayoutGuide type="bottom" id="PO4-3r-3yE"/>

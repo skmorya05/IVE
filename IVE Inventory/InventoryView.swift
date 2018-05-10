@@ -34,6 +34,11 @@ class InventoryView: UIView
     
     weak var vcObject: DetailsViewController!
 
+    override func draw(_ rect: CGRect)
+    {
+        super.draw(rect)
+    }
+    
     override func awakeFromNib()
     {
         if #available(iOS 11.0, *)
@@ -56,7 +61,6 @@ class InventoryView: UIView
         self.btn_save.roundCorners(corners: .allCorners, radius: 1.5)
 
         
-        self.btn_selectVendor.isHidden = true
         self.btn_save.isHidden = true
         
         self.btn_ResaleAsUsed.updateButtonsUI(text: "Resale As Used")

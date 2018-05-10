@@ -10,6 +10,7 @@ import Foundation
 
 struct IVEVendor {
  
+    var id :  String = ""
     var name: String = ""
     var email: String = ""
     var phone: String = ""
@@ -18,6 +19,11 @@ struct IVEVendor {
     
     init(dict:[String: Any])
     {
+        if let id = dict["id"] as? String
+        {
+            self.id = id
+        }
+        
         if let name = dict["name"] as? String
         {
             self.name = name

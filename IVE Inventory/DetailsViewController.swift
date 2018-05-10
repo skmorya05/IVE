@@ -62,7 +62,7 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
         let shareButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "Share"), target: self, action: #selector(shareButtonTapped))
         
-        let galleryButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "photo_library_white"), target: self, action: #selector(galleryButtonTapped))
+        let galleryButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "220_clip") , target: self, action: #selector(galleryButtonTapped))
         
         if self.photos.count > 0
         {

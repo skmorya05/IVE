@@ -135,26 +135,12 @@
                                 </button>
                             </subviews>
                         </stackView>
-                        <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vuJ-0Y-vkO">
-                            <rect key="frame" x="97.5" y="224" width="160" height="30"/>
-                            <color key="backgroundColor" red="0.011764705882352941" green="0.035294117647058823" blue="0.31764705882352939" alpha="1" colorSpace="calibratedRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="160" id="Sba-qP-COm"/>
-                                <constraint firstAttribute="width" secondItem="vuJ-0Y-vkO" secondAttribute="height" multiplier="35:9" id="VCS-6o-M0f"/>
-                            </constraints>
-                            <state key="normal" title="Select a Vendor ">
+                        <button opaque="NO" contentMode="scaleAspectFill" horizontalCompressionResistancePriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="clip" translatesAutoresizingMaskIntoConstraints="NO" id="vuJ-0Y-vkO">
+                            <rect key="frame" x="99.5" y="221" width="156" height="34"/>
+                            <color key="backgroundColor" red="0.2426221371" green="0.25143536929999999" blue="0.49365729089999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <state key="normal" title="   Select a Vendor   ">
                                 <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </state>
-                            <variation key="default">
-                                <mask key="constraints">
-                                    <exclude reference="VCS-6o-M0f"/>
-                                </mask>
-                            </variation>
-                            <variation key="heightClass=regular-widthClass=regular">
-                                <mask key="constraints">
-                                    <include reference="VCS-6o-M0f"/>
-                                </mask>
-                            </variation>
                             <connections>
                                 <action selector="btn_Tapped_selectVendorWithSender:" destination="iN0-l3-epB" eventType="touchUpInside" id="pQF-pP-8xt"/>
                             </connections>
@@ -162,7 +148,6 @@
                     </subviews>
                     <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
-                        <constraint firstItem="vuJ-0Y-vkO" firstAttribute="top" secondItem="YwY-dE-KbS" secondAttribute="bottom" constant="20" id="1Ie-d5-sKm"/>
                         <constraint firstItem="5Py-z6-Nv5" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" multiplier="5/3" id="4LI-mS-DFO"/>
                         <constraint firstItem="YwY-dE-KbS" firstAttribute="top" secondItem="OXU-lT-3Ld" secondAttribute="bottom" constant="21" id="7MB-bN-PLY"/>
                         <constraint firstItem="Olf-Ok-lDp" firstAttribute="centerY" secondItem="OXU-lT-3Ld" secondAttribute="centerY" id="BGQ-ri-3u5"/>
@@ -170,11 +155,12 @@
                         <constraint firstItem="dIn-Qm-0Ph" firstAttribute="bottom" secondItem="YwY-dE-KbS" secondAttribute="bottom" id="Lu4-Hk-TjB"/>
                         <constraint firstItem="OXU-lT-3Ld" firstAttribute="top" secondItem="90z-ed-qv9" secondAttribute="top" constant="20" id="N23-4F-EZP"/>
                         <constraint firstItem="YwY-dE-KbS" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" id="Pha-lR-c5B"/>
-                        <constraint firstItem="vuJ-0Y-vkO" firstAttribute="centerX" secondItem="YwY-dE-KbS" secondAttribute="centerX" id="arb-tG-Ajp"/>
+                        <constraint firstAttribute="bottom" secondItem="vuJ-0Y-vkO" secondAttribute="bottom" constant="15" id="RP3-y4-Ezm"/>
                         <constraint firstItem="YwY-dE-KbS" firstAttribute="leading" secondItem="dIn-Qm-0Ph" secondAttribute="trailing" constant="5" id="cA1-Cw-Lcc"/>
                         <constraint firstAttribute="height" constant="270" id="gZv-9e-ImD">
                             <variation key="heightClass=regular-widthClass=regular" constant="300"/>
                         </constraint>
+                        <constraint firstItem="vuJ-0Y-vkO" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" id="nfX-1m-AtQ"/>
                         <constraint firstItem="dIn-Qm-0Ph" firstAttribute="top" secondItem="YwY-dE-KbS" secondAttribute="top" id="sLU-XI-Xeg"/>
                         <constraint firstItem="OXU-lT-3Ld" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" multiplier="1/3" id="srv-C9-FC3"/>
                         <constraint firstItem="Olf-Ok-lDp" firstAttribute="centerX" secondItem="90z-ed-qv9" secondAttribute="centerX" id="yYr-DA-G6y"/>
@@ -200,26 +186,14 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="90z-ed-qv9" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="IRa-UB-qyB"/>
-                <constraint firstItem="Sw0-rs-wh7" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="69:442" id="No5-Pl-cxW"/>
                 <constraint firstItem="Sw0-rs-wh7" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Y74-5V-aDW"/>
                 <constraint firstItem="90z-ed-qv9" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="8" id="YZj-oe-VY7"/>
                 <constraint firstAttribute="trailing" secondItem="90z-ed-qv9" secondAttribute="trailing" constant="10" id="hFq-pb-X95"/>
                 <constraint firstItem="Sw0-rs-wh7" firstAttribute="top" secondItem="90z-ed-qv9" secondAttribute="bottom" constant="26" id="htX-Xg-TXZ"/>
                 <constraint firstItem="d4L-Be-tQl" firstAttribute="centerX" secondItem="Sw0-rs-wh7" secondAttribute="centerX" id="oL2-Eo-jEl"/>
                 <constraint firstItem="d4L-Be-tQl" firstAttribute="top" secondItem="Sw0-rs-wh7" secondAttribute="bottom" constant="20" id="ptv-OV-gBZ"/>
-                <constraint firstItem="vuJ-0Y-vkO" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="175:442" id="vsP-Ec-cVB"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <variation key="default">
-                <mask key="constraints">
-                    <exclude reference="vsP-Ec-cVB"/>
-                </mask>
-            </variation>
-            <variation key="heightClass=regular-widthClass=regular">
-                <mask key="constraints">
-                    <include reference="vsP-Ec-cVB"/>
-                </mask>
-            </variation>
             <connections>
                 <outlet property="btn_DefectiveNotWorking" destination="5Py-z6-Nv5" id="24z-8J-yre"/>
                 <outlet property="btn_InternalNotes" destination="d4L-Be-tQl" id="omX-0S-vM7"/>

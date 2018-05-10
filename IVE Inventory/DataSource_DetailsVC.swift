@@ -53,12 +53,18 @@ extension DataSource_DetailsVC: UITableViewDataSource
             cell.vcObject = self.vc
             cell.configureView()
         }
+        
         if let _ = self.rmaStruct
         {
             cell.rmaStruct = self.rmaStruct
-            cell.updateView()
+            self.perform(#selector(DataSource_DetailsVC.updateCell(_:)), with:cell , afterDelay: 0.1)
         }
         
         return cell
+    }
+    
+    @objc func updateCell(_ cell:RmaContainerCell)
+    {
+        cell.updateView()
     }
 }
