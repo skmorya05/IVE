@@ -60,7 +60,7 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         self.navigationController?.navigationBar.barTintColor = ColorConstant.navBarColor
         
         let printerButton = UIBarButtonItem.itemWith(colorfulImage: UIImage.init(named: "printer_icon"), target: self, action: #selector(printerButtonTapped))
-        let shareButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "Share"), target: self, action: #selector(shareButtonTapped))
+        let shareButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "Share"), target: self, action: #selector(shareButtonTapped(_:)))
         
         let galleryButton = UIBarButtonItem.itemWith(colorfulImage: #imageLiteral(resourceName: "220_clip") , target: self, action: #selector(galleryButtonTapped))
         
@@ -133,7 +133,7 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         WirelessPrinterManager.shared.openPrinterPreview(printDocArray: [self.dataStruct], viewController: self)
     }
     
-    @objc func shareButtonTapped()
+    @objc func shareButtonTapped(_ sender:UIBarButtonItem)
     {
         
         let alertController = UIAlertController(title: "Select Share Mode", message: "", preferredStyle: .actionSheet)
@@ -153,6 +153,13 @@ class DetailsViewController: UIViewController, InternalProtocols, MFMailComposeV
         alertController.addAction(message)
         alertController.addAction(cancel)
 
+        if let popoverPresentationController = alertController.popoverPresentationController
+        {
+            popoverPresentationController.sourceView = self.view
+            popoverPresentationController.sourceRect = CGRect(x: ScreenSize.SCREEN_WIDTH-100, y:100, width: 0, height: 0)
+            popoverPresentationController.permittedArrowDirections = []
+        }
+       
         self.present(alertController, animated: true, completion: nil)
     }
     

@@ -200,6 +200,14 @@ class RegisterViewController: UIViewController, UITextFieldDelegate, UINavigatio
             }
             alertController.addAction(cancelAction)
             
+            if let popoverPresentationController = alertController.popoverPresentationController
+            {
+                popoverPresentationController.sourceView = self.view
+                popoverPresentationController.sourceRect = CGRect(x: self.view.center.x, y:self.view.center.y, width: 0, height: 0)
+                popoverPresentationController.permittedArrowDirections = []
+            }
+            
+            
             self.present(alertController, animated: true, completion: nil)
         }
     }
